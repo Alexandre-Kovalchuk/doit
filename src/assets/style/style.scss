@@ -1,10 +1,11 @@
 @import 'reset/reset';
-@import 'breakpoints/_media-breakpoints';
+@import 'breakpoints/media-breakpoints';
 @import 'fonts/stylesheet';
 
 body{
   font-family: Rubik, sans-serif;
   background-color: #0F1215;
+
 }
 
 .wrapper {
@@ -13,10 +14,20 @@ body{
   min-height: 100%;
   overflow: hidden;
   position: relative;
+
 }
 
 .main {
   flex: 1 1 auto;
+  padding: 128px 0 0;
+  @include media-breakpoint-down(l){
+  padding-left: 114px;
+  }
+
+  @include media-breakpoint-down(md){
+    padding-left: 0;
+  }
+
 }
 
 .container {

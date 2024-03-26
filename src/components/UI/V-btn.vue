@@ -15,7 +15,7 @@ const props = defineProps({
   },
 });
 </script>
-<style lang="scss" scoped>
+<style lang="scss">
 @import '@/assets/style/breakpoints/media-breakpoints';
 .v-btn {
   &__btn {

@@ -34,7 +34,8 @@ const svgIcon = [
   },
 ];
 </script>
-<style lang="scss" scoped>
+<style lang="scss">
+@import '@/assets/style/breakpoints/media-breakpoints';
 .aside {
   position: absolute;
 
@@ -46,6 +47,15 @@ const svgIcon = [
     background-color: #0f1215;
     border-right: 2px solid #20252b;
     padding: 229px 40px 184px 40px;
+
+    @include media-breakpoint-down(md) {
+      bottom: 0;
+      width: 100%;
+      height: 55px;
+      border-right: none;
+      border-top: 2px solid #20252b;
+      padding: 16px;
+    }
   }
 
   &__list {
@@ -54,10 +64,18 @@ const svgIcon = [
     justify-content: space-between;
     height: 100%;
 
+    @include media-breakpoint-down(md) {
+      flex-direction: revert;
+    }
+
     &-item {
       svg {
         width: 32px;
         height: 32px;
+        @include media-breakpoint-down(md) {
+          width: 32px;
+          height: 22px;
+        }
       }
     }
   }

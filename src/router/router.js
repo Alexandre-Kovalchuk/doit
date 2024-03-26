@@ -6,32 +6,32 @@ const router = createRouter({
     {
       path: '/',
       name: 'Main',
-      component: () => import('@/views/mainPage.vue'),
+      component: () => import('@/views/MainPage.vue'),
     },
     {
       path: '/play',
       name: 'Play',
-      component: () => import('@/views/playPage.vue'),
+      component: () => import('@/views/PlayPage.vue'),
     },
     {
       path: '/news',
       name: 'News',
-      component: () => import('@/views/newsPage.vue'),
+      component: () => import('@/views/NewsPage.vue'),
     },
     {
       path: '/games',
       name: 'Games',
-      component: () => import('@/views/gamesPage.vue'),
+      component: () => import('@/views/GamesPage.vue'),
     },
     {
       path: '/shop',
       name: 'Shop',
-      component: () => import('@/views/shopPage.vue'),
+      component: () => import('@/views/ShopPage.vue'),
     },
     {
       path: '/sponsorship',
       name: 'Sponsorship',
-      component: () => import('../views/sponsorshipPage.vue'),
+      component: () => import('../views/SponsorshipPage.vue'),
     },
   ],
 });

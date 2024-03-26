@@ -40,7 +40,7 @@
 
 <script setup>
 import { ref } from 'vue';
-import btn from '../UI/v-btn.vue';
+import btn from '../UI/V-btn.vue';
 
 const links = ref([
   { name: 'Play', href: 'play' },
@@ -57,7 +57,7 @@ const toggleMenu = () => {
 };
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 @import '@/assets/style/breakpoints/media-breakpoints';
 .header {
   position: fixed;
@@ -67,6 +67,13 @@ const toggleMenu = () => {
   z-index: 50;
   min-height: 64px;
   margin-top: 32px;
+  @include media-breakpoint-down(l) {
+    padding-left: 114px;
+  }
+
+  @include media-breakpoint-down(md) {
+    padding-left: 0;
+  }
 
   @include media-breakpoint-down(xs) {
     margin-top: 24px;
@@ -83,7 +90,7 @@ const toggleMenu = () => {
     position: relative;
     z-index: 40;
 
-    @include media-breakpoint-down(sm) {
+    @include media-breakpoint-down(md) {
       position: absolute;
       right: 0;
 
@@ -97,7 +104,7 @@ const toggleMenu = () => {
   &__menu {
     width: 100%;
 
-    @include media-breakpoint-down(sm) {
+    @include media-breakpoint-down(md) {
       &-icon {
         z-index: 60;
         position: relative;
@@ -160,7 +167,7 @@ const toggleMenu = () => {
       justify-content: space-between;
       width: 100%;
 
-      @include media-breakpoint-down(sm) {
+      @include media-breakpoint-down(md) {
         position: fixed;
         top: 0;
         left: -100%;
@@ -186,11 +193,11 @@ const toggleMenu = () => {
       margin-right: auto;
       margin-left: 56px;
 
-      @include media-breakpoint-down(md) {
+      @include media-breakpoint-down(lg) {
         margin-left: 20px;
       }
 
-      @include media-breakpoint-down(sm) {
+      @include media-breakpoint-down(md) {
         margin: 0 auto;
       }
     }
@@ -198,12 +205,12 @@ const toggleMenu = () => {
     &-list {
       display: flex;
       justify-content: space-between;
-      @include media-breakpoint-down(sm) {
+      @include media-breakpoint-down(md) {
         height: 220px;
         flex-direction: column;
       }
 
-      @include media-breakpoint-down(sm) {
+      @include media-breakpoint-down(md) {
         li {
           text-align: center;
         }
@@ -222,11 +229,11 @@ const toggleMenu = () => {
       max-width: 233px;
       width: 100%;
 
-      @include media-breakpoint-down(md) {
+      @include media-breakpoint-down(lg) {
         margin-left: 20px;
       }
 
-      @include media-breakpoint-down(sm) {
+      @include media-breakpoint-down(md) {
         margin: 84px 0 0;
       }
 
