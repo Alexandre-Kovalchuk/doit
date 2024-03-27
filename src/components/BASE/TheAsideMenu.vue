@@ -1,39 +1,40 @@
+<script setup>
+import BaseSvg from '@/components/BASE/BaseSvg.vue';
+
+const svgIcon = [
+  {
+    id: 'knight',
+  },
+  {
+    id: 'trophy',
+  },
+  {
+    id: 'growth',
+  },
+  {
+    id: 'network',
+  },
+  {
+    id: 'target',
+  },
+  {
+    id: 'megaphone',
+  },
+];
+</script>
+
 <template>
   <aside class="aside">
     <div class="aside__content">
       <ul class="aside__list">
         <li v-for="item in svgIcon" class="aside__list-item">
-          <svg>
-            <use :xlink:href="item.id"></use>
-          </svg>
+          <BaseSvg :id="item.id" />
         </li>
       </ul>
     </div>
   </aside>
 </template>
 
-<script setup>
-const svgIcon = [
-  {
-    id: '#knight',
-  },
-  {
-    id: '#trophy',
-  },
-  {
-    id: '#growth',
-  },
-  {
-    id: '#network',
-  },
-  {
-    id: '#target',
-  },
-  {
-    id: '#megaphone',
-  },
-];
-</script>
 <style lang="scss">
 @import '@/assets/style/breakpoints/media-breakpoints';
 .aside {

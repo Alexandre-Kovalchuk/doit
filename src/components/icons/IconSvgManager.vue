@@ -213,5 +213,168 @@
         </clipPath>
       </defs>
     </symbol>
+
+    <symbol
+      viewBox="0 0 1008 761"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      id="triangle-first"
+    >
+      <path
+        d="M504 759.002L1.86282 1.81152L1006.14 1.81152L504 759.002Z"
+        stroke="url(#paint0_linear_511_161)"
+        stroke-width="2"
+      />
+      <defs>
+        <linearGradient
+          id="paint0_linear_511_161"
+          x1="504"
+          y1="0.811523"
+          x2="504"
+          y2="760.812"
+          gradientUnits="userSpaceOnUse"
+        >
+          <stop stop-color="#3ABEFF" />
+          <stop offset="1" stop-color="#095FE0" />
+        </linearGradient>
+      </defs>
+    </symbol>
+
+    <symbol
+      viewBox="0 0 1017 783"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      id="triangle-second"
+    >
+      <g opacity="0.32" filter="url(#filter0_d_511_158)">
+        <path
+          d="M531.241 772.837L6.81946 30.9061L1010.65 1.0549L531.241 772.837Z"
+          stroke="url(#paint0_linear_511_158)"
+          stroke-width="2"
+        />
+      </g>
+      <defs>
+        <filter
+          id="filter0_d_511_158"
+          x="0.92749"
+          y="0"
+          width="1015.55"
+          height="782.645"
+          filterUnits="userSpaceOnUse"
+          color-interpolation-filters="sRGB"
+        >
+          <feFlood flood-opacity="0" result="BackgroundImageFix" />
+          <feColorMatrix
+            in="SourceAlpha"
+            type="matrix"
+            values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
+            result="hardAlpha"
+          />
+          <feOffset dy="4" />
+          <feGaussianBlur stdDeviation="2" />
+          <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0" />
+          <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_511_158" />
+          <feBlend
+            mode="normal"
+            in="SourceGraphic"
+            in2="effect1_dropShadow_511_158"
+            result="shape"
+          />
+        </filter>
+        <linearGradient
+          id="paint0_linear_511_158"
+          x1="508.705"
+          y1="14.9809"
+          x2="531.295"
+          y2="774.645"
+          gradientUnits="userSpaceOnUse"
+        >
+          <stop stop-color="#3ABEFF" />
+          <stop offset="1" stop-color="#095FE0" />
+        </linearGradient>
+      </defs>
+    </symbol>
+
+    <symbol
+      viewBox="0 0 1017 779"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      id="triangle-third"
+    >
+      <g opacity="0.32" filter="url(#filter0_d_511_159)">
+        <path
+          d="M493.407 768.927L6.57381 1.80771L1010.65 21.9711L493.407 768.927Z"
+          stroke="url(#paint0_linear_511_159)"
+          stroke-width="2"
+        />
+      </g>
+      <defs>
+        <filter
+          id="filter0_d_511_159"
+          x="0.731201"
+          y="0.770508"
+          width="1015.8"
+          height="777.966"
+          filterUnits="userSpaceOnUse"
+          color-interpolation-filters="sRGB"
+        >
+          <feFlood flood-opacity="0" result="BackgroundImageFix" />
+          <feColorMatrix
+            in="SourceAlpha"
+            type="matrix"
+            values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
+            result="hardAlpha"
+          />
+          <feOffset dy="4" />
+          <feGaussianBlur stdDeviation="2" />
+          <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0" />
+          <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_511_159" />
+          <feBlend
+            mode="normal"
+            in="SourceGraphic"
+            in2="effect1_dropShadow_511_159"
+            result="shape"
+          />
+        </filter>
+        <linearGradient
+          id="paint0_linear_511_159"
+          x1="508.63"
+          y1="10.8896"
+          x2="493.371"
+          y2="770.736"
+          gradientUnits="userSpaceOnUse"
+        >
+          <stop stop-color="#3ABEFF" />
+          <stop offset="1" stop-color="#095FE0" />
+        </linearGradient>
+      </defs>
+    </symbol>
+
+    <symbol
+      viewBox="0 0 634 479"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      id="triangle-little"
+    >
+      <path
+        opacity="0.32"
+        d="M317 477.002L1.86286 1.81152L632.137 1.81152L317 477.002Z"
+        stroke="url(#paint0_linear_511_163)"
+        stroke-width="2"
+      />
+      <defs>
+        <linearGradient
+          id="paint0_linear_511_163"
+          x1="317"
+          y1="0.811523"
+          x2="317"
+          y2="478.812"
+          gradientUnits="userSpaceOnUse"
+        >
+          <stop stop-color="#3ABEFF" />
+          <stop offset="1" stop-color="#095FE0" />
+        </linearGradient>
+      </defs>
+    </symbol>
   </svg>
 </template>

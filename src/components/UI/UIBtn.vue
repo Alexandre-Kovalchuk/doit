@@ -1,8 +1,3 @@
-<template>
-  <div class="v-btn">
-    <button :class="['v-btn__btn', `v-btn__btn_${color}`]">{{ label }}</button>
-  </div>
-</template>
 <script setup>
 const props = defineProps({
   label: {
@@ -15,6 +10,13 @@ const props = defineProps({
   },
 });
 </script>
+
+<template>
+  <div class="v-btn">
+    <button :class="['v-btn__btn', `v-btn__btn_${color}`]">{{ label }}</button>
+  </div>
+</template>
+
 <style lang="scss">
 @import '@/assets/style/breakpoints/media-breakpoints';
 .v-btn {

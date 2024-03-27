@@ -1,10 +1,30 @@
+<script setup>
+import { ref } from 'vue';
+import BaseImage from '@/components/BASE/BaseImage.vue';
+import UIBtn from '../UI/UIBtn.vue';
+
+const links = ref([
+  { name: 'Play', href: 'play' },
+  { name: 'News', href: 'news' },
+  { name: 'Games', href: 'games' },
+  { name: 'Shop', href: 'shop' },
+  { name: 'Sponsorship', href: 'sponsorship' },
+]);
+
+const isOpenMenu = ref(false);
+const toggleMenu = () => {
+  isOpenMenu.value = !isOpenMenu.value;
+  console.log('click');
+};
+</script>
+
 <template>
   <header class="header">
     <div class="container">
       <div class="header__content">
         <div class="header__logo">
           <router-link to="/">
-            <img src="../../assets/img/logo.png" alt="logo" />
+            <BaseImage :srcset="'logo.webp'" :src="'logo.png'" :alt="'logo'" />
           </router-link>
         </div>
 
@@ -28,8 +48,8 @@
             </nav>
 
             <div class="header__menu-btn">
-              <btn label="Login" />
-              <btn label="Sign up" color="blue" />
+              <UIBtn label="Login" />
+              <UIBtn label="Sign up" color="blue" />
             </div>
           </div>
         </div>
@@ -37,25 +57,6 @@
     </div>
   </header>
 </template>
-
-<script setup>
-import { ref } from 'vue';
-import btn from '../UI/V-btn.vue';
-
-const links = ref([
-  { name: 'Play', href: 'play' },
-  { name: 'News', href: 'news' },
-  { name: 'Games', href: 'games' },
-  { name: 'Shop', href: 'shop' },
-  { name: 'Sponsorship', href: 'sponsorship' },
-]);
-
-const isOpenMenu = ref(true);
-const toggleMenu = () => {
-  isOpenMenu.value = !isOpenMenu.value;
-  console.log('click');
-};
-</script>
 
 <style lang="scss">
 @import '@/assets/style/breakpoints/media-breakpoints';

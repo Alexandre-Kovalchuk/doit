@@ -1,5 +1,4 @@
+<script setup></script>
 <template>
   <div>Shop</div>
 </template>
-
-<script setup></script>
