@@ -39,6 +39,7 @@ const svgIcon = [
 @import '@/assets/style/breakpoints/media-breakpoints';
 .aside {
   position: absolute;
+  z-index: 90;
 
   &__content {
     position: fixed;

@@ -10,8 +10,8 @@ export const tabs = [
 export const dotaInfo = [
   {
     id: 1,
-    imgWebp: new URL('./assets/img/Dota1.webp', import.meta.url),
-    img: new URL('./assets/img/Dota1.png', import.meta.url),
+    imgWebp: new URL('../../../public/img/Dota1.webp', import.meta.url),
+    img: new URL('../../../public/img/Dota1.png', import.meta.url),
     title: 'Tournament Dota II',
     label: [
       {
@@ -34,8 +34,8 @@ export const dotaInfo = [
   },
   {
     id: 2,
-    imgWebp: 'Dota2.webp',
-    img: 'Dota2.png',
+    imgWebp: new URL('../../../public/img/Dota2.webp', import.meta.url),
+    img: new URL('../../../public/img/Dota2.png', import.meta.url),
     title: 'Tournament Dota II',
     label: [
       {
@@ -58,8 +58,8 @@ export const dotaInfo = [
   },
   {
     id: 3,
-    imgWebp: 'Dota3.webp',
-    img: 'Dota3.png',
+    imgWebp: new URL('../../../public/img/Dota3.webp', import.meta.url),
+    img: new URL('../../../public/img/Dota3.png', import.meta.url),
     title: 'Tournament Dota II',
     label: [
       {
@@ -82,8 +82,8 @@ export const dotaInfo = [
   },
   {
     id: 4,
-    imgWebp: 'Dota1.webp',
-    img: 'Dota1.png',
+    imgWebp: new URL('../../../public/img/Dota1.webp', import.meta.url),
+    img: new URL('../../../public/img/Dota1.png', import.meta.url),
     title: 'Tournament Dota II',
     label: [
       {
@@ -106,8 +106,8 @@ export const dotaInfo = [
   },
   {
     id: 4,
-    imgWebp: 'Dota3.webp',
-    img: 'Dota3.png',
+    imgWebp: new URL('../../../public/img/Dota3.webp', import.meta.url),
+    img: new URL('../../../public/img/Dota3.png', import.meta.url),
     title: 'Tournament Dota II',
     label: [
       {
@@ -133,8 +133,8 @@ export const dotaInfo = [
 export const fortniteInfo = [
   {
     id: 1,
-    imgWebp: 'Fortnite1.webp',
-    img: 'Fortnite1.jpeg',
+    imgWebp: new URL('../../../public/img/Fortnite1.webp', import.meta.url),
+    img: new URL('../../../public/img/Fortnite1.jpeg', import.meta.url),
     title: 'Tournament Fortnite',
     label: [
       {
@@ -157,8 +157,8 @@ export const fortniteInfo = [
   },
   {
     id: 2,
-    imgWebp: 'Fortnite2.webp',
-    img: 'Fortnite2.jpeg',
+    imgWebp: new URL('../../../public/img/Fortnite2.webp', import.meta.url),
+    img: new URL('../../../public/img/Fortnite2.jpeg', import.meta.url),
     title: 'Tournament Fortnite',
     label: [
       {
@@ -181,8 +181,8 @@ export const fortniteInfo = [
   },
   {
     id: 3,
-    imgWebp: 'Fortnite3.webp',
-    img: 'Fortnite3.jpeg',
+    imgWebp: new URL('../../../public/img/Fortnite3.webp', import.meta.url),
+    img: new URL('../../../public/img/Fortnite3.jpeg', import.meta.url),
     title: 'Tournament Fortnite',
     label: [
       {
@@ -205,8 +205,8 @@ export const fortniteInfo = [
   },
   {
     id: 4,
-    imgWebp: 'Fortnite1.webp',
-    img: 'Fortnite1.jpeg',
+    imgWebp: new URL('../../../public/img/Fortnite1.webp', import.meta.url),
+    img: new URL('../../../public/img/Fortnite1.jpeg', import.meta.url),
     title: 'Tournament Fortnite',
     label: [
       {
@@ -229,8 +229,8 @@ export const fortniteInfo = [
   },
   {
     id: 4,
-    imgWebp: 'Fortnite3.webp',
-    img: 'Fortnite3.jpeg',
+    imgWebp: new URL('../../../public/img/Fortnite3.webp', import.meta.url),
+    img: new URL('../../../public/img/Fortnite3.jpeg', import.meta.url),
     title: 'Tournament Fortnite',
     label: [
       {
@@ -256,8 +256,8 @@ export const fortniteInfo = [
 export const lolInfo = [
   {
     id: 1,
-    imgWebp: 'LOL1.webp',
-    img: 'LOL1.png',
+    imgWebp: new URL('../../../public/img/LOL1.webp', import.meta.url),
+    img: new URL('../../../public/img/LOL1.png', import.meta.url),
     title: 'Tournament League of Legends',
     label: [
       {
@@ -280,8 +280,8 @@ export const lolInfo = [
   },
   {
     id: 2,
-    imgWebp: 'LOL2.webp',
-    img: 'LOL2.png',
+    imgWebp: new URL('../../../public/img/LOL2.webp', import.meta.url),
+    img: new URL('../../../public/img/LOL2.png', import.meta.url),
     title: 'Tournament League of Legends',
     label: [
       {
@@ -304,8 +304,8 @@ export const lolInfo = [
   },
   {
     id: 3,
-    imgWebp: 'LOL3.webp',
-    img: 'LOL3.png',
+    imgWebp: new URL('../../../public/img/LOL3.webp', import.meta.url),
+    img: new URL('../../../public/img/LOL3.png', import.meta.url),
     title: 'Tournament League of Legends',
     label: [
       {
@@ -328,8 +328,8 @@ export const lolInfo = [
   },
   {
     id: 4,
-    imgWebp: 'LOL1.webp',
-    img: 'LOL1.png',
+    imgWebp: new URL('../../../public/img/LOL1.webp', import.meta.url),
+    img: new URL('../../../public/img/LOL1.png', import.meta.url),
     title: 'Tournament League of Legends',
     label: [
       {
@@ -352,8 +352,8 @@ export const lolInfo = [
   },
   {
     id: 4,
-    imgWebp: 'LOL3.webp',
-    img: 'LOL3.png',
+    imgWebp: new URL('../../../public/img/LOL3.webp', import.meta.url),
+    img: new URL('../../../public/img/LOL3.webp', import.meta.url),
     title: 'Tournament League of Legends',
     label: [
       {
@@ -379,8 +379,8 @@ export const lolInfo = [
 export const csInfo = [
   {
     id: 1,
-    imgWebp: 'CS1.webp',
-    img: 'CS1.png',
+    imgWebp: new URL('../../../public/img/CS1.webp', import.meta.url),
+    img: new URL('../../../public/img/CS2.png', import.meta.url),
     title: 'Tournament CS:GO',
     label: [
       {
@@ -403,8 +403,8 @@ export const csInfo = [
   },
   {
     id: 2,
-    imgWebp: 'CS2.webp',
-    img: 'CS2.png',
+    imgWebp: new URL('../../../public/img/CS2.webp', import.meta.url),
+    img: new URL('../../../public/img/CS2.png', import.meta.url),
     title: 'Tournament CS:GO',
     label: [
       {
@@ -427,8 +427,8 @@ export const csInfo = [
   },
   {
     id: 3,
-    imgWebp: 'CS3.webp',
-    img: 'CS3.png',
+    imgWebp: new URL('../../../public/img/CS3.webp', import.meta.url),
+    img: new URL('../../../public/img/CS3.png', import.meta.url),
     title: 'Tournament CS:GO',
     label: [
       {
@@ -451,8 +451,8 @@ export const csInfo = [
   },
   {
     id: 4,
-    imgWebp: 'CS1.webp',
-    img: 'CS1.png',
+    imgWebp: new URL('../../../public/img/CS1.webp', import.meta.url),
+    img: new URL('../../../public/img/CS1.png', import.meta.url),
     title: 'Tournament CS:GO',
     label: [
       {
@@ -475,8 +475,8 @@ export const csInfo = [
   },
   {
     id: 4,
-    imgWebp: 'CS3.webp',
-    img: 'CS3.png',
+    imgWebp: new URL('../../../public/img/CS3.webp', import.meta.url),
+    img: new URL('../../../public/img/CS3.png', import.meta.url),
     title: 'Tournament CS:GO',
     label: [
       {
@@ -502,8 +502,8 @@ export const csInfo = [
 export const starCraftInfo = [
   {
     id: 1,
-    imgWebp: 'StarCraft1.webp',
-    img: 'StarCraft1.png',
+    imgWebp: new URL('../../../public/img/StarCraft1.webp', import.meta.url),
+    img: new URL('../../../public/img/StarCraft1.png', import.meta.url),
     title: 'Tournament StarCraft II',
     label: [
       {
@@ -526,8 +526,8 @@ export const starCraftInfo = [
   },
   {
     id: 2,
-    imgWebp: 'StarCraft2.webp',
-    img: 'StarCraft2.png',
+    imgWebp: new URL('../../../public/img/StarCraft2.webp', import.meta.url),
+    img: new URL('../../../public/img/StarCraft2.png', import.meta.url),
     title: 'Tournament StarCraft II',
     label: [
       {
@@ -550,8 +550,8 @@ export const starCraftInfo = [
   },
   {
     id: 3,
-    imgWebp: 'StarCraft3.webp',
-    img: 'StarCraft3.png',
+    imgWebp: new URL('../../../public/img/StarCraft3.webp', import.meta.url),
+    img: new URL('../../../public/img/StarCraft3.png', import.meta.url),
     title: 'Tournament StarCraft II',
     label: [
       {
@@ -574,8 +574,8 @@ export const starCraftInfo = [
   },
   {
     id: 4,
-    imgWebp: 'StarCraft1.webp',
-    img: 'StarCraft1.png',
+    imgWebp: new URL('../../../public/img/StarCraft1.webp', import.meta.url),
+    img: new URL('../../../public/img/StarCraft1.png', import.meta.url),
     title: 'Tournament StarCraft II',
     label: [
       {
@@ -598,8 +598,8 @@ export const starCraftInfo = [
   },
   {
     id: 4,
-    imgWebp: 'StarCraft3.webp',
-    img: 'StarCraft3.png',
+    imgWebp: new URL('../../../public/img/StarCraft3.webp', import.meta.url),
+    img: new URL('../../../public/img/StarCraft3.png', import.meta.url),
     title: 'Tournament StarCraft II',
     label: [
       {
@@ -619,5 +619,217 @@ export const starCraftInfo = [
         text: '$ 2200',
       },
     ],
+  },
+];
+
+export const dotaNews = [
+  {
+    id: 1,
+    imgWebp: new URL('../../../public/img/Dota1.webp', import.meta.url),
+    img: new URL('../../../public/img/Dota1.png', import.meta.url),
+    title: 'Tournament Dota II',
+    subText:
+      'Team Evolve, a collective of players who create and share impressive maps using Fortnites in-game Creative mode...',
+  },
+  {
+    id: 2,
+    imgWebp: new URL('../../../public/img/Dota2.webp', import.meta.url),
+    img: new URL('../../../public/img/Dota2.png', import.meta.url),
+    title: 'Tournament Dota II',
+    subText:
+      'Team Evolve, a collective of players who create and share impressive maps using Fortnites in-game Creative mode...',
+  },
+  {
+    id: 3,
+    imgWebp: new URL('../../../public/img/Dota3.webp', import.meta.url),
+    img: new URL('../../../public/img/Dota3.png', import.meta.url),
+    title: 'Tournament Dota II',
+    subText:
+      'Team Evolve, a collective of players who create and share impressive maps using Fortnites in-game Creative mode...',
+  },
+  {
+    id: 4,
+    imgWebp: new URL('../../../public/img/Dota1.webp', import.meta.url),
+    img: new URL('../../../public/img/Dota1.png', import.meta.url),
+    title: 'Tournament Dota II',
+    subText:
+      'Team Evolve, a collective of players who create and share impressive maps using Fortnites in-game Creative mode...',
+  },
+  {
+    id: 4,
+    imgWebp: new URL('../../../public/img/Dota3.webp', import.meta.url),
+    img: new URL('../../../public/img/Dota3.png', import.meta.url),
+    title: 'Tournament Dota II',
+    subText:
+      'Team Evolve, a collective of players who create and share impressive maps using Fortnites in-game Creative mode...',
+  },
+];
+
+export const fortniteNews = [
+  {
+    id: 1,
+    imgWebp: new URL('../../../public/img/Dota1.webp', import.meta.url),
+    img: new URL('../../../public/img/Dota1.png', import.meta.url),
+    title: 'Tournament Dota II',
+    subText:
+      'Team Evolve, a collective of players who create and share impressive maps using Fortnites in-game Creative mode...',
+  },
+  {
+    id: 2,
+    imgWebp: new URL('../../../public/img/Dota2.webp', import.meta.url),
+    img: new URL('../../../public/img/Dota2.png', import.meta.url),
+    title: 'Tournament Dota II',
+    subText:
+      'Team Evolve, a collective of players who create and share impressive maps using Fortnites in-game Creative mode...',
+  },
+  {
+    id: 3,
+    imgWebp: new URL('../../../public/img/Dota3.webp', import.meta.url),
+    img: new URL('../../../public/img/Dota3.png', import.meta.url),
+    title: 'Tournament Dota II',
+    subText:
+      'Team Evolve, a collective of players who create and share impressive maps using Fortnites in-game Creative mode...',
+  },
+  {
+    id: 4,
+    imgWebp: new URL('../../../public/img/Dota1.webp', import.meta.url),
+    img: new URL('../../../public/img/Dota1.png', import.meta.url),
+    title: 'Tournament Dota II',
+    subText:
+      'Team Evolve, a collective of players who create and share impressive maps using Fortnites in-game Creative mode...',
+  },
+  {
+    id: 4,
+    imgWebp: new URL('../../../public/img/Dota3.webp', import.meta.url),
+    img: new URL('../../../public/img/Dota3.png', import.meta.url),
+    title: 'Tournament Dota II',
+    subText:
+      'Team Evolve, a collective of players who create and share impressive maps using Fortnites in-game Creative mode...',
+  },
+];
+export const lolNews = [
+  {
+    id: 1,
+    imgWebp: new URL('../../../public/img/Dota1.webp', import.meta.url),
+    img: new URL('../../../public/img/Dota1.png', import.meta.url),
+    title: 'Tournament Dota II',
+    subText:
+      'Team Evolve, a collective of players who create and share impressive maps using Fortnites in-game Creative mode...',
+  },
+  {
+    id: 2,
+    imgWebp: new URL('../../../public/img/Dota2.webp', import.meta.url),
+    img: new URL('../../../public/img/Dota2.png', import.meta.url),
+    title: 'Tournament Dota II',
+    subText:
+      'Team Evolve, a collective of players who create and share impressive maps using Fortnites in-game Creative mode...',
+  },
+  {
+    id: 3,
+    imgWebp: new URL('../../../public/img/Dota3.webp', import.meta.url),
+    img: new URL('../../../public/img/Dota3.png', import.meta.url),
+    title: 'Tournament Dota II',
+    subText:
+      'Team Evolve, a collective of players who create and share impressive maps using Fortnites in-game Creative mode...',
+  },
+  {
+    id: 4,
+    imgWebp: new URL('../../../public/img/Dota1.webp', import.meta.url),
+    img: new URL('../../../public/img/Dota1.png', import.meta.url),
+    title: 'Tournament Dota II',
+    subText:
+      'Team Evolve, a collective of players who create and share impressive maps using Fortnites in-game Creative mode...',
+  },
+  {
+    id: 4,
+    imgWebp: new URL('../../../public/img/Dota3.webp', import.meta.url),
+    img: new URL('../../../public/img/Dota3.png', import.meta.url),
+    title: 'Tournament Dota II',
+    subText:
+      'Team Evolve, a collective of players who create and share impressive maps using Fortnites in-game Creative mode...',
+  },
+];
+export const csNews = [
+  {
+    id: 1,
+    imgWebp: new URL('../../../public/img/Dota1.webp', import.meta.url),
+    img: new URL('../../../public/img/Dota1.png', import.meta.url),
+    title: 'Tournament Dota II',
+    subText:
+      'Team Evolve, a collective of players who create and share impressive maps using Fortnites in-game Creative mode...',
+  },
+  {
+    id: 2,
+    imgWebp: new URL('../../../public/img/Dota2.webp', import.meta.url),
+    img: new URL('../../../public/img/Dota2.png', import.meta.url),
+    title: 'Tournament Dota II',
+    subText:
+      'Team Evolve, a collective of players who create and share impressive maps using Fortnites in-game Creative mode...',
+  },
+  {
+    id: 3,
+    imgWebp: new URL('../../../public/img/Dota3.webp', import.meta.url),
+    img: new URL('../../../public/img/Dota3.png', import.meta.url),
+    title: 'Tournament Dota II',
+    subText:
+      'Team Evolve, a collective of players who create and share impressive maps using Fortnites in-game Creative mode...',
+  },
+  {
+    id: 4,
+    imgWebp: new URL('../../../public/img/Dota1.webp', import.meta.url),
+    img: new URL('../../../public/img/Dota1.png', import.meta.url),
+    title: 'Tournament Dota II',
+    subText:
+      'Team Evolve, a collective of players who create and share impressive maps using Fortnites in-game Creative mode...',
+  },
+  {
+    id: 4,
+    imgWebp: new URL('../../../public/img/Dota3.webp', import.meta.url),
+    img: new URL('../../../public/img/Dota3.png', import.meta.url),
+    title: 'Tournament Dota II',
+    subText:
+      'Team Evolve, a collective of players who create and share impressive maps using Fortnites in-game Creative mode...',
+  },
+];
+export const starCraNews = [
+  {
+    id: 1,
+    imgWebp: new URL('../../../public/img/Dota1.webp', import.meta.url),
+    img: new URL('../../../public/img/Dota1.png', import.meta.url),
+    title: 'Tournament Dota II',
+    subText:
+      'Team Evolve, a collective of players who create and share impressive maps using Fortnites in-game Creative mode...',
+  },
+  {
+    id: 2,
+    imgWebp: new URL('../../../public/img/Dota2.webp', import.meta.url),
+    img: new URL('../../../public/img/Dota2.png', import.meta.url),
+    title: 'Tournament Dota II',
+    subText:
+      'Team Evolve, a collective of players who create and share impressive maps using Fortnites in-game Creative mode...',
+  },
+  {
+    id: 3,
+    imgWebp: new URL('../../../public/img/Dota3.webp', import.meta.url),
+    img: new URL('../../../public/img/Dota3.png', import.meta.url),
+    title: 'Tournament Dota II',
+    subText:
+      'Team Evolve, a collective of players who create and share impressive maps using Fortnites in-game Creative mode...',
+  },
+  {
+    id: 4,
+    imgWebp: new URL('../../../public/img/Dota1.webp', import.meta.url),
+    img: new URL('../../../public/img/Dota1.png', import.meta.url),
+    title: 'Tournament Dota II',
+    subText:
+      'Team Evolve, a collective of players who create and share impressive maps using Fortnites in-game Creative mode...',
+  },
+  {
+    id: 4,
+    imgWebp: new URL('../../../public/img/Dota3.webp', import.meta.url),
+    img: new URL('../../../public/img/Dota3.png', import.meta.url),
+    title: 'Tournament Dota II',
+    subText:
+      'Team Evolve, a collective of players who create and share impressive maps using Fortnites in-game Creative mode...',
   },
 ];

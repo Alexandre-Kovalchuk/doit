@@ -44,11 +44,17 @@ const clickOnTabs = (nameTab) => {
 </template>
 
 <style lang="scss">
+@import '@/assets/style/breakpoints/media-breakpoints';
 .tabs {
   &__row {
     display: flex;
     justify-content: space-between;
     align-items: center;
+
+    @include media-breakpoint-down(md) {
+      flex-direction: column;
+      align-items: flex-start;
+    }
   }
 
   &__title {
@@ -56,6 +62,14 @@ const clickOnTabs = (nameTab) => {
     font-size: 44px;
     line-height: 100%;
     color: #f5f5f5;
+
+    @include media-breakpoint-down(sm) {
+      font-size: 36px;
+    }
+
+    @include media-breakpoint-down(xs) {
+      font-size: 30px;
+    }
   }
 
   &__btns {
@@ -64,6 +78,19 @@ const clickOnTabs = (nameTab) => {
     max-width: 538px;
     width: 100%;
 
+    @include media-breakpoint-down(md) {
+      margin-top: 30px;
+    }
+
+    @include media-breakpoint-down(xs) {
+      justify-content: flex-start;
+      overflow: auto;
+
+      &::-webkit-scrollbar {
+        display: none;
+      }
+    }
+
     &-item {
       font-weight: 500;
       font-size: 18px;
@@ -71,6 +98,16 @@ const clickOnTabs = (nameTab) => {
       color: #a0a5ad;
       padding: 16px;
       background: #14191f;
+      white-space: nowrap;
+
+      @include media-breakpoint-down(sm) {
+        font-size: 16px;
+        padding: 10px 16px;
+      }
+
+      @include media-breakpoint-down(xs) {
+        margin-right: 10px;
+      }
 
       &:hover {
         color: #0f1215;
