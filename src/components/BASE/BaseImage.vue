@@ -4,7 +4,7 @@ const props = defineProps(['srcset', 'src', 'alt']);
 
 <template>
   <picture>
-    <source :srcset="`doit/src/assets/img/${srcset}`" type="image/webp" />
-    <img :src="`doit/src/assets/img/${src}`" :alt="alt" />
+    <source :srcset="srcset" type="image/webp" />
+    <img :src="src" :alt="alt" />
   </picture>
 </template>

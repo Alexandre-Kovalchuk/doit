@@ -11,6 +11,11 @@ const links = ref([
   { name: 'Sponsorship', href: 'sponsorship' },
 ]);
 
+const logo = {
+  webp: new URL('../../../public/img/logo.webp', import.meta.url),
+  img: new URL('../../../public/img/logo.png', import.meta.url),
+};
+
 const isOpenMenu = ref(false);
 const toggleMenu = () => {
   isOpenMenu.value = !isOpenMenu.value;
@@ -24,7 +29,7 @@ const toggleMenu = () => {
       <div class="header__content">
         <div class="header__logo">
           <router-link to="/">
-            <BaseImage :srcset="'./logo.png'" :src="'./logo.png'" :alt="'logo'" />
+            <BaseImage :srcset="logo.webp" :src="logo.img" :alt="'logo'" />
           </router-link>
         </div>
 

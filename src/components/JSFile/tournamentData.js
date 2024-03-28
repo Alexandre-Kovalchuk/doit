@@ -10,8 +10,8 @@ export const tabs = [
 export const dotaInfo = [
   {
     id: 1,
-    imgWebp: 'Dota1.webp',
-    img: 'Dota1.png',
+    imgWebp: new URL('./assets/img/Dota1.webp', import.meta.url),
+    img: new URL('./assets/img/Dota1.png', import.meta.url),
     title: 'Tournament Dota II',
     label: [
       {
