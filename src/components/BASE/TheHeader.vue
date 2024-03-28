@@ -24,7 +24,7 @@ const toggleMenu = () => {
       <div class="header__content">
         <div class="header__logo">
           <router-link to="/">
-            <BaseImage :srcset="'logo.webp'" :src="'logo.png'" :alt="'logo'" />
+            <BaseImage :srcset="'./logo.png'" :src="'./logo.png'" :alt="'logo'" />
           </router-link>
         </div>
 

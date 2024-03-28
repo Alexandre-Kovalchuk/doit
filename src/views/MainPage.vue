@@ -174,7 +174,7 @@ const changeNewsTabs = (tabName) => {
 
     <section class="news">
       <div class="container">
-        <div class="tournaments__content">
+        <div class="News__content">
           <UITabs
             label="News"
             :names="tabs"
