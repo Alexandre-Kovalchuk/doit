@@ -1,0 +1,224 @@
+<script setup>
+import UITabs from '@/components/UI/UITabs.vue';
+import BaseImage from '@/components/Base/BaseImage.vue';
+import { tabs } from '@/components/JSFiles/mainPage/TabsData.js';
+import { Swiper, SwiperSlide } from 'swiper/vue';
+import 'swiper/css';
+import 'swiper/css/pagination';
+import { Pagination } from 'swiper/modules';
+import {
+  streamsImgCs,
+  streamsImgDota,
+  streamsImgFortnite,
+  streamsImgLol,
+  streamsImgStarCraft,
+} from '@/components/JSFiles/mainPage/StreamsData.js';
+import { ref } from 'vue';
+
+const selectedStreamsTab = ref('Dota');
+
+const changeStreamsTabs = (tabName) => {
+  selectedStreamsTab.value = tabName;
+};
+
+const swiperOptions = {
+  modules: [Pagination],
+  pagination: true,
+};
+</script>
+
+<template>
+  <section class="streams">
+    <div class="streams__content">
+      <UITabs
+        label="Streams"
+        :names="tabs"
+        :selectedTab="selectedStreamsTab"
+        @changeTab="changeStreamsTabs"
+      >
+        <!-- dota -->
+        <swiper
+          :slides-per-view="'auto'"
+          :loop="true"
+          :spaceBetween="4"
+          :pagination="{ clickable: true }"
+          :modules="[Pagination]"
+          :breakpoints="{
+            320: { spaceBetween: 4 },
+            576: { spaceBetween: 4 },
+            1024: { spaceBetween: 4 },
+          }"
+          v-if="selectedStreamsTab === 'Dota' || selectedStreamsTab === 'All'"
+        >
+          <swiper-slide v-for="index in 4" :key="index" class="streams__slide">
+            <div v-for="dota in streamsImgDota" :key="dota.id" class="streams__img">
+              <BaseImage :srcset="dota.webp" :src="dota.img" :alt="'dota'" />
+            </div>
+          </swiper-slide>
+        </swiper>
+
+        <!-- fortnite -->
+        <swiper
+          :slides-per-view="'auto'"
+          :loop="true"
+          :spaceBetween="4"
+          :pagination="{ clickable: true }"
+          :modules="[Pagination]"
+          :breakpoints="{
+            320: { spaceBetween: 4 },
+            576: { spaceBetween: 4 },
+            1024: { spaceBetween: 4 },
+          }"
+          v-if="selectedStreamsTab === 'Fortnite' || selectedStreamsTab === 'All'"
+        >
+          <swiper-slide v-for="index in 4" :key="index" class="streams__slide">
+            <div v-for="fortnite in streamsImgFortnite" :key="fortnite.id" class="streams__img">
+              <BaseImage :srcset="fortnite.webp" :src="fortnite.img" :alt="'Fortnite'" />
+            </div>
+          </swiper-slide>
+        </swiper>
+
+        <!-- lol -->
+        <swiper
+          :slides-per-view="'auto'"
+          :loop="true"
+          :spaceBetween="4"
+          :pagination="{ clickable: true }"
+          :modules="[Pagination]"
+          :breakpoints="{
+            320: { spaceBetween: 4 },
+            576: { spaceBetween: 4 },
+            1024: { spaceBetween: 4 },
+          }"
+          v-if="selectedStreamsTab === 'LOL' || selectedStreamsTab === 'All'"
+        >
+          <swiper-slide v-for="index in 4" :key="index" class="streams__slide">
+            <div v-for="lol in streamsImgLol" :key="lol.id" class="streams__img">
+              <BaseImage :srcset="lol.webp" :src="lol.img" :alt="'LOL'" />
+            </div>
+          </swiper-slide>
+        </swiper>
+
+        <!-- cs -->
+        <swiper
+          :slides-per-view="'auto'"
+          :loop="true"
+          :spaceBetween="4"
+          :pagination="{ clickable: true }"
+          :modules="[Pagination]"
+          :breakpoints="{
+            320: { spaceBetween: 4 },
+            576: { spaceBetween: 4 },
+            1024: { spaceBetween: 4 },
+          }"
+          v-if="selectedStreamsTab === 'CS' || selectedStreamsTab === 'All'"
+        >
+          <swiper-slide v-for="index in 4" :key="index" class="streams__slide">
+            <div v-for="cs in streamsImgCs" :key="cs.id" class="streams__img">
+              <BaseImage :srcset="cs.webp" :src="cs.img" :alt="'CS:GO'" />
+            </div>
+          </swiper-slide>
+        </swiper>
+
+        <!-- StarCraft -->
+        <swiper
+          :slides-per-view="'auto'"
+          :loop="true"
+          :spaceBetween="4"
+          :pagination="{ clickable: true }"
+          :modules="[Pagination]"
+          :breakpoints="{
+            320: { spaceBetween: 4 },
+            576: { spaceBetween: 4 },
+            1024: { spaceBetween: 4 },
+          }"
+          v-if="selectedStreamsTab === 'StarCraft' || selectedStreamsTab === 'All'"
+        >
+          <swiper-slide v-for="index in 4" :key="index" class="streams__slide">
+            <div v-for="item in streamsImgStarCraft" :key="item.id" class="streams__img">
+              <BaseImage :srcset="item.webp" :src="item.img" :alt="'LOL'" />
+            </div>
+          </swiper-slide>
+        </swiper>
+      </UITabs>
+    </div>
+  </section>
+</template>
+
+<style lang="scss">
+@import '@/assets/style/breakpoints/media-breakpoints';
+.streams {
+  margin-bottom: 100px;
+
+  &__slide {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    gap: 4px;
+    width: 583px;
+    height: 476px;
+    margin-top: 37px;
+
+    @include media-breakpoint-down(sm) {
+      width: 320px;
+    }
+  }
+
+  &__img {
+    img {
+      width: 100%;
+      height: 100%;
+    }
+
+    &:nth-child(1) {
+      width: 583px;
+      height: 320px;
+      object-fit: cover;
+      grid-area: 1 / 1 / 2 / 3;
+    }
+
+    &:nth-child(2),
+    &:nth-child(3) {
+      width: 289px;
+      height: 152px;
+      grid-area: 2 / 1 / 3 / 2;
+    }
+
+    &:nth-child(3) {
+      grid-area: 2 / 2 / 3 / 3;
+    }
+  }
+
+  .swiper {
+    height: 526px;
+    @include media-breakpoint-down(xs) {
+      height: 430px;
+    }
+    &-slide {
+      width: 583px !important;
+      @include media-breakpoint-down(sm) {
+        width: 329px !important;
+      }
+      @include media-breakpoint-down(xs) {
+        width: 329px !important;
+      }
+
+      @include media-breakpoint-down(xxs) {
+        width: 270px !important;
+      }
+    }
+
+    &-pagination-bullet {
+      width: 13px;
+      height: 17px;
+      border-radius: 0;
+      background: #20272e;
+
+      @include media-breakpoint-down(sm) {
+        width: 6px;
+        height: 8px;
+      }
+    }
+  }
+}
+</style>

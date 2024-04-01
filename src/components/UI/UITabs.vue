@@ -1,4 +1,5 @@
 <script setup>
+import BaseSvg from '@/components/Base/BaseSvg.vue';
 const props = defineProps({
   label: {
     type: String,
@@ -23,18 +24,23 @@ const clickOnTabs = (nameTab) => {
 
 <template>
   <div class="tabs">
-    <div class="tabs__row">
-      <h2 class="tabs__title">{{ label }}</h2>
+    <div class="container">
+      <div class="tabs__row">
+        <h2 class="tabs__title">
+          {{ label }}
+          <span v-if="label === 'Streams'"> <BaseSvg :id="'streams'" /> </span>
+        </h2>
 
-      <div class="tabs__btns">
-        <button
-          v-for="tab in names"
-          :key="tab.name"
-          :class="['tabs__btns-item', { 'tabs__btns-item_act': tab.name === selectedTab }]"
-          @click="clickOnTabs(tab.name)"
-        >
-          {{ tab.label }}
-        </button>
+        <div class="tabs__btns">
+          <button
+            v-for="tab in names"
+            :key="tab.name"
+            :class="['tabs__btns-item', { 'tabs__btns-item_act': tab.name === selectedTab }]"
+            @click="clickOnTabs(tab.name)"
+          >
+            {{ tab.label }}
+          </button>
+        </div>
       </div>
     </div>
     <div class="tabs__swiper">
@@ -46,22 +52,35 @@ const clickOnTabs = (nameTab) => {
 <style lang="scss">
 @import '@/assets/style/breakpoints/media-breakpoints';
 .tabs {
+  position: relative;
   &__row {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    margin: 0 23px;
 
     @include media-breakpoint-down(md) {
       flex-direction: column;
       align-items: flex-start;
+      margin: 0;
     }
   }
 
   &__title {
+    display: flex;
+    align-items: center;
     font-weight: 700;
     font-size: 44px;
     line-height: 100%;
     color: #f5f5f5;
+
+    span {
+      svg {
+        width: 32px;
+        height: 32px;
+        margin-left: 16px;
+      }
+    }
 
     @include media-breakpoint-down(sm) {
       font-size: 36px;
@@ -118,6 +137,27 @@ const clickOnTabs = (nameTab) => {
         color: #0f1215;
         background: #d8dfeb;
       }
+    }
+  }
+
+  &__swiper {
+    margin-left: 375px;
+    margin-right: auto;
+
+    @include media-breakpoint-down(xl) {
+      margin-left: 200px;
+    }
+
+    @include media-breakpoint-down(l) {
+      margin-left: 100px;
+    }
+
+    @include media-breakpoint-down(lg) {
+      margin-left: 50px;
+    }
+
+    @include media-breakpoint-down(md) {
+      margin-left: 20px;
     }
   }
 }

@@ -1,26 +1,43 @@
 <script setup>
 import UIBtnBtn from '@/components/UI/UIBtn.vue';
-import BaseSvg from '@/components/BASE/BaseSvg.vue';
+import BaseSvg from '@/components/Base/BaseSvg.vue';
+
 import UITabs from '@/components/UI/UITabs.vue';
+import BaseImage from '@/components/Base/BaseImage.vue';
+import MainTournament from '@/views/Main/MainTournament.vue';
+import MainNews from '@/views/Main/MainNews.vue';
+import MainStreams from '@/views/Main/MainStreams.vue';
 import { Swiper, SwiperSlide } from 'swiper/vue';
 import 'swiper/css';
 import 'swiper/css/pagination';
 import { Pagination } from 'swiper/modules';
 import UICard from '@/components/UI/UICard.vue';
 import { ref } from 'vue';
+import { tabs } from '@/components/JSFiles/mainPage/TabsData.js';
 import {
-  tabs,
   starCraftInfo,
   dotaInfo,
   lolInfo,
   fortniteInfo,
   csInfo,
+} from '@/components/JSFiles/mainPage/TournamentsData.js';
+import {
   starCraNews,
   dotaNews,
   lolNews,
   fortniteNews,
   csNews,
-} from '@/components/JSFile/tournamentData.js';
+} from '@/components/JSFiles/mainPage/NewsData.js';
+
+import {
+  streamsImgDota,
+  streamsImgFortnite,
+  streamsImgLol,
+  streamsImgCs,
+  streamsImgStarCraft,
+} from '@/components/JSFiles/mainPage/StreamsData.js';
+import { partners } from '@/components/JSFiles/mainPage/PartnersData.js';
+import { games } from '@/components/JSFiles/mainPage/GamesData.js';
 
 const svg = [
   {
@@ -46,17 +63,11 @@ const swiperOptions = {
   pagination: true,
 };
 
-const selectedTournamentTab = ref('Dota');
-
-const changeTournamentTabs = (tabName) => {
-  selectedTournamentTab.value = tabName;
-};
-
-const selectedNewsTab = ref('Dota');
-
-const changeNewsTabs = (tabName) => {
-  selectedNewsTab.value = tabName;
-};
+// const selectedTournamentTab = ref('Dota');
+//
+// const changeTournamentTabs = (tabName) => {
+//   selectedTournamentTab.value = tabName;
+// };
 </script>
 
 <template>
@@ -89,258 +100,74 @@ const changeNewsTabs = (tabName) => {
       </div>
     </section>
 
-    <section class="tournaments">
+    <MainTournament />
+    <MainNews />
+    <MainStreams />
+
+    <section class="partners">
       <div class="container">
-        <div class="tournaments__content">
-          <UITabs
-            label="Tournaments"
-            :names="tabs"
-            :selectedTab="selectedTournamentTab"
-            @changeTab="changeTournamentTabs"
+        <div class="partners__content">
+          <h2 class="partners__title">Partners</h2>
+
+          <swiper
+            :slides-per-view="'auto'"
+            :loop="true"
+            :spaceBetween="4"
+            :pagination="{
+              clickable: true,
+            }"
+            :modules="[Pagination]"
+            :breakpoints="{
+              320: {
+                spaceBetween: 16,
+              },
+              576: {
+                spaceBetween: 20,
+              },
+            }"
           >
-            <swiper
-              :slides-per-view="'auto'"
-              :loop="true"
-              :spaceBetween="30"
-              :pagination="{
-                clickable: true,
-              }"
-              :modules="[Pagination]"
-              :breakpoints="{
-                320: {
-                  spaceBetween: 16,
-                },
-                576: {
-                  spaceBetween: 20,
-                },
-              }"
-              v-if="selectedTournamentTab === 'Dota' || selectedTournamentTab === 'All'"
-            >
-              <swiper-slide v-for="dota in dotaInfo" :key="dota.id">
-                <UICard :card="dota" />
-              </swiper-slide>
-            </swiper>
-
-            <swiper
-              :slides-per-view="'auto'"
-              :loop="true"
-              :spaceBetween="30"
-              :pagination="{
-                clickable: true,
-              }"
-              :modules="[Pagination]"
-              :breakpoints="{
-                320: {
-                  spaceBetween: 16,
-                },
-                576: {
-                  spaceBetween: 20,
-                },
-              }"
-              v-if="selectedTournamentTab === 'Fortnite' || selectedTournamentTab === 'All'"
-            >
-              <swiper-slide v-for="fortnite in fortniteInfo" :key="fortnite.id">
-                <UICard :card="fortnite" />
-              </swiper-slide>
-            </swiper>
-
-            <swiper
-              :slides-per-view="'auto'"
-              :loop="true"
-              :spaceBetween="30"
-              :pagination="{
-                clickable: true,
-              }"
-              :modules="[Pagination]"
-              :breakpoints="{
-                320: {
-                  spaceBetween: 16,
-                },
-                576: {
-                  spaceBetween: 20,
-                },
-              }"
-              v-if="selectedTournamentTab === 'LOL' || selectedTournamentTab === 'All'"
-            >
-              <swiper-slide v-for="lol in lolInfo" :key="lol.id">
-                <UICard :card="lol" />
-              </swiper-slide>
-            </swiper>
-
-            <swiper
-              :slides-per-view="'auto'"
-              :loop="true"
-              :spaceBetween="30"
-              :pagination="{
-                clickable: true,
-              }"
-              :modules="[Pagination]"
-              :breakpoints="{
-                320: {
-                  spaceBetween: 16,
-                },
-                576: {
-                  spaceBetween: 20,
-                },
-              }"
-              v-if="selectedTournamentTab === 'CS' || selectedTournamentTab === 'All'"
-            >
-              <swiper-slide v-for="cs in csInfo" :key="cs.id">
-                <UICard :card="cs" />
-              </swiper-slide>
-            </swiper>
-
-            <swiper
-              :slides-per-view="'auto'"
-              :loop="true"
-              :spaceBetween="30"
-              :pagination="{
-                clickable: true,
-              }"
-              :modules="[Pagination]"
-              :breakpoints="{
-                320: {
-                  spaceBetween: 16,
-                },
-                576: {
-                  spaceBetween: 20,
-                },
-              }"
-              v-if="selectedTournamentTab === 'StarCraft' || selectedTournamentTab === 'All'"
-            >
-              <swiper-slide v-for="starCraft in starCraftInfo" :key="starCraft.id">
-                <UICard :card="starCraft" />
-              </swiper-slide>
-            </swiper>
-          </UITabs>
+            <swiper-slide v-for="item in partners" :key="item.id">
+              <div :class="['partners__slide', `partners__slide_${item.name}`]">
+                <a :href="item.link">
+                  <BaseSvg :id="item.name" />
+                </a>
+              </div>
+            </swiper-slide>
+          </swiper>
         </div>
+        <svg>
+          <use></use>
+        </svg>
       </div>
     </section>
 
-    <section class="news">
+    <section class="games">
       <div class="container">
-        <div class="News__content">
-          <UITabs
-            label="News"
-            :names="tabs"
-            :selectedTab="selectedNewsTab"
-            @changeTab="changeNewsTabs"
+        <div class="ganes__content">
+          <h2 class="games__title">Games</h2>
+
+          <swiper
+            :slides-per-view="'auto'"
+            :loop="true"
+            :spaceBetween="30"
+            :pagination="{
+              clickable: true,
+            }"
+            :modules="[Pagination]"
+            :breakpoints="{
+              320: {
+                spaceBetween: 16,
+              },
+              576: {
+                spaceBetween: 20,
+              },
+            }"
           >
-            <swiper
-              :slides-per-view="'auto'"
-              :loop="true"
-              :spaceBetween="30"
-              :pagination="{
-                clickable: true,
-              }"
-              :modules="[Pagination]"
-              :breakpoints="{
-                320: {
-                  spaceBetween: 16,
-                },
-                576: {
-                  spaceBetween: 20,
-                },
-              }"
-              v-if="selectedNewsTab === 'Dota' || selectedNewsTab === 'All'"
-            >
-              <swiper-slide v-for="dota in dotaNews" :key="dota.id">
-                <UICard :card="dota" :addClass="true" />
-              </swiper-slide>
-            </swiper>
-
-            <swiper
-              :slides-per-view="'auto'"
-              :loop="true"
-              :spaceBetween="30"
-              :pagination="{
-                clickable: true,
-              }"
-              :modules="[Pagination]"
-              :breakpoints="{
-                320: {
-                  spaceBetween: 16,
-                },
-                576: {
-                  spaceBetween: 20,
-                },
-              }"
-              v-if="selectedNewsTab === 'Fortnite' || selectedNewsTab === 'All'"
-            >
-              <swiper-slide v-for="fortnite in fortniteNews" :key="fortnite.id">
-                <UICard :card="fortnite" :addClass="true" />
-              </swiper-slide>
-            </swiper>
-
-            <swiper
-              :slides-per-view="'auto'"
-              :loop="true"
-              :spaceBetween="30"
-              :pagination="{
-                clickable: true,
-              }"
-              :modules="[Pagination]"
-              :breakpoints="{
-                320: {
-                  spaceBetween: 16,
-                },
-                576: {
-                  spaceBetween: 20,
-                },
-              }"
-              v-if="selectedNewsTab === 'LOL' || selectedNewsTab === 'All'"
-            >
-              <swiper-slide v-for="lol in lolNews" :key="lol.id">
-                <UICard :card="lol" :addClass="true" />
-              </swiper-slide>
-            </swiper>
-
-            <swiper
-              :slides-per-view="'auto'"
-              :loop="true"
-              :spaceBetween="30"
-              :pagination="{
-                clickable: true,
-              }"
-              :modules="[Pagination]"
-              :breakpoints="{
-                320: {
-                  spaceBetween: 16,
-                },
-                576: {
-                  spaceBetween: 20,
-                },
-              }"
-              v-if="selectedNewsTab === 'CS' || selectedNewsTab === 'All'"
-            >
-              <swiper-slide v-for="cs in csNews" :key="cs.id">
-                <UICard :card="cs" :addClass="true" />
-              </swiper-slide>
-            </swiper>
-
-            <swiper
-              :slides-per-view="'auto'"
-              :loop="true"
-              :spaceBetween="30"
-              :pagination="{
-                clickable: true,
-              }"
-              :modules="[Pagination]"
-              :breakpoints="{
-                320: {
-                  spaceBetween: 16,
-                },
-                576: {
-                  spaceBetween: 20,
-                },
-              }"
-              v-if="selectedNewsTab === 'StarCraft' || selectedNewsTab === 'All'"
-            >
-              <swiper-slide v-for="starCraft in starCraNews" :key="starCraft.id">
-                <UICard :card="starCraft" :addClass="true" />
-              </swiper-slide>
-            </swiper>
-          </UITabs>
+            <swiper-slide v-for="item in games" :key="games.id">
+              <BaseImage :srcset="item.webp" :src="item.img" :alt="item.txt" />
+              <p class="games__text">{{ item.txt }}</p>
+            </swiper-slide>
+          </swiper>
         </div>
       </div>
     </section>
@@ -351,7 +178,7 @@ const changeNewsTabs = (tabName) => {
 @import '@/assets/style/breakpoints/media-breakpoints';
 
 .beta {
-  height: 938px;
+  height: 936px;
 
   @include media-breakpoint-down(sm) {
     height: 800px;
@@ -513,91 +340,120 @@ const changeNewsTabs = (tabName) => {
   }
 }
 
-.tournaments {
-  margin-bottom: 147px;
+//
 
-  @include media-breakpoint-down(sm) {
-    margin-bottom: 100px;
-  }
-  &__content {
-    margin: 0 23px;
-
-    @include media-breakpoint-down(md) {
-      margin: 0;
-    }
-  }
-
-  .swiper {
-    height: 465px;
-    @include media-breakpoint-down(xs) {
-      height: 430px;
-    }
-    &-slide {
-      width: 370px !important;
-
-      @include media-breakpoint-down(xs) {
-        width: 329px !important;
-      }
-
-      @include media-breakpoint-down(xxs) {
-        width: 270px !important;
-      }
-    }
-
-    &-pagination-bullet {
-      width: 13px;
-      height: 17px;
-      border-radius: 0;
-      background: #20272e;
-
-      @include media-breakpoint-down(sm) {
-        width: 6px;
-        height: 8px;
-      }
-    }
-  }
-}
-
-.news {
-  margin-bottom: 100px;
-  &__content {
-    margin: 0 23px;
-
-    @include media-breakpoint-down(md) {
-      margin: 0;
-    }
-  }
-
-  .swiper {
-    height: 465px;
-    @include media-breakpoint-down(xs) {
-      height: 430px;
-    }
-    &-slide {
-      width: 370px !important;
-
-      @include media-breakpoint-down(xs) {
-        width: 329px !important;
-      }
-
-      @include media-breakpoint-down(xxs) {
-        width: 270px !important;
-      }
-    }
-
-    &-pagination-bullet {
-      width: 13px;
-      height: 17px;
-      border-radius: 0;
-      background: #20272e;
-
-      @include media-breakpoint-down(sm) {
-        width: 6px;
-        height: 8px;
-      }
-    }
-  }
-}
+//.partners {
+//  &__title {
+//    font-weight: 700;
+//    font-size: 44px;
+//    line-height: 100%;
+//    color: #f5f5f5;
+//    margin-bottom: 44px;
+//  }
+//
+//  &__slide {
+//    height: 70px;
+//
+//    svg {
+//      width: 100%;
+//      height: 100%;
+//    }
+//
+//    &_google {
+//      width: 130px;
+//      height: 48px;
+//    }
+//
+//    &_nasa {
+//      width: 70px;
+//      height: 70px;
+//    }
+//
+//    &_navi {
+//      width: 64px;
+//      height: 64px;
+//    }
+//
+//    &_airbnb {
+//      width: 154px;
+//      height: 48px;
+//    }
+//
+//    &_telegram {
+//      width: 56px;
+//      height: 56px;
+//    }
+//
+//    &_youtube {
+//      width: 80px;
+//      height: 56px;
+//    }
+//
+//    &_behance {
+//      width: 52px;
+//      height: 52px;
+//    }
+//  }
+//
+//  .swiper {
+//    &-wrapper {
+//      align-items: center;
+//      justify-content: space-between;
+//    }
+//    &-slide {
+//      width: fit-content !important;
+//    }
+//  }
+//}
+//
+//.games {
+//  margin-bottom: 100px;
+//  &__title {
+//    font-weight: 700;
+//    font-size: 44px;
+//    line-height: 100%;
+//    color: #f5f5f5;
+//    margin-bottom: 44px;
+//  }
+//
+//  &__text {
+//    position: absolute;
+//    bottom: 30px;
+//    left: 50%;
+//    transform: translateX(-50%);
+//    font-weight: 700;
+//    font-size: 30px;
+//    line-height: 100%;
+//    color: #f5f5f5;
+//  }
+//
+//  .swiper {
+//    height: 547px;
+//    &-slide {
+//      width: 387px !important;
+//      height: 500px;
+//      position: relative;
+//      img {
+//        width: 100%;
+//        height: 100%;
+//        //object-fit: cover;
+//        //object-position: center;
+//      }
+//    }
+//
+//    &-pagination-bullet {
+//      width: 13px;
+//      height: 17px;
+//      border-radius: 0;
+//      background: #20272e;
+//
+//      @include media-breakpoint-down(sm) {
+//        width: 6px;
+//        height: 8px;
+//      }
+//    }
+//  }
+//}
 
 @keyframes rotation {
   from {

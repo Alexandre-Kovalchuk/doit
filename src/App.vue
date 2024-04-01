@@ -1,7 +1,7 @@
 <script setup>
-import Header from '@/components/BASE/TheHeader.vue';
-import AsideMenu from '@/components/BASE/TheAsideMenu.vue';
-import SvgManager from '@/components/icons/IconSvgManager.vue';
+import Header from '@/components/Base/TheHeader.vue';
+import AsideMenu from '@/components/Base/TheAsideMenu.vue';
+import SvgManager from '@/components/Base/SvgManager.vue';
 </script>
 
 <template>

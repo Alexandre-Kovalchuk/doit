@@ -1,5 +1,5 @@
 <script setup>
-import BaseImage from '@/components/BASE/BaseImage.vue';
+import BaseImage from '@/components/Base/BaseImage.vue';
 const props = defineProps({
   card: {
     type: Object,
@@ -13,13 +13,15 @@ const props = defineProps({
 </script>
 
 <template>
-  <div class="card" :class="{ card_color: addClass }">
+  <div :class="['card', { card_color: addClass }]">
     <div class="card__img">
       <BaseImage :srcset="card.imgWebp" :src="card.img" alt="img" />
     </div>
 
-    <div class="card__item">
-      <h3 class="card__title">{{ card.title }}</h3>
+    <div :class="['card__item', { card__item_while: addClass === true }]">
+      <h3 :class="['card__title', card.newsTitle ? 'card__title_news' : '']">
+        {{ card.title ? card.title : card.newsTitle }}
+      </h3>
 
       <div class="card__row" v-if="card.label">
         <div v-for="(item, index) in card.label" :key="index" class="card__column">
@@ -39,12 +41,13 @@ const props = defineProps({
 <style lang="scss">
 @import '@/assets/style/breakpoints/media-breakpoints';
 .card {
-  margin-top: 35px;
+  margin-top: 37px;
   width: 370px;
   background: #151a1f;
 
   &_color {
     background: #e1e6eb;
+    height: 424px;
   }
 
   @include media-breakpoint-down(xs) {
@@ -85,6 +88,14 @@ const props = defineProps({
       height: 152px;
       padding: 22px 16px 30px;
     }
+
+    &_while {
+      height: 224px;
+
+      @include media-breakpoint-down(xs) {
+        height: 169px;
+      }
+    }
   }
 
   &__title {
@@ -92,7 +103,9 @@ const props = defineProps({
     font-size: 22px;
     line-height: 130%;
     color: #e6e8eb;
-
+    &_news {
+      color: #0f1215;
+    }
     @include media-breakpoint-down(xs) {
       font-weight: 700;
       font-size: 16px;
