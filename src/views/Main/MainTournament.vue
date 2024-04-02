@@ -4,7 +4,7 @@ import UICard from '@/components/UI/UICard.vue';
 import { Swiper, SwiperSlide } from 'swiper/vue';
 import 'swiper/css';
 import 'swiper/css/pagination';
-import { tabs } from '@/components/JSFiles/mainPage/TabsData.js';
+import { tabs } from '@/components/JSFiles/MainPage/TabsData.js';
 import { Pagination } from 'swiper/modules';
 
 import { ref } from 'vue';
@@ -14,7 +14,7 @@ import {
   fortniteInfo,
   lolInfo,
   starCraftInfo,
-} from '@/components/JSFiles/mainPage/TournamentsData.js';
+} from '@/components/JSFiles/MainPage/TournamentsData.js';
 
 const selectedTournamentTab = ref('Dota');
 
@@ -167,6 +167,10 @@ const swiperOptions = {
       height: 17px;
       border-radius: 0;
       background: #20272e;
+
+      &-active {
+        background: #4f5f70;
+      }
 
       @include media-breakpoint-down(sm) {
         width: 6px;

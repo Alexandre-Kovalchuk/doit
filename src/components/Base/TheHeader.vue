@@ -92,11 +92,15 @@ onUnmounted(() => {
   top: 0;
   z-index: 50;
   min-height: 64px;
-  padding-top: 32px;
+  padding: 32px 0;
 
   &_scroll {
-    background: #5e656b;
+    background: #b0b6bd;
+    @include media-breakpoint-down(md) {
+      background: none;
+    }
   }
+
   @include media-breakpoint-down(l) {
     padding-left: 114px;
   }
@@ -106,7 +110,7 @@ onUnmounted(() => {
   }
 
   @include media-breakpoint-down(xs) {
-    margin-top: 24px;
+    padding: 24px 0;
   }
 
   &__content {

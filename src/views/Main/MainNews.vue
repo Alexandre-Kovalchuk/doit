@@ -5,7 +5,7 @@ import { Swiper, SwiperSlide } from 'swiper/vue';
 import 'swiper/css';
 import 'swiper/css/pagination';
 
-import { tabs } from '@/components/JSFiles/mainPage/TabsData.js';
+import { tabs } from '@/components/JSFiles/MainPage/TabsData.js';
 import { Pagination } from 'swiper/modules';
 import {
   csNews,
@@ -13,7 +13,7 @@ import {
   fortniteNews,
   lolNews,
   starCraNews,
-} from '@/components/JSFiles/mainPage/NewsData.js';
+} from '@/components/JSFiles/MainPage/NewsData.js';
 import { ref } from 'vue';
 
 const selectedNewsTab = ref('Dota');
@@ -134,7 +134,7 @@ const swiperOptions = {
 <style lang="scss">
 @import '@/assets/style/breakpoints/media-breakpoints';
 .news {
-  margin-bottom: 100px;
+  margin-bottom: 127px;
 
   .swiper {
     height: 515px;
@@ -158,6 +158,10 @@ const swiperOptions = {
       height: 17px;
       border-radius: 0;
       background: #20272e;
+
+      &-active {
+        background: #4f5f70;
+      }
 
       @include media-breakpoint-down(sm) {
         width: 6px;

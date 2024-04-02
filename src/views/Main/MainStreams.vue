@@ -1,7 +1,7 @@
 <script setup>
 import UITabs from '@/components/UI/UITabs.vue';
 import BaseImage from '@/components/Base/BaseImage.vue';
-import { tabs } from '@/components/JSFiles/mainPage/TabsData.js';
+import { tabs } from '@/components/JSFiles/MainPage/TabsData.js';
 import { Swiper, SwiperSlide } from 'swiper/vue';
 import 'swiper/css';
 import 'swiper/css/pagination';
@@ -12,8 +12,8 @@ import {
   streamsImgFortnite,
   streamsImgLol,
   streamsImgStarCraft,
-} from '@/components/JSFiles/mainPage/StreamsData.js';
-import { ref } from 'vue';
+} from '@/components/JSFiles/MainPage/StreamsData.js';
+import { ref, warn } from 'vue';
 
 const selectedStreamsTab = ref('Dota');
 
@@ -148,7 +148,7 @@ const swiperOptions = {
 <style lang="scss">
 @import '@/assets/style/breakpoints/media-breakpoints';
 .streams {
-  margin-bottom: 100px;
+  margin-bottom: 120px;
 
   &__slide {
     display: grid;
@@ -160,7 +160,8 @@ const swiperOptions = {
     margin-top: 37px;
 
     @include media-breakpoint-down(sm) {
-      width: 320px;
+      height: 256px;
+      display: flex;
     }
   }
 
@@ -175,6 +176,16 @@ const swiperOptions = {
       height: 320px;
       object-fit: cover;
       grid-area: 1 / 1 / 2 / 3;
+
+      @include media-breakpoint-down(sm) {
+        width: 329px;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      @include media-breakpoint-down(xxs) {
+        width: 290px;
+      }
     }
 
     &:nth-child(2),
@@ -182,6 +193,13 @@ const swiperOptions = {
       width: 289px;
       height: 152px;
       grid-area: 2 / 1 / 3 / 2;
+
+      @include media-breakpoint-down(sm) {
+        width: 329px;
+        height: 100%;
+        object-fit: contain;
+        display: none;
+      }
     }
 
     &:nth-child(3) {
@@ -190,17 +208,18 @@ const swiperOptions = {
   }
 
   .swiper {
-    height: 526px;
-    @include media-breakpoint-down(xs) {
-      height: 430px;
+    height: 580px;
+    @include media-breakpoint-down(sm) {
+      height: 340px;
     }
     &-slide {
       width: 583px !important;
       @include media-breakpoint-down(sm) {
         width: 329px !important;
+        height: 256px;
       }
       @include media-breakpoint-down(xs) {
-        width: 329px !important;
+        //width: 329px !important;
       }
 
       @include media-breakpoint-down(xxs) {
@@ -213,6 +232,10 @@ const swiperOptions = {
       height: 17px;
       border-radius: 0;
       background: #20272e;
+
+      &-active {
+        background: #4f5f70;
+      }
 
       @include media-breakpoint-down(sm) {
         width: 6px;

@@ -1,0 +1,131 @@
+<script setup>
+import BaseImage from '@/components/Base/BaseImage.vue';
+import { Swiper, SwiperSlide } from 'swiper/vue';
+import 'swiper/css';
+import 'swiper/css/pagination';
+import { Pagination } from 'swiper/modules';
+import { games } from '@/components/JSFiles/MainPage/GamesData.js';
+</script>
+
+<template>
+  <section class="games">
+    <div class="container">
+      <h2 class="games__title">Games</h2>
+    </div>
+    <div class="games__content">
+      <swiper
+        :slides-per-view="'auto'"
+        :loop="true"
+        :spaceBetween="4"
+        :pagination="{
+          clickable: true,
+        }"
+        :modules="[Pagination]"
+        :breakpoints="{
+          320: { direction: 'vertical' },
+          576: { direction: 'horizontal' },
+        }"
+      >
+        <swiper-slide v-for="(item, index) in games" :key="index">
+          <BaseImage :srcset="item.webp" :src="item.img" :alt="item.txt" />
+          <p class="games__text">{{ item.txt }}</p>
+        </swiper-slide>
+      </swiper>
+    </div>
+  </section>
+</template>
+
+<style lang="scss">
+@import '@/assets/style/breakpoints/media-breakpoints';
+.games {
+  margin-bottom: 271px;
+
+  @include media-breakpoint-down(xs) {
+    margin-bottom: 0;
+  }
+
+  &__title {
+    font-weight: 700;
+    font-size: 44px;
+    line-height: 100%;
+    color: #f5f5f5;
+    margin-bottom: 44px;
+    margin-left: 23px;
+  }
+
+  &__content {
+    margin-left: 375px;
+    margin-right: auto;
+
+    @include media-breakpoint-down(xl) {
+      margin-left: 200px;
+    }
+
+    @include media-breakpoint-down(l) {
+      margin-left: 100px;
+    }
+
+    @include media-breakpoint-down(lg) {
+      margin-left: 50px;
+    }
+
+    @include media-breakpoint-down(md) {
+      margin-left: 20px;
+      margin-right: 20px;
+    }
+  }
+
+  &__text {
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-weight: 700;
+    font-size: 30px;
+    line-height: 100%;
+    color: #f5f5f5;
+    @include media-breakpoint-down(xs) {
+      font-size: 22px;
+    }
+  }
+
+  .swiper {
+    height: 547px;
+    &-wrapper {
+      @include media-breakpoint-down(xs) {
+        flex-direction: column;
+        margin: 0 23px 0 0;
+      }
+    }
+    &-slide {
+      width: 387px !important;
+      height: 500px;
+      position: relative;
+
+      @include media-breakpoint-down(xs) {
+        max-width: 527px !important;
+        width: 100% !important;
+        height: 204px;
+      }
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center;
+      }
+    }
+
+    &-pagination-bullet {
+      width: 13px;
+      height: 17px;
+      border-radius: 0;
+      background: #20272e;
+
+      @include media-breakpoint-down(sm) {
+        width: 6px;
+        height: 8px;
+      }
+    }
+  }
+}
+</style>

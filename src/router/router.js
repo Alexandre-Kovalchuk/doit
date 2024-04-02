@@ -1,5 +1,5 @@
 import { createRouter, createWebHashHistory } from 'vue-router';
-
+import MainPage from '@/views/MainPage.vue';
 const router = createRouter({
   history: createWebHashHistory('/doit/'),
 
@@ -7,7 +7,7 @@ const router = createRouter({
     {
       path: '/',
       name: 'Main',
-      component: () => import('@/views/MainPage.vue'),
+      component: MainPage,
     },
     {
       path: '/play',
@@ -33,6 +33,11 @@ const router = createRouter({
       path: '/sponsorship',
       name: 'Sponsorship',
       component: () => import('../views/SponsorshipPage.vue'),
+    },
+    {
+      path: '/404',
+      name: '404',
+      component: () => import('../views/404Page.vue'),
     },
   ],
 });

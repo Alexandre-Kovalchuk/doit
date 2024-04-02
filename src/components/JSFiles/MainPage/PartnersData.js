@@ -36,4 +36,9 @@ export const partners = [
     link: 'https://www.behance.net/',
     name: 'behance',
   },
+  {
+    id: 8,
+    link: 'https://www.pepsi.com/',
+    name: 'pepsi',
+  },
 ];
