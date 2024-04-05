@@ -40,6 +40,7 @@ const props = defineProps({
 
 <style lang="scss">
 @import '@/assets/style/breakpoints/media-breakpoints';
+
 .card {
   margin-top: 37px;
   width: 370px;

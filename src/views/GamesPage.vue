@@ -1,7 +1,7 @@
 <script setup>
 import BaseInput from '@/components/Base/BaseInput.vue';
 import BaseImage from '@/components/Base/BaseImage.vue';
-import { games } from '@/components/JSFiles/GamesPage/gameData.js';
+import { games } from '@/components/JSFiles/MainPage/GamesData.js';
 import { ref, computed } from 'vue';
 
 const searchGame = ref('');
@@ -44,7 +44,7 @@ const filterGames = computed(() => {
 
 .game {
   margin: 60px 0;
-  @include media-breakpoint-down(sm) {
+  @include media-breakpoint-down(md) {
     margin: 95px 0;
   }
 

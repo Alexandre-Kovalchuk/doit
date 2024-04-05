@@ -1,5 +1,6 @@
 import { createRouter, createWebHashHistory } from 'vue-router';
 import MainPage from '@/views/MainPage.vue';
+
 const router = createRouter({
   history: createWebHashHistory('/doit/'),
 
@@ -35,10 +36,21 @@ const router = createRouter({
       component: () => import('../views/SponsorshipPage.vue'),
     },
     {
-      path: '/404',
+      path: '/:pathMatch(.*)*',
       name: '404',
       component: () => import('../views/404Page.vue'),
     },
+    {
+      path: '/premium',
+      name: 'Premium',
+      component: () => import('../views/PremiumPage.vue'),
+    },
+    {
+      path: '/profile',
+      name: 'Profile',
+      component: () => import('../views/ProfilePage.vue'),
+    },
   ],
 });
+
 export default router;

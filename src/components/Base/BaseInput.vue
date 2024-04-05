@@ -41,6 +41,7 @@ const updateVal = (e) => {
 
 <template>
   <div class="inp">
+    <label class="inp__label" :for="name">{{ label }}</label>
     <input
       :class="['inp__text', modify ? `inp__text_${modify}` : '']"
       :type="type"
@@ -50,7 +51,6 @@ const updateVal = (e) => {
       :value="value"
       @input="updateVal"
     />
-    <label class="inp__label" :for="name">{{ label }}</label>
   </div>
 </template>
 
@@ -74,6 +74,32 @@ const updateVal = (e) => {
       line-height: 100%;
       color: #cccdcd;
     }
+
+    &_email,
+    &_psd {
+      border: 1px solid #16263d;
+      border-radius: 2px;
+      color: #627ca3;
+      height: 40px;
+
+      &::placeholder {
+        color: #627ca3;
+      }
+
+      &:focus {
+        border: 1px solid #185ec7;
+        background: #16263d;
+      }
+    }
+  }
+
+  &__label {
+    display: block;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 100%;
+    color: #fff;
+    margin-bottom: 6px;
   }
 }
 </style>

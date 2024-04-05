@@ -100,6 +100,7 @@ body {
 .main {
   flex: 1 1 auto;
   padding: 128px 0 0;
+  position: relative;
 }
 @media (max-width: 1649px) {
   .main {

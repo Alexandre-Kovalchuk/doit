@@ -120,12 +120,14 @@ const svg = [
   }
 
   &__btn {
-    display: flex;
-    justify-content: space-between;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-column-gap: 8px;
     max-width: 233px;
     width: 100%;
+    height: 44px;
 
-    @include media-breakpoint-down(xs) {
+    @include media-breakpoint-down(md) {
       display: none;
     }
   }

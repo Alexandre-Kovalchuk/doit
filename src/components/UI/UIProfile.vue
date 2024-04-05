@@ -1,0 +1,243 @@
+<script setup>
+import BaseImage from '@/components/Base/BaseImage.vue';
+import BaseSvg from '@/components/Base/BaseSvg.vue';
+import BaseInput from '@/components/Base/BaseInput.vue';
+import router from '@/router/router.js';
+import { onMounted, ref } from 'vue';
+import { useRouter } from 'vue-router';
+
+const accountIcon = {
+  webp: new URL('../../assets/img/account.webp', import.meta.url),
+  img: new URL('../../assets/img/account.png', import.meta.url),
+};
+
+const profileMenu = [
+  { id: 1, name: 'User Panel', label: 'User Panel' },
+  { id: 2, name: 'My profile', label: 'My profile' },
+  { id: 3, name: 'My team', label: 'My team' },
+  { id: 4, name: 'Deposit/Withdraw', label: 'Deposit/Withdraw' },
+  { id: 5, name: 'Premium', label: 'Premium' },
+  { id: 6, name: 'Statistics', label: 'Statistics' },
+  { id: 7, name: 'Support', label: 'Support' },
+  { id: 8, name: 'Settings', label: 'Settings' },
+  { id: 9, name: 'Game profile', label: 'Game profile' },
+];
+
+const routers = useRouter();
+const isActive = ref(false);
+
+const param = (link) => {
+  routers.push({ path: '/profile', query: { q: link } });
+};
+
+const handelClicked = (click) => {
+  isActive.value = click;
+};
+
+let q = routers.currentRoute.value.query.q;
+
+if (q) {
+  isActive.value = q;
+}
+</script>
+
+<template>
+  <section class="profile">
+    <div class="container">
+      <div class="profile__content">
+        <aside class="profile__aside">
+          <div class="profile__aside-row">
+            <div class="profile__aside-avatar">
+              <BaseImage :srcset="accountIcon.webp" :src="accountIcon.img" />
+            </div>
+
+            <div class="profile__aside-info">
+              <p class="profile__aside-name">Nikodem Świder</p>
+
+              <p class="profile__aside-nickname">BlacerLordTV</p>
+
+              <p class="profile__aside-team">Blacer team</p>
+
+              <p class="profile__aside-balance">Balance: $1000</p>
+
+              <div class="profile__aside-icon">
+                <button class="profile__aside-add"><BaseSvg :id="'plus-circle'" /></button>
+                <button class="profile__aside-mail"><BaseSvg :id="'mail'" /></button>
+              </div>
+
+              <nav class="profile__aside-menu">
+                <ul class="profile__aside-list">
+                  <li
+                    v-for="link in profileMenu"
+                    :key="link.id"
+                    :class="[
+                      'profile__aside-item',
+                      { 'profile__aside-item_active': isActive === link.label },
+                    ]"
+                    @click="handelClicked(link.label)"
+                  >
+                    <BaseInput
+                      placeholder=""
+                      :name="link.label"
+                      type="radio"
+                      :label="link.label"
+                      :value="link.label"
+                      modify="radio"
+                      @click="param(link.label)"
+                    />
+                  </li>
+                </ul>
+              </nav>
+            </div>
+          </div>
+        </aside>
+        <div class="profile__item">
+          <slot />
+        </div>
+      </div>
+    </div>
+  </section>
+</template>
+
+<style lang="scss">
+.profile {
+  margin-top: 95px;
+
+  &__content {
+    display: flex;
+  }
+  &__aside {
+    width: 300px;
+    border-right: 2px solid #1a1f24;
+
+    &-avatar {
+      width: 104px;
+      height: 104px;
+      margin-bottom: 23px;
+
+      img {
+        width: 100%;
+        height: 100%;
+      }
+    }
+
+    &-name {
+      font-weight: 400;
+      font-size: 16px;
+      line-height: 130%;
+      color: #909aa3;
+      margin-bottom: 5px;
+    }
+
+    &-nickname {
+      font-weight: 700;
+      font-size: 24px;
+      line-height: 130%;
+      margin-bottom: 8px;
+    }
+
+    &-team,
+    &-balance {
+      font-weight: 400;
+      font-size: 16px;
+      line-height: 130%;
+      text-transform: uppercase;
+      color: #37b7fa;
+    }
+
+    &-balance {
+      margin-bottom: 6px;
+    }
+
+    &-icon {
+      display: flex;
+      justify-content: space-between;
+      width: 60px;
+      margin-bottom: 67px;
+    }
+
+    &-add,
+    &-mail {
+      background: transparent;
+      width: 24px;
+      height: 24px;
+
+      svg {
+        width: 100%;
+        height: 100%;
+      }
+    }
+
+    &-item {
+      cursor: pointer;
+      position: relative;
+      padding-left: 20px;
+
+      &::before {
+        content: '';
+        position: absolute;
+        width: 11px;
+        height: 11px;
+        background: #ffffff;
+        left: 0;
+        border-radius: 50%;
+      }
+
+      &::after {
+        content: '';
+        position: absolute;
+        border-radius: 50%;
+        width: 9px;
+        height: 9px;
+        background: #151a1f;
+        left: 1px;
+        top: 1px;
+      }
+
+      &_active {
+        &::after,
+        &::before {
+          background: #37b7fa;
+        }
+
+        .inp__label {
+          color: #37b7fa;
+        }
+      }
+
+      &_active:hover::before,
+      ::after,
+      &:hover::before,
+      ::after {
+        background: #37b7fa;
+      }
+
+      .inp {
+        display: flex;
+        flex-direction: row-reverse;
+        justify-content: flex-end;
+        width: 165px;
+
+        &__text {
+          display: none;
+        }
+
+        &__label {
+          font-size: 16px;
+          //color: #37b7fa;
+          margin: 0 0 24px 8px;
+          cursor: pointer;
+
+          &:hover {
+            color: #37b7fa;
+          }
+        }
+      }
+    }
+  }
+
+  &__item {
+    width: 100%;
+  }
+}
+</style>

@@ -1,8 +1,8 @@
 <script setup>
 import { ref, onMounted, onUnmounted } from 'vue';
-import scrollLock from 'scroll-lock';
 import BaseImage from '@/components/Base/BaseImage.vue';
 import UIBtn from '../UI/UIBtn.vue';
+import { logo } from '@/components/JSFiles/UseLogo.js';
 
 const links = ref([
   { name: 'Play', href: 'play' },
@@ -12,44 +12,29 @@ const links = ref([
   { name: 'Sponsorship', href: 'sponsorship' },
 ]);
 
-const logo = {
-  webp: new URL('../../assets/img/logo.webp', import.meta.url),
-  img: new URL('../../assets/img/logo.png', import.meta.url),
-};
-
 const isOpenMenu = ref(false);
+const isScroll = ref(false);
 const toggleMenu = () => {
   isOpenMenu.value = !isOpenMenu.value;
-  if (isOpenMenu.value) {
-    scrollLock.disablePageScroll();
-  } else {
-    scrollLock.enablePageScroll();
-  }
 };
-
-const isScroll = ref(false);
-
 const handleScroll = () => {
   const scrollPosition = window.scrollY;
+
   isScroll.value = scrollPosition > 0;
 };
 
 onMounted(() => {
   window.addEventListener('scroll', handleScroll);
 });
-
-onUnmounted(() => {
-  window.removeEventListener('scroll', handleScroll);
-});
 </script>
 
 <template>
-  <header class="header" :class="{ header_scroll: isScroll }">
+  <header :class="['header', { header_scroll: isScroll }]">
     <div class="container">
       <div class="header__content">
         <div class="header__logo">
           <router-link to="/">
-            <BaseImage :srcset="logo.webp" :src="logo.img" :alt="'logo'" />
+            <BaseImage :srcset="logo.webp" :src="logo.img" :alt="'logo'" @click="toggleMenu" />
           </router-link>
         </div>
 
@@ -65,7 +50,7 @@ onUnmounted(() => {
             <nav class="header__menu-nav">
               <ul class="header__menu-list">
                 <li v-for="item in links" :key="item.name">
-                  <router-link :to="item.href" class="header__menu-link">{{
+                  <router-link :to="item.href" class="header__menu-link" @click="toggleMenu">{{
                     item.name
                   }}</router-link>
                 </li>
@@ -74,7 +59,7 @@ onUnmounted(() => {
 
             <div class="header__menu-btn">
               <UIBtn label="Login" />
-              <UIBtn label="Sign up" color="blue" />
+              <UIBtn label="Sing up" color="blue" />
             </div>
           </div>
         </div>
@@ -258,10 +243,17 @@ onUnmounted(() => {
     }
 
     &-btn {
-      display: flex;
-      justify-content: space-between;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      grid-column-gap: 8px;
       max-width: 233px;
       width: 100%;
+      height: 44px;
+
+      .v-btn {
+        &:last-child {
+        }
+      }
 
       @include media-breakpoint-down(lg) {
         margin-left: 20px;
@@ -272,9 +264,11 @@ onUnmounted(() => {
       }
 
       @include media-breakpoint-down(xs) {
-        flex-direction: column;
-        height: 108px;
+        grid-template-columns: 1fr;
+        grid-template-rows: repeat(2, 1fr);
+        grid-row-gap: 12px;
         max-width: 100%;
+        height: 108px;
       }
     }
   }

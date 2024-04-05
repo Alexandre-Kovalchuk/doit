@@ -5,10 +5,14 @@ import MainNews from '@/views/Main/MainNews.vue';
 import MainStreams from '@/views/Main/MainStreams.vue';
 import MainPartners from '@/views/Main/MainPartners.vue';
 import MainGames from '@/views/Main/MainGames.vue';
+import BasePopUp from '@/components/Base/BasePopUp.vue';
+import PopUpLogin from '@/views/PopUp/PopUpLogin.vue';
 </script>
 
 <template>
   <main class="main">
+    <BasePopUp> <PopUpLogin /> </BasePopUp>
+
     <MainBeta />
     <MainTournament />
     <MainNews />

@@ -21,8 +21,10 @@ body{
 .main {
   flex: 1 1 auto;
   padding: 128px 0 0;
+  position: relative;
   @include media-breakpoint-down(l){
   padding-left: 114px;
+
   }
 
   @include media-breakpoint-down(md){

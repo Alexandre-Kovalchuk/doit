@@ -121,6 +121,9 @@ import { games } from '@/components/JSFiles/MainPage/GamesData.js';
       border-radius: 0;
       background: #20272e;
 
+      &-active {
+        background: #4f5f70;
+      }
       @include media-breakpoint-down(sm) {
         width: 6px;
         height: 8px;
