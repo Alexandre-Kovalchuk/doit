@@ -2,8 +2,7 @@
 import BaseImage from '@/components/Base/BaseImage.vue';
 import BaseSvg from '@/components/Base/BaseSvg.vue';
 import BaseInput from '@/components/Base/BaseInput.vue';
-import router from '@/router/router.js';
-import { onMounted, ref } from 'vue';
+import { onMounted, ref, watch } from 'vue';
 import { useRouter } from 'vue-router';
 
 const accountIcon = {
@@ -25,28 +24,48 @@ const profileMenu = [
 
 const routers = useRouter();
 const isActive = ref(false);
+let q = routers.currentRoute.value.query.q;
+const isOpenAside = ref(false);
 
 const param = (link) => {
   routers.push({ path: '/profile', query: { q: link } });
 };
 
+const toggleAsideMenu = () => {
+  isOpenAside.value = !isOpenAside.value;
+};
 const handelClicked = (click) => {
+  toggleAsideMenu();
   isActive.value = click;
 };
 
-let q = routers.currentRoute.value.query.q;
+watch(() => {
+  q = routers.currentRoute.value.query.q;
+  if (q) {
+    isActive.value = q;
+  }
+});
 
-if (q) {
-  isActive.value = q;
-}
+watch(isActive, (newValue, oldValue) => {
+  if (newValue !== oldValue) {
+    isOpenAside.value = false;
+  }
+});
 </script>
 
 <template>
   <section class="profile">
     <div class="container">
       <div class="profile__content">
-        <aside class="profile__aside">
-          <div class="profile__aside-row">
+        <aside
+          :class="['profile__aside', { profile__aside_act: isOpenAside }]"
+          @click="toggleAsideMenu"
+        >
+          <div :class="['profile__aside-arrow', { 'profile__aside-arrow_act': isOpenAside }]">
+            <BaseSvg id="arrow-down" />
+          </div>
+
+          <div :class="['profile__aside-row', { 'profile__aside-row_act': isOpenAside }]">
             <div class="profile__aside-avatar">
               <BaseImage :srcset="accountIcon.webp" :src="accountIcon.img" />
             </div>
@@ -83,7 +102,7 @@ if (q) {
                       :label="link.label"
                       :value="link.label"
                       modify="radio"
-                      @click="param(link.label)"
+                      @click="param(link.name)"
                     />
                   </li>
                 </ul>
@@ -100,15 +119,91 @@ if (q) {
 </template>
 
 <style lang="scss">
+@import '@/assets/style/breakpoints/media-breakpoints';
 .profile {
   margin-top: 95px;
 
   &__content {
     display: flex;
+
+    @include media-breakpoint-down(sm) {
+      flex-direction: column;
+    }
   }
+
   &__aside {
     width: 300px;
     border-right: 2px solid #1a1f24;
+    position: relative;
+    @include media-breakpoint-down(sm) {
+      border: none;
+      width: 20px;
+      position: fixed;
+      left: 0;
+      top: 50%;
+      z-index: 40;
+      background: #2b353f;
+      height: 50px;
+      transition: 0.4s ease-in;
+      border-radius: 0 5px 5px 0;
+      &_act {
+        top: 0;
+        width: 100%;
+        height: 100%;
+      }
+    }
+
+    &-arrow {
+      display: none;
+
+      @include media-breakpoint-down(sm) {
+        display: block;
+        position: absolute;
+        top: 50%;
+        right: 0;
+        z-index: 50;
+        transform: translateY(-50%) rotate(-90deg);
+        transition: 0.4s ease-in;
+
+        svg {
+          width: 20px;
+          height: 20px;
+        }
+
+        &_act {
+          right: 20px;
+          transform: rotate(90deg);
+        }
+      }
+    }
+
+    &-row {
+      @include media-breakpoint-down(sm) {
+        position: fixed;
+        top: 0;
+        left: -100%;
+        transition: 0.4s ease-in;
+        margin: 0 auto;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        height: 50px;
+        overflow: auto;
+        padding: 90px 0;
+
+        &::-webkit-scrollbar {
+          display: none;
+        }
+
+        &_act {
+          left: 50%;
+          transform: translateX(-50%);
+
+          margin-bottom: 50px;
+          height: 100%;
+        }
+      }
+    }
 
     &-avatar {
       width: 104px;
@@ -154,6 +249,10 @@ if (q) {
       justify-content: space-between;
       width: 60px;
       margin-bottom: 67px;
+
+      @include media-breakpoint-down(sm) {
+        margin-bottom: 30px;
+      }
     }
 
     &-add,

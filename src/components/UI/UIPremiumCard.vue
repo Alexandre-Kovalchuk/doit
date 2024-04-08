@@ -7,21 +7,23 @@ const props = defineProps({
 </script>
 
 <template>
-  <div class="premium">
-    <div :class="['premium__card', `premium__card_${item.color}`]">
-      <p v-if="item.popular" class="premium__popular">{{ item.popular }}</p>
+  <div class="premium-card">
+    <div :class="['premium-card__item', `premium-card__item_${item.color}`]">
+      <p v-if="item.popular" class="premium-card__popular">{{ item.popular }}</p>
 
-      <h2 :class="['premium__title', `premium__title_${item.color}`]">{{ item.title }}</h2>
+      <h2 :class="['premium-card__title', `premium-card__title_${item.color}`]">
+        {{ item.title }}
+      </h2>
 
-      <h3 class="premium__title-sub">{{ item.subTitle }}</h3>
+      <h3 class="premium_-card_title-sub">{{ item.subTitle }}</h3>
 
-      <p v-if="item.txt" class="premium__txt">{{ item.txt }}</p>
+      <p v-if="item.txt" class="premium-card__txt">{{ item.txt }}</p>
 
-      <ul v-if="item.list" class="premium__list">
+      <ul v-if="item.list" class="premium-card__list">
         <li v-for="li in item.list">{{ li.li }}</li>
       </ul>
 
-      <div class="premium__btn">
+      <div class="premium-card__btn">
         <UIBtn :label="item.btn" :color="item.color" />
       </div>
     </div>
@@ -31,10 +33,10 @@ const props = defineProps({
 <style lang="scss">
 @import '@/assets/style/breakpoints/media-breakpoints';
 
-.premium {
+.premium-card {
   display: flex;
 
-  &__card {
+  &__item {
     padding: 0 16px 0 22px;
     width: 371px;
     height: 540px;

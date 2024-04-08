@@ -1280,6 +1280,10 @@
       <path d="M12 8V16" stroke="#F5F5F5" stroke-linecap="round" stroke-linejoin="round" />
       <path d="M8 12H16" stroke="#F5F5F5" stroke-linecap="round" stroke-linejoin="round" />
     </symbol>
+
+    <symbol viewBox="0 0 12 8" fill="none" id="arrow-down">
+      <path d="M1.41 0.589996L6 5.17L10.59 0.589996L12 2L6 8L0 2L1.41 0.589996Z" fill="#CCCDCD" />
+    </symbol>
   </svg>
 </template>
 <script setup></script>

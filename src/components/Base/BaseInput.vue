@@ -41,7 +41,9 @@ const updateVal = (e) => {
 
 <template>
   <div class="inp">
-    <label class="inp__label" :for="name">{{ label }}</label>
+    <label :class="['inp__label', modify ? `inp__label_${modify}` : '']" :for="name">{{
+      label
+    }}</label>
     <input
       :class="['inp__text', modify ? `inp__text_${modify}` : '']"
       :type="type"
@@ -100,6 +102,14 @@ const updateVal = (e) => {
     line-height: 100%;
     color: #fff;
     margin-bottom: 6px;
+
+    &_game {
+      font-weight: 700;
+      font-size: 16px;
+      line-height: 100%;
+      color: #cccdcd;
+      margin: 22px 0 12px;
+    }
   }
 }
 </style>
