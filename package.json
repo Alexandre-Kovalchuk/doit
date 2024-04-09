@@ -10,6 +10,7 @@
     "deploy": "vite build && gh-pages -d dist"
   },
   "dependencies": {
+    "@formkit/auto-animate": "^0.8.1",
     "sass": "^1.72.0",
     "sass-loader": "^14.1.1",
     "scroll-lock": "^2.1.5",

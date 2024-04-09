@@ -59,6 +59,10 @@ const clickOnBtn = () => {
       font-size: 22px;
       line-height: 100%;
       border: 2px solid #20252b;
+
+      &:hover {
+        background: #001f3e;
+      }
     }
   }
 }
