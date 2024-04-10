@@ -141,12 +141,21 @@ const swiperOptions = {
 .tournaments {
   margin-bottom: 145px;
 
+  @include media-breakpoint-down(lg) {
+    padding-left: 114px;
+  }
+
+  @include media-breakpoint-down(md) {
+    padding-left: 0;
+  }
+
   @include media-breakpoint-down(sm) {
     margin-bottom: 100px;
   }
 
   .swiper {
     height: 465px;
+    overflow: visible;
     @include media-breakpoint-down(xs) {
       height: 430px;
     }

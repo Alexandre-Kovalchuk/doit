@@ -57,8 +57,12 @@ const svg = [
 .beta {
   height: 936px;
 
-  @include media-breakpoint-down(sm) {
-    height: 800px;
+  @include media-breakpoint-down(lg) {
+    padding-left: 114px;
+  }
+
+  @include media-breakpoint-down(md) {
+    padding-left: 0;
   }
 
   @include media-breakpoint-down(sm) {

@@ -83,21 +83,6 @@ h6 {
   font-size: inherit;
 }
 
-:root {
-  --primary: #6979f8;
-  --primary-hover: #A5AFFB;
-  --second: #BE52F2;
-  --second-hover: #DBA5F5;
-  --success: #00C48C;
-  --success-hover: #7DDFC3;
-  --info: #0084F4;
-  --info-hover: #66B5F8;
-  --warning: #FFA26B;
-  --warning-hover: #FFC7A6;
-  --danger: #FF647C;
-  --danger-hover: #FDAFBB;
-}
-
 body {
   font-family: Rubik, sans-serif;
   background-color: #0F1215;
@@ -117,22 +102,13 @@ body {
   padding: 128px 0 0;
   position: relative;
 }
-@media (max-width: 1649px) {
-  .main {
-    padding-left: 114px;
-  }
-}
-@media (max-width: 1023px) {
-  .main {
-    padding: 0;
-  }
-}
 
 .container {
   max-width: 1256px;
   width: 100%;
   margin: 0 auto;
   padding: 0 20px;
+  position: relative;
 }
 
 /*# sourceMappingURL=style.css.map */

@@ -53,12 +53,13 @@ const param = (link) => {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    width: 100%;
     gap: 50px 64px;
+    //max-width: 836px;
+    //width: 100%;
 
     @include media-breakpoint-down(lg) {
-      gap: 20px;
-      margin-left: 20px;
+      //gap: 20px;
+      //margin-left: 20px;
     }
 
     @include media-breakpoint-down(xs) {

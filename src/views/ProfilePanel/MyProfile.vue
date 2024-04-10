@@ -10,7 +10,7 @@ const aboutUser = [
       dataName: 'Name',
       dataNickname: 'Nickname',
       dataDate: 'With us from',
-      dataSex: 'Sex/ Age',
+      dataSex: 'Sex / Age',
       dataNationality: 'Nationality',
       dataCountry: 'Country',
       dataSite: 'Web-site',
@@ -23,7 +23,7 @@ const aboutUser = [
       userSex: 'Male / 22',
       userNationality: 'Ukraine',
       userCountry: 'Ukraine',
-      userSite: 'BlacerLordTV',
+      userSite: 'http://blacerTV.com',
     },
   },
 ];
@@ -120,7 +120,7 @@ const aboutGame = [
         </div>
       </div>
       <div class="my-profile__level">
-        <h2 class="my-profile__title">Level and awards</h2>
+        <h2 class="my-profile__title my-profile__title_level">Level and awards</h2>
         <div class="my-profile__sub-row">
           <div class="my-profile__progress-bar">
             <UIProgressBar
@@ -152,13 +152,17 @@ const aboutGame = [
 @import '@/assets/style/breakpoints/media-breakpoints';
 
 .my-profile {
+  width: 100%;
+
   &__row {
     display: flex;
     justify-content: space-between;
-    margin-left: 60px;
+    //margin-left: 60px;
+    width: 100%;
+    padding: 62px 0 0 61px;
 
     @include media-breakpoint-down(lg) {
-      margin-left: 20px;
+      padding: 62px 0 0 20px;
     }
 
     @include media-breakpoint-down(md) {
@@ -178,8 +182,16 @@ const aboutGame = [
       max-width: 100%;
     }
   }
+
   &__title {
-    margin-bottom: 30px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1.4px;
+    margin-bottom: 22px;
+
+    &_level {
+      margin: 8px 0 23px 12px;
+    }
   }
 
   &__user {
@@ -197,15 +209,18 @@ const aboutGame = [
     }
 
     &-data {
+      min-width: 105px;
+      width: 100%;
       p {
         color: #67707a;
-        margin-bottom: 22px;
+        margin-bottom: 15px;
       }
     }
 
     &-info {
+      margin-left: 10px;
       p {
-        margin-bottom: 22px;
+        margin-bottom: 15px;
       }
     }
   }
@@ -213,10 +228,15 @@ const aboutGame = [
   &__level {
     max-width: 410px;
     width: 100%;
+    padding: 0 0 0 48px;
+    @include media-breakpoint-down(lg) {
+      padding: 0 0 0 20px;
+    }
 
     @include media-breakpoint-down(md) {
       max-width: 100%;
       margin-bottom: 100px;
+      padding: 0;
     }
   }
 
@@ -224,9 +244,14 @@ const aboutGame = [
     display: flex;
     justify-content: space-between;
     margin-left: 10px;
+    min-width: 355px;
 
     @include media-breakpoint-down(md) {
       margin: 0;
+    }
+
+    @include media-breakpoint-down(xs) {
+      min-width: auto;
     }
   }
 
@@ -241,7 +266,7 @@ const aboutGame = [
   }
 
   &__progress-circle {
-    height: 520px;
+    height: 450px;
     overflow: auto;
 
     &::-webkit-scrollbar {

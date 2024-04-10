@@ -42,17 +42,17 @@ const clickOnTabs = (nameTab) => {
           </button>
         </div>
       </div>
-    </div>
-    <div class="tabs__swiper">
-      <slot />
+      <div class="tabs__content">
+        <slot />
+      </div>
     </div>
   </div>
 </template>
 
 <style lang="scss">
 @import '@/assets/style/breakpoints/media-breakpoints';
+
 .tabs {
-  position: relative;
   &__row {
     display: flex;
     justify-content: space-between;
@@ -140,24 +140,11 @@ const clickOnTabs = (nameTab) => {
     }
   }
 
-  &__swiper {
-    margin-left: 375px;
-    margin-right: auto;
-
-    @include media-breakpoint-down(xl) {
-      margin-left: 200px;
-    }
-
-    @include media-breakpoint-down(l) {
-      margin-left: 100px;
-    }
-
-    @include media-breakpoint-down(lg) {
-      margin-left: 50px;
-    }
+  &__content {
+    margin-left: 23px;
 
     @include media-breakpoint-down(md) {
-      margin-left: 20px;
+      margin-left: 0;
     }
   }
 }

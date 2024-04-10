@@ -63,9 +63,27 @@ export function updateTitle(q, title) {
   }
 }
 
-export const createTeam = [
-  { id: 1, label: 'Team Leader' },
-  { id: 2, label: 'Join password' },
-  { id: 3, label: 'Country' },
-  { id: 3, label: 'Web-site' },
+export const createTeamAndEditTeam = [
+  {
+    creatTeam: [
+      { label: 'Team name' },
+      { label: 'Team Leader' },
+      { label: 'Join password' },
+      { label: 'Country' },
+      { label: 'Web-site' },
+    ],
+    editTeam: [
+      { label: 'Team name' },
+      { label: 'ID' },
+      { label: 'Team Leader' },
+      { label: 'Country' },
+      { label: 'Web-site' },
+    ],
+    btn: [
+      { label: 'Delete Team' },
+      { label: 'Save Team' },
+      { label: 'List of players' },
+      { label: 'Edit list of players' },
+    ],
+  },
 ];

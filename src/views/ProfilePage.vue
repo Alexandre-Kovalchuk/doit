@@ -10,6 +10,7 @@ import Setting from '@/views/ProfilePanel/Setting.vue';
 import { useRouter } from 'vue-router';
 import { ref, watch } from 'vue';
 import Support from '@/views/ProfilePanel/Support.vue';
+import Deposit from '@/views/ProfilePanel/Deposit.vue';
 
 const router = useRouter();
 const q = ref('');
@@ -58,6 +59,7 @@ const showSetting = (q) => {
       <UserPanel v-if="q === 'User Panel'" />
       <MyProfile v-if="q === 'My profile'" />
       <MyTeam v-if="showMyTeam(q)" />
+      <Deposit v-if="q === 'Deposit/Withdraw'" />
       <Premium v-if="q === 'Premium'" />
       <Statistic v-if="q === 'Statistics'" />
       <Support v-if="q === 'Support'" />

@@ -42,6 +42,15 @@ const swiperOptions = {
 @import '@/assets/style/breakpoints/media-breakpoints';
 .partners {
   margin-bottom: 77px;
+
+  @include media-breakpoint-down(lg) {
+    padding-left: 114px;
+  }
+
+  @include media-breakpoint-down(md) {
+    padding-left: 0;
+  }
+
   &__title {
     font-weight: 700;
     font-size: 44px;
@@ -101,6 +110,7 @@ const swiperOptions = {
 
   .swiper {
     height: 90px;
+
     &-wrapper {
       align-items: center;
       justify-content: space-between;

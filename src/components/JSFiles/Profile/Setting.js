@@ -42,7 +42,7 @@ export function updateSettingTitle(q, title) {
       title.value = 'Change adress email';
       break;
     case 'Change password':
-      title.value = 'Change password';
+      title.value = 'Change Password';
       break;
     case 'Manage preferences':
       title.value = 'Manage preferences';

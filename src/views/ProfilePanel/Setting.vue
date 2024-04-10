@@ -113,12 +113,22 @@ const parentSelectedOption = ref(null);
 @import '@/assets/style/breakpoints/media-breakpoints';
 .setting {
   margin-bottom: 100px;
+  padding: 0 0 0 91px;
+
+  @include media-breakpoint-down(md) {
+    padding: 0;
+  }
+
   &__title {
     font-weight: 700;
     font-size: 48px;
     line-height: 137%;
     text-align: center;
-    margin-bottom: 45px;
+    margin-bottom: 65px;
+
+    @include media-breakpoint-down(md) {
+      margin-bottom: 30px;
+    }
 
     @include media-breakpoint-down(xs) {
       font-size: 40px;

@@ -1,8 +1,8 @@
 <script setup>
-import { ref, onMounted, onUnmounted } from 'vue';
+import { ref } from 'vue';
 import BaseImage from '@/components/Base/BaseImage.vue';
 import UIBtn from '../UI/UIBtn.vue';
-import { logo } from '@/components/JSFiles/UseLogo.js';
+import { logo } from '@/components/JSFiles/UseLogoAndAvatar.js';
 
 const links = ref([
   { name: 'Play', href: 'play' },
@@ -13,23 +13,14 @@ const links = ref([
 ]);
 
 const isOpenMenu = ref(false);
-const isScroll = ref(false);
+
 const toggleMenu = () => {
   isOpenMenu.value = !isOpenMenu.value;
 };
-const handleScroll = () => {
-  const scrollPosition = window.scrollY;
-
-  isScroll.value = scrollPosition > 0;
-};
-
-onMounted(() => {
-  window.addEventListener('scroll', handleScroll);
-});
 </script>
 
 <template>
-  <header :class="['header', { header_scroll: isScroll }]">
+  <header class="header">
     <div class="container">
       <div class="header__content">
         <div class="header__logo">
@@ -70,6 +61,7 @@ onMounted(() => {
 
 <style lang="scss">
 @import '@/assets/style/breakpoints/media-breakpoints';
+
 .header {
   position: fixed;
   width: 100%;
@@ -78,15 +70,9 @@ onMounted(() => {
   z-index: 50;
   min-height: 64px;
   padding: 32px 0;
+  background-color: #0f1215;
 
-  &_scroll {
-    background: #b0b6bd;
-    @include media-breakpoint-down(md) {
-      background: none;
-    }
-  }
-
-  @include media-breakpoint-down(l) {
+  @include media-breakpoint-down(lg) {
     padding-left: 114px;
   }
 

@@ -2,13 +2,9 @@
 import BaseImage from '@/components/Base/BaseImage.vue';
 import BaseSvg from '@/components/Base/BaseSvg.vue';
 import BaseInput from '@/components/Base/BaseInput.vue';
-import { onMounted, ref, watch } from 'vue';
+import { ref, watch } from 'vue';
 import { useRouter } from 'vue-router';
-
-const accountIcon = {
-  webp: new URL('../../assets/img/account.webp', import.meta.url),
-  img: new URL('../../assets/img/account.png', import.meta.url),
-};
+import { accountIcon } from '@/components/JSFiles/UseLogoAndAvatar.js';
 
 const profileMenu = [
   { id: 1, name: 'User Panel', label: 'User Panel' },
@@ -110,7 +106,7 @@ watch(isActive, (newValue, oldValue) => {
             </div>
           </div>
         </aside>
-        <div class="profile__item">
+        <div class="profile__block">
           <slot />
         </div>
       </div>
@@ -120,11 +116,26 @@ watch(isActive, (newValue, oldValue) => {
 
 <style lang="scss">
 @import '@/assets/style/breakpoints/media-breakpoints';
+
 .profile {
-  margin-top: 95px;
+  margin-top: 48px;
+
+  @include media-breakpoint-down(lg) {
+    padding-left: 114px;
+  }
+
+  @include media-breakpoint-down(md) {
+    padding-left: 0;
+    margin: 0;
+  }
 
   &__content {
     display: flex;
+    justify-content: space-between;
+    padding-left: 23px;
+    @include media-breakpoint-down(lg) {
+      padding: 0;
+    }
 
     @include media-breakpoint-down(sm) {
       flex-direction: column;
@@ -132,9 +143,12 @@ watch(isActive, (newValue, oldValue) => {
   }
 
   &__aside {
-    width: 300px;
+    max-width: 300px;
+    width: 100%;
     border-right: 2px solid #1a1f24;
     position: relative;
+    padding-top: 66px;
+
     @include media-breakpoint-down(sm) {
       border: none;
       width: 20px;
@@ -148,6 +162,7 @@ watch(isActive, (newValue, oldValue) => {
       border-radius: 0 5px 5px 0;
       &_act {
         top: 0;
+        max-width: 100%;
         width: 100%;
         height: 100%;
       }
@@ -189,7 +204,7 @@ watch(isActive, (newValue, oldValue) => {
         align-items: center;
         height: 50px;
         overflow: auto;
-        padding: 90px 0;
+        padding: 165px 0 90px;
 
         &::-webkit-scrollbar {
           display: none;
@@ -209,6 +224,7 @@ watch(isActive, (newValue, oldValue) => {
       width: 104px;
       height: 104px;
       margin-bottom: 23px;
+      border: 1px solid red;
 
       img {
         width: 100%;
@@ -248,11 +264,7 @@ watch(isActive, (newValue, oldValue) => {
       display: flex;
       justify-content: space-between;
       width: 60px;
-      margin-bottom: 67px;
-
-      @include media-breakpoint-down(sm) {
-        margin-bottom: 30px;
-      }
+      margin-bottom: 21px;
     }
 
     &-add,
@@ -270,7 +282,7 @@ watch(isActive, (newValue, oldValue) => {
     &-item {
       cursor: pointer;
       position: relative;
-      padding-left: 20px;
+      padding-left: 12px;
 
       &::before {
         content: '';
@@ -335,7 +347,7 @@ watch(isActive, (newValue, oldValue) => {
     }
   }
 
-  &__item {
+  &__block {
     width: 100%;
   }
 }

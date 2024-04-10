@@ -11,34 +11,44 @@ import { games } from '@/components/JSFiles/MainPage/GamesData.js';
   <section class="games">
     <div class="container">
       <h2 class="games__title">Games</h2>
-    </div>
-    <div class="games__content">
-      <swiper
-        :slides-per-view="'auto'"
-        :loop="true"
-        :spaceBetween="4"
-        :pagination="{
-          clickable: true,
-        }"
-        :modules="[Pagination]"
-        :breakpoints="{
-          320: { direction: 'vertical' },
-          576: { direction: 'horizontal' },
-        }"
-      >
-        <swiper-slide v-for="(item, index) in games" :key="index">
-          <BaseImage :srcset="item.webp" :src="item.img" :alt="item.txt" />
-          <p class="games__text">{{ item.txt }}</p>
-        </swiper-slide>
-      </swiper>
+
+      <div class="games__content">
+        <swiper
+          :slides-per-view="'auto'"
+          :loop="true"
+          :spaceBetween="4"
+          :pagination="{
+            clickable: true,
+          }"
+          :modules="[Pagination]"
+          :breakpoints="{
+            320: { direction: 'vertical' },
+            576: { direction: 'horizontal' },
+          }"
+        >
+          <swiper-slide v-for="(item, index) in games" :key="index">
+            <BaseImage :srcset="item.webp" :src="item.img" :alt="item.txt" />
+            <p class="games__text">{{ item.txt }}</p>
+          </swiper-slide>
+        </swiper>
+      </div>
     </div>
   </section>
 </template>
 
 <style lang="scss">
 @import '@/assets/style/breakpoints/media-breakpoints';
+
 .games {
   margin-bottom: 271px;
+
+  @include media-breakpoint-down(lg) {
+    padding-left: 114px;
+  }
+
+  @include media-breakpoint-down(md) {
+    padding-left: 0;
+  }
 
   @include media-breakpoint-down(xs) {
     margin-bottom: 0;
@@ -54,24 +64,10 @@ import { games } from '@/components/JSFiles/MainPage/GamesData.js';
   }
 
   &__content {
-    margin-left: 375px;
-    margin-right: auto;
-
-    @include media-breakpoint-down(xl) {
-      margin-left: 200px;
-    }
-
-    @include media-breakpoint-down(l) {
-      margin-left: 100px;
-    }
-
-    @include media-breakpoint-down(lg) {
-      margin-left: 50px;
-    }
+    margin-left: 23px;
 
     @include media-breakpoint-down(md) {
-      margin-left: 20px;
-      margin-right: 20px;
+      margin-left: 0;
     }
   }
 
@@ -91,6 +87,8 @@ import { games } from '@/components/JSFiles/MainPage/GamesData.js';
 
   .swiper {
     height: 547px;
+    overflow: visible;
+
     &-wrapper {
       @include media-breakpoint-down(xs) {
         flex-direction: column;

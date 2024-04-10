@@ -136,8 +136,17 @@ const swiperOptions = {
 .news {
   margin-bottom: 127px;
 
+  @include media-breakpoint-down(lg) {
+    padding-left: 114px;
+  }
+
+  @include media-breakpoint-down(md) {
+    padding-left: 0;
+  }
+
   .swiper {
     height: 515px;
+    overflow: visible;
     @include media-breakpoint-down(xs) {
       height: 430px;
     }

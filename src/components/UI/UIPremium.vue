@@ -11,6 +11,7 @@ import { premiun } from '@/components/JSFiles/PremiumData.js';
   <div class="premium">
     <swiper
       :slides-per-view="'auto'"
+      :loop="true"
       :spaceBetween="29"
       :pagination="{ clickable: true }"
       :modules="[Pagination]"
@@ -24,34 +25,4 @@ import { premiun } from '@/components/JSFiles/PremiumData.js';
 
 <style lang="scss">
 @import '@/assets/style/breakpoints/media-breakpoints';
-
-.swiper {
-  height: 576px;
-  @include media-breakpoint-down(xs) {
-    height: 482px;
-  }
-  &-slide {
-    width: 371px !important;
-
-    @include media-breakpoint-down(xs) {
-      width: 329px !important;
-    }
-
-    @include media-breakpoint-down(xxs) {
-      width: 280px !important;
-    }
-  }
-
-  &-pagination-bullet {
-    width: 6px;
-    height: 6px;
-    background: #20252b;
-
-    &-active {
-      width: 8px;
-      height: 8px;
-      background: linear-gradient(180deg, #2788f6 0%, #0960e0 100%);
-    }
-  }
-}
 </style>

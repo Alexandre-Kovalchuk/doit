@@ -75,7 +75,7 @@ const props = defineProps({
 .progress {
   width: 100%;
   overflow: hidden;
-  margin-bottom: 27px;
+  margin-bottom: 24px;
   &__row {
     display: flex;
     justify-content: space-between;

@@ -38,8 +38,9 @@ const svgIcon = [
 <style lang="scss">
 @import '@/assets/style/breakpoints/media-breakpoints';
 .aside {
+  width: 114px;
   position: absolute;
-  z-index: 90;
+  z-index: 60;
 
   &__content {
     position: fixed;
@@ -48,7 +49,7 @@ const svgIcon = [
     height: 100%;
     background-color: #0f1215;
     border-right: 2px solid #20252b;
-    padding: 229px 40px 184px 40px;
+    padding: 229px 40px 234px 40px;
 
     @include media-breakpoint-down(md) {
       bottom: 0;

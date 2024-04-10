@@ -29,6 +29,7 @@ const mappedSelectionOption = computed(() => {
 const toggleOptionSelect = (option) => {
   selectedOption.value = option;
   emit('update:modelValue', option);
+
   setTimeout(() => {
     isDropDownVisible.value = false;
   }, 300);
@@ -99,8 +100,11 @@ onBeforeUnmount(() => {
     &-default {
       border: 2px solid #20252b;
       border-radius: 4px;
-      color: #fff;
       text-align: left;
+      color: #cccdcd;
+      line-height: 100%;
+      font-weight: 400;
+      padding: 10px 16px;
     }
 
     &_act {

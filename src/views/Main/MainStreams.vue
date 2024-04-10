@@ -150,6 +150,14 @@ const swiperOptions = {
 .streams {
   margin-bottom: 120px;
 
+  @include media-breakpoint-down(lg) {
+    padding-left: 114px;
+  }
+
+  @include media-breakpoint-down(md) {
+    padding-left: 0;
+  }
+
   &__slide {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -209,6 +217,7 @@ const swiperOptions = {
 
   .swiper {
     height: 580px;
+    overflow: visible;
     @include media-breakpoint-down(sm) {
       height: 340px;
     }
