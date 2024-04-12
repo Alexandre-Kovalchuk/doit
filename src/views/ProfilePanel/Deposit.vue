@@ -1,14 +1,16 @@
 <script setup>
 import BaseImage from '@/components/Base/BaseImage.vue';
 import { accountIcon } from '@/components/JSFiles/UseLogoAndAvatar.js';
-import UITabs from '@/components/UI/UITabs.vue';
-import { depositTabs } from '@/components/JSFiles/DepositTabs.js';
+import { deposit } from '@/components/JSFiles/Deposit.js';
 import { ref } from 'vue';
+import BaseInput from '@/components/Base/BaseInput.vue';
+import UIBtn from '@/components/UI/UIBtn.vue';
 
 const selectedTab = ref('Withdraw');
+const selectedWithdraw = ref('Paypal');
 
-const changeNewsTabs = (tabName) => {
-  selectedTab.value = tabName;
+const clickOnBtn = (nameBtn) => {
+  selectedTab.value = nameBtn;
 };
 </script>
 
@@ -31,31 +33,106 @@ const changeNewsTabs = (tabName) => {
         </div>
 
         <div class="deposit__tabs">
-          <UITabs
-            :names="depositTabs"
-            label=""
-            :selectedTab="selectedTab"
-            @changeTab="changeNewsTabs"
+          <button
+            :class="['deposit__tabs-btn', { 'deposit__tabs-btn_act': btn.name === selectedTab }]"
+            v-for="(btn, index) in deposit[0].depositTab"
+            :key="index"
+            @click="clickOnBtn(btn.name)"
           >
-          </UITabs>
+            {{ btn.label }}
+          </button>
         </div>
       </div>
+
+      <Transition name="slide-up">
+        <div class="deposit__withdraw" v-if="selectedTab === 'Withdraw'">
+          <div class="deposit__withdraw-btns">
+            <button
+              :class="[
+                'deposit__withdraw-tab',
+                { 'deposit__withdraw-tab_act': btn.name === selectedWithdraw },
+              ]"
+              v-for="(btn, index) in deposit[0].withdrawTab"
+              :key="index"
+            >
+              {{ btn.label }}
+            </button>
+          </div>
+
+          <div class="deposit__withdraw-inp">
+            <BaseInput
+              v-for="inp in deposit[0].withdrawInp.slice(0, 3)"
+              :key="inp.id"
+              :placeholder="inp.label"
+              name="name"
+              :label="inp.label"
+            />
+
+            <UIBtn :label="selectedTab === 'Deposit' ? 'Deposit' : 'Withdraw'" color="blue" />
+          </div>
+        </div>
+      </Transition>
+
+      <Transition name="slide-up">
+        <div class="deposit__deposit" v-if="selectedTab === 'Deposit'">
+          <div class="deposit__withdraw-btns">
+            <button
+              :class="[
+                'deposit__withdraw-tab',
+                { 'deposit__withdraw-tab_act': btn.name === selectedWithdraw },
+              ]"
+              v-for="(btn, index) in deposit[0].withdrawTab"
+              :key="index"
+              @click="clickOnBtn(btn.name)"
+            >
+              {{ btn.label }}
+            </button>
+          </div>
+
+          <div class="deposit__withdraw-inp">
+            <BaseInput
+              v-for="inp in deposit[0].withdrawInp.slice(3, 5)"
+              :key="inp.id"
+              :placeholder="inp.label"
+              name="name"
+              :label="inp.label"
+            />
+
+            <UIBtn :label="selectedTab === 'Deposit' ? 'Deposit' : 'Withdraw'" color="blue" />
+          </div>
+        </div>
+      </Transition>
+
+      <Transition name="slide-up">
+        <div class="deposit__history" v-if="selectedTab === 'History'">
+          <p
+            class="deposit__history-text"
+            v-for="title in deposit[0].depositHistory"
+            :key="title.id"
+          >
+            {{ title.name }}
+          </p>
+        </div>
+      </Transition>
     </div>
   </div>
 </template>
 
 <style lang="scss">
+@import '@/assets/style/breakpoints/media-breakpoints';
+
 .deposit {
   display: flex;
   flex-direction: column;
   align-items: center;
+  padding: 11px 0 0 61px;
 
   &__title {
     font-weight: 700;
     font-size: 48px;
     line-height: 137%;
     text-align: center;
-    margin-bottom: 22px;
+    margin-bottom: 14px;
   }
 
   &__content {
@@ -93,6 +170,7 @@ const changeNewsTabs = (tabName) => {
       font-weight: 700;
       font-size: 24px;
       line-height: 130%;
+      margin-bottom: 5px;
     }
 
     &-balance {
@@ -108,12 +186,9 @@ const changeNewsTabs = (tabName) => {
     display: flex;
     justify-content: space-between;
     width: 100%;
-    margin-left: 140px;
+    padding: 0 124px 0 85px;
 
-    .tabs {
-      width: 100%;
-    }
-    .tabs__btns-item {
+    &-btn {
       font-weight: 700;
       font-size: 24px;
       line-height: 130%;
@@ -131,7 +206,7 @@ const changeNewsTabs = (tabName) => {
         width: 100%;
         transform: scaleX(0);
         height: 4px;
-        bottom: -9px;
+        bottom: -8px;
         left: 0;
         transform-origin: bottom right;
         transition: transform 0.25s ease-out;
@@ -167,12 +242,104 @@ const changeNewsTabs = (tabName) => {
     }
 
     .tabs__btns {
-      max-width: 65%;
+      max-width: 79.5%;
     }
 
     .tabs__title {
       display: none;
     }
+  }
+
+  &__withdraw,
+  &__deposit {
+    padding: 20px 42px;
+    background: #0d1d2c;
+    margin-top: 37px;
+
+    &-btns {
+      display: flex;
+      justify-content: space-between;
+      border-radius: 2px;
+      max-width: 311px;
+      width: 100%;
+      background: #0f1215;
+      margin-bottom: 32px;
+    }
+
+    &-inp {
+      max-width: 512px;
+      width: 100%;
+      .inp {
+        &__label {
+          font-weight: 700;
+          font-size: 16px;
+          line-height: 100%;
+          color: #cccdcd;
+        }
+
+        &__text {
+          background: #0f1215;
+          height: 40px;
+          margin-bottom: 19px;
+        }
+      }
+
+      .v-btn {
+        width: 160px;
+        height: 29px;
+        margin-left: auto;
+        margin-right: 13px;
+
+        &__btn {
+          font-weight: 400;
+          font-size: 14px;
+          line-height: 100%;
+        }
+      }
+    }
+
+    &-tab {
+      font-weight: 400;
+      font-size: 14px;
+      line-height: 100%;
+      color: #7a8899;
+      padding: 8px 17px 8px;
+
+      &_act {
+        color: #f5f5f5;
+        background: linear-gradient(180deg, #2788f6 0%, #0960e0 100%);
+      }
+    }
+  }
+
+  &__history {
+    padding: 20px 42px;
+    background: #0d1d2c;
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-between;
+
+    &-text {
+      font-weight: 700;
+      font-size: 16px;
+      line-height: 130%;
+      color: #bcbcbc;
+    }
+  }
+
+  .slide-up-enter-active,
+  .slide-up-leave-active {
+    transition: all 0.25s ease-out;
+  }
+
+  .slide-up-enter-from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+
+  .slide-up-leave-to {
+    opacity: 0;
+    transform: translateY(-30px);
   }
 }
 </style>

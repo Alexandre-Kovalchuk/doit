@@ -50,6 +50,24 @@ const router = createRouter({
       name: 'Profile',
       component: () => import('../views/ProfilePage.vue'),
     },
+
+    {
+      path: '/privacy',
+      name: 'Privacy',
+      component: () => import('../views/PrivacyPage.vue'),
+    },
+
+    {
+      path: '/about',
+      name: 'About',
+      component: () => import('../views/AboutPage.vue'),
+    },
+
+    {
+      path: '/contact',
+      name: 'Contact',
+      component: () => import('../views/ContactPage.vue'),
+    },
   ],
 });
 

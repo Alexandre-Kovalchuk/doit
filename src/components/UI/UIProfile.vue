@@ -143,7 +143,7 @@ watch(isActive, (newValue, oldValue) => {
   }
 
   &__aside {
-    max-width: 300px;
+    max-width: 240px;
     width: 100%;
     border-right: 2px solid #1a1f24;
     position: relative;

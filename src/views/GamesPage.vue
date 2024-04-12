@@ -44,7 +44,13 @@ const filterGames = computed(() => {
 
 .game {
   margin: 60px 0;
+
+  @include media-breakpoint-down(lg) {
+    padding-left: 114px;
+  }
+
   @include media-breakpoint-down(md) {
+    padding-left: 0;
     margin: 95px 0;
   }
 
@@ -84,15 +90,22 @@ const filterGames = computed(() => {
 
   &__card {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(387px, 387px));
-    justify-content: center;
-    align-items: center;
+    grid-template-columns: repeat(3, 1fr);
     gap: 20px;
 
-    @include media-breakpoint-down(xs) {
+    @include media-breakpoint-down(md) {
+      grid-template-columns: repeat(2, 1fr);
+
+      width: fit-content;
+      margin: 0 auto;
+    }
+
+    @include media-breakpoint-down(sm) {
       display: flex;
       flex-direction: column;
+      align-items: center;
       gap: 8px 0;
+      width: auto;
     }
 
     &-item {

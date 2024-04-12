@@ -27,6 +27,7 @@ const aboutUser = [
     },
   },
 ];
+
 const aboutGame = [
   {
     id: 1,
@@ -107,13 +108,13 @@ const aboutGame = [
         <h2 class="my-profile__title">Profile</h2>
         <div class="my-profile__user">
           <div class="my-profile__user-data">
-            <p v-for="(data, key) in aboutUser[0].userData" :key="key">
+            <p v-for="(data, index) in aboutUser[0].userData" :key="index">
               {{ data }}
             </p>
           </div>
 
           <div class="my-profile__user-info">
-            <p v-for="(info, key) in aboutUser[0].userInfo" :key="key">
+            <p v-for="(info, index) in aboutUser[0].userInfo" :key="index">
               {{ info }}
             </p>
           </div>
@@ -157,7 +158,6 @@ const aboutGame = [
   &__row {
     display: flex;
     justify-content: space-between;
-    //margin-left: 60px;
     width: 100%;
     padding: 62px 0 0 61px;
 
@@ -229,6 +229,7 @@ const aboutGame = [
     max-width: 410px;
     width: 100%;
     padding: 0 0 0 48px;
+
     @include media-breakpoint-down(lg) {
       padding: 0 0 0 20px;
     }

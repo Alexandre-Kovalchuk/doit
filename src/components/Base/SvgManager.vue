@@ -1284,6 +1284,66 @@
     <symbol viewBox="0 0 12 8" fill="none" id="arrow-down">
       <path d="M1.41 0.589996L6 5.17L10.59 0.589996L12 2L6 8L0 2L1.41 0.589996Z" fill="#CCCDCD" />
     </symbol>
+
+    <symbol viewBox="0 0 32 32" fill="none" id="location">
+      <path
+        d="M16 2.66669C10.84 2.66669 6.66669 6.84002 6.66669 12C6.66669 19 16 29.3334 16 29.3334C16 29.3334 25.3334 19 25.3334 12C25.3334 6.84002 21.16 2.66669 16 2.66669ZM16 15.3334C14.16 15.3334 12.6667 13.84 12.6667 12C12.6667 10.16 14.16 8.66669 16 8.66669C17.84 8.66669 19.3334 10.16 19.3334 12C19.3334 13.84 17.84 15.3334 16 15.3334Z"
+        fill="url(#paint0_linear_1095_15389)"
+      />
+      <defs>
+        <linearGradient
+          id="paint0_linear_1095_15389"
+          x1="16"
+          y1="2.66669"
+          x2="16"
+          y2="29.3334"
+          gradientUnits="userSpaceOnUse"
+        >
+          <stop stop-color="#2788F6" />
+          <stop offset="1" stop-color="#0960E0" />
+        </linearGradient>
+      </defs>
+    </symbol>
+
+    <symbol viewBox="0 0 32 32" fill="none" id="phone">
+      <path
+        d="M8.82667 14.3867C10.7467 18.16 13.84 21.24 17.6133 23.1733L20.5467 20.24C20.9067 19.88 21.44 19.76 21.9067 19.92C23.4 20.4133 25.0133 20.68 26.6667 20.68C27.4 20.68 28 21.28 28 22.0133V26.6667C28 27.4 27.4 28 26.6667 28C14.1467 28 4 17.8533 4 5.33333C4 4.6 4.6 4 5.33333 4H10C10.7333 4 11.3333 4.6 11.3333 5.33333C11.3333 7 11.6 8.6 12.0933 10.0933C12.24 10.56 12.1333 11.08 11.76 11.4533L8.82667 14.3867Z"
+        fill="url(#paint0_linear_1095_15397)"
+      />
+      <defs>
+        <linearGradient
+          id="paint0_linear_1095_15397"
+          x1="16"
+          y1="4"
+          x2="16"
+          y2="28"
+          gradientUnits="userSpaceOnUse"
+        >
+          <stop stop-color="#2788F6" />
+          <stop offset="1" stop-color="#0960E0" />
+        </linearGradient>
+      </defs>
+    </symbol>
+
+    <symbol viewBox="0 0 32 33" fill="none" id="mess">
+      <path
+        d="M27.2 5.5H4.8C3.26 5.5 2.014 6.7375 2.014 8.25L2 24.75C2 26.2625 3.26 27.5 4.8 27.5H27.2C28.74 27.5 30 26.2625 30 24.75V8.25C30 6.7375 28.74 5.5 27.2 5.5ZM27.2 11L16 17.875L4.8 11V8.25L16 15.125L27.2 8.25V11Z"
+        fill="url(#paint0_linear_1095_15428)"
+      />
+      <defs>
+        <linearGradient
+          id="paint0_linear_1095_15428"
+          x1="16"
+          y1="5.5"
+          x2="16"
+          y2="27.5"
+          gradientUnits="userSpaceOnUse"
+        >
+          <stop stop-color="#2788F6" />
+          <stop offset="1" stop-color="#0960E0" />
+        </linearGradient>
+      </defs>
+    </symbol>
   </svg>
 </template>
 <script setup></script>

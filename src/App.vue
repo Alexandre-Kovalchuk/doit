@@ -18,6 +18,4 @@ import SvgManager from '@/components/Base/SvgManager.vue';
 <style lang="scss">
 @import '@/assets/style/style';
 @import '@/assets/style/fonts/fonts';
-#app {
-}
 </style>

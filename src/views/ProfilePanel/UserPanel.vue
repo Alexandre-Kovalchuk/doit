@@ -1,6 +1,7 @@
 <script setup>
 import UIBtn from '@/components/UI/UIBtn.vue';
 import { useRouter } from 'vue-router';
+
 const profileMenu = [
   { id: 1, name: 'My profile', label: 'My profile' },
   { id: 2, name: 'My team', label: 'My team' },
