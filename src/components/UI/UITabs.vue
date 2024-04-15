@@ -21,19 +21,19 @@ const emit = defineEmits(['changeTab']);
 
 const clickOnTabs = (nameTab) => {
   emit('changeTab', nameTab);
-  param(nameTab);
+  // param(nameTab);
 };
 
 const routers = useRouter();
 const q = ref('');
 
-const param = (link) => {
-  routers.push({ path: '/news', query: { q: link } });
-};
-
-watch(() => {
-  q.value = routers.currentRoute.value.query.q;
-});
+// const param = (link) => {
+//   routers.push({ path: '/news', query: { q: link } });
+// };
+//
+// watch(() => {
+//   q.value = routers.currentRoute.value.query.q;
+// });
 </script>
 
 <template>

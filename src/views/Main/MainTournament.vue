@@ -14,7 +14,9 @@ import {
   fortniteInfo,
   lolInfo,
   starCraftInfo,
+  tour,
 } from '@/components/JSFiles/MainPage/TournamentsData.js';
+import { useRouter } from 'vue-router';
 
 const selectedTournamentTab = ref('Dota');
 
@@ -22,10 +24,18 @@ const changeTournamentTabs = (tabName) => {
   selectedTournamentTab.value = tabName;
 };
 
-const swiperOptions = {
-  modules: [Pagination],
-  pagination: true,
+const routers = useRouter();
+const q = ref('');
+const changePage = (tab) => {
+  selectedTournamentTab.value = tab;
+  param(tab);
 };
+
+const param = (link) => {
+  routers.push({ path: '/tournament', query: { q: link } });
+};
+
+const links = ref({ href: 'tournament' });
 </script>
 
 <template>
@@ -51,8 +61,10 @@ const swiperOptions = {
           }"
           v-if="selectedTournamentTab === 'Dota' || selectedTournamentTab === 'All'"
         >
-          <swiper-slide v-for="dota in dotaInfo" :key="dota.id">
-            <UICard :card="dota" />
+          <swiper-slide v-for="dota in tour[0].dota" :key="dota.id">
+            <router-link :to="links.href" @click="changePage(selectedTournamentTab)">
+              <UICard :card="dota" />
+            </router-link>
           </swiper-slide>
         </swiper>
 

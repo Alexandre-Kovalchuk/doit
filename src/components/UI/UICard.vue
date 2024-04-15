@@ -15,7 +15,7 @@ const props = defineProps({
 <template>
   <div :class="['card', { card_color: addClass }]">
     <div class="card__img">
-      <BaseImage :srcset="card.imgWebp" :src="card.img" alt="img" />
+      <BaseImage :srcset="card.webp" :src="card.png" alt="img" />
     </div>
 
     <div :class="['card__item', { card__item_while: addClass === true }]">
@@ -23,17 +23,17 @@ const props = defineProps({
         {{ card.title ? card.title : card.newsTitle }}
       </h3>
 
-      <div class="card__row" v-if="card.label">
-        <div v-for="(item, index) in card.label" :key="index" class="card__column">
+      <div class="card__row" v-if="card.labelFirst">
+        <div v-for="(item, index) in card.labelFirst" :key="index" class="card__column">
           <h4 class="card__column-title">
-            {{ item.subTitle }}
+            {{ item.name }}
           </h4>
 
-          <p class="card__column-text">{{ item.text }}</p>
+          <p class="card__column-text">{{ item.txt }}</p>
         </div>
       </div>
 
-      <p class="card__column-subtext" v-else>{{ card.subText }}</p>
+      <p class="card__column-subtext" v-else>{{ card.name }}</p>
     </div>
   </div>
 </template>
