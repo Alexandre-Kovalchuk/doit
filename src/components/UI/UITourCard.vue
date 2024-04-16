@@ -12,10 +12,6 @@ const props = defineProps({
 
 <template>
   <div class="tour-card">
-    <h1 class="tour-card__title" v-if="tourCard.mainTitle">
-      {{ tourCard.mainTitle }}: TOURNAMNETS
-    </h1>
-
     <div class="tour-card__content">
       <div class="tour-card__info">
         <div class="tour-card__info-img">
@@ -49,6 +45,10 @@ const props = defineProps({
 @import '@/assets/style/breakpoints/media-breakpoints';
 
 .tour-card {
+  &__row {
+    display: flex;
+    justify-content: space-between;
+  }
   &__title {
     font-weight: 700;
     font-size: 34px;
@@ -73,11 +73,21 @@ const props = defineProps({
     display: flex;
     margin-bottom: 16px;
 
+    @include media-breakpoint-down(xs) {
+      max-width: 100%;
+      flex-direction: column;
+      border: none;
+    }
+
     &-img {
       max-width: 116px;
-
       height: 128px;
       position: relative;
+
+      @include media-breakpoint-down(xs) {
+        max-width: 100%;
+        height: 165px;
+      }
 
       img {
         width: 100%;
@@ -105,6 +115,10 @@ const props = defineProps({
     &-row {
       padding: 22px 33px 22px 30px;
       width: 100%;
+
+      @include media-breakpoint-down(md) {
+        padding: 10px 15px 10px 15px;
+      }
     }
 
     &-title {
@@ -112,11 +126,22 @@ const props = defineProps({
       font-size: 24px;
       line-height: 100%;
       margin-bottom: 16px;
+
+      @include media-breakpoint-down(xs) {
+        font-size: 22px;
+      }
     }
 
     &-item {
       display: flex;
       justify-content: space-between;
+
+      @include media-breakpoint-down(xs) {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: repeat(2, 1fr);
+        grid-row-gap: 14px;
+      }
     }
 
     &-sub-row {
@@ -129,12 +154,20 @@ const props = defineProps({
       line-height: 150%;
       text-transform: uppercase;
       color: #67707a;
+
+      @include media-breakpoint-down(lg) {
+        font-size: 12px;
+      }
     }
 
     &-txt {
       font-weight: 500;
       font-size: 16px;
       line-height: 150%;
+
+      @include media-breakpoint-down(lg) {
+        font-size: 12px;
+      }
     }
   }
 

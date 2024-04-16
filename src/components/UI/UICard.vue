@@ -33,7 +33,7 @@ const props = defineProps({
         </div>
       </div>
 
-      <p class="card__column-subtext" v-else>{{ card.name }}</p>
+      <p class="card__column-subtext" v-else>{{ card.subText }}</p>
     </div>
   </div>
 </template>
@@ -135,7 +135,7 @@ const props = defineProps({
       font-weight: 500;
       font-size: 16px;
       line-height: 100%;
-      //text-align: right;
+      color: #e6e8eb;
     }
 
     &-subtext {

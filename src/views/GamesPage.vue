@@ -7,9 +7,6 @@ import { ref, computed } from 'vue';
 const searchGame = ref('');
 
 const filterGames = computed(() => {
-  if (searchGame.value.length > 0) {
-    document.body.style.overflowY = 'scroll';
-  }
   return games.filter((game) => {
     return game.txt.toLowerCase().includes(searchGame.value.toLowerCase());
   });

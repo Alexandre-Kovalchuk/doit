@@ -8,14 +8,7 @@ import { tabs } from '@/components/JSFiles/MainPage/TabsData.js';
 import { Pagination } from 'swiper/modules';
 
 import { ref } from 'vue';
-import {
-  csInfo,
-  dotaInfo,
-  fortniteInfo,
-  lolInfo,
-  starCraftInfo,
-  tour,
-} from '@/components/JSFiles/MainPage/TournamentsData.js';
+import { tour } from '@/components/JSFiles/MainPage/TournamentsData.js';
 import { useRouter } from 'vue-router';
 
 const selectedTournamentTab = ref('Dota');
@@ -61,7 +54,7 @@ const links = ref({ href: 'tournament' });
           }"
           v-if="selectedTournamentTab === 'Dota' || selectedTournamentTab === 'All'"
         >
-          <swiper-slide v-for="dota in tour[0].dota" :key="dota.id">
+          <swiper-slide v-for="dota in tour[0].Dota" :key="dota.id">
             <router-link :to="links.href" @click="changePage(selectedTournamentTab)">
               <UICard :card="dota" />
             </router-link>
@@ -82,8 +75,10 @@ const links = ref({ href: 'tournament' });
           }"
           v-if="selectedTournamentTab === 'Fortnite' || selectedTournamentTab === 'All'"
         >
-          <swiper-slide v-for="fortnite in fortniteInfo" :key="fortnite.id">
-            <UICard :card="fortnite" />
+          <swiper-slide v-for="fortnite in tour[0].Fortnite" :key="fortnite.id">
+            <router-link :to="links.href" @click="changePage(selectedTournamentTab)">
+              <UICard :card="fortnite" />
+            </router-link>
           </swiper-slide>
         </swiper>
 
@@ -101,8 +96,10 @@ const links = ref({ href: 'tournament' });
           }"
           v-if="selectedTournamentTab === 'LOL' || selectedTournamentTab === 'All'"
         >
-          <swiper-slide v-for="lol in lolInfo" :key="lol.id">
-            <UICard :card="lol" />
+          <swiper-slide v-for="lol in tour[0].LOL" :key="lol.id">
+            <router-link :to="links.href" @click="changePage(selectedTournamentTab)">
+              <UICard :card="lol" />
+            </router-link>
           </swiper-slide>
         </swiper>
 
@@ -120,8 +117,10 @@ const links = ref({ href: 'tournament' });
           }"
           v-if="selectedTournamentTab === 'CS' || selectedTournamentTab === 'All'"
         >
-          <swiper-slide v-for="cs in csInfo" :key="cs.id">
-            <UICard :card="cs" />
+          <swiper-slide v-for="cs in tour[0].CS" :key="cs.id">
+            <router-link :to="links.href" @click="changePage(selectedTournamentTab)">
+              <UICard :card="cs" />
+            </router-link>
           </swiper-slide>
         </swiper>
 
@@ -139,8 +138,10 @@ const links = ref({ href: 'tournament' });
           }"
           v-if="selectedTournamentTab === 'StarCraft' || selectedTournamentTab === 'All'"
         >
-          <swiper-slide v-for="starCraft in starCraftInfo" :key="starCraft.id">
-            <UICard :card="starCraft" />
+          <swiper-slide v-for="starCraft in tour[0].StarCraft" :key="starCraft.id">
+            <router-link :to="links.href" @click="changePage(selectedTournamentTab)">
+              <UICard :card="starCraft" />
+            </router-link>
           </swiper-slide>
         </swiper>
       </UITabs>
