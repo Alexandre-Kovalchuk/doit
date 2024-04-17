@@ -1344,6 +1344,17 @@
         </linearGradient>
       </defs>
     </symbol>
+
+    <symbol width="24" height="24" viewBox="0 0 24 24" fill="none" id="back">
+      <g clip-path="url(#clip0_1461_15674)">
+        <path d="M7.99 11H20V13H7.99V16L4 12L7.99 8V11Z" fill="#9FB1CC" />
+      </g>
+      <defs>
+        <clipPath id="clip0_1461_15674">
+          <rect width="24" height="24" fill="white" />
+        </clipPath>
+      </defs>
+    </symbol>
   </svg>
 </template>
 <script setup></script>

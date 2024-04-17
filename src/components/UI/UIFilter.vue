@@ -10,16 +10,19 @@ const props = defineProps({
     type: Array,
     required: true,
   },
-  selectedBtn: {
-    type: String,
-    required: true,
+
+  modify: {
+    type: Number,
+    default: '',
+    required: false,
   },
 });
 
 const emits = defineEmits(['click']);
-
-const handleBtn = (name) => {
+const selectedBtn = ref(-1);
+const handleBtn = (name, index) => {
   emits('click', name);
+  selectedBtn.value = index;
 };
 </script>
 
@@ -30,10 +33,10 @@ const handleBtn = (name) => {
 
       <div class="filter__btns">
         <button
-          :class="['filter__btn', { filter__btn_act: item.name === selectedBtn }]"
+          :class="['filter__btn', { filter__btn_act: selectedBtn === index }]"
           v-for="(item, index) in arr"
           :key="index"
-          @click="handleBtn(item.name)"
+          @click="handleBtn(item.name, index)"
         >
           <span></span>{{ item.name }}
         </button>
@@ -50,6 +53,11 @@ const handleBtn = (name) => {
     font-size: 24px;
     line-height: 133%;
     margin-bottom: 12px;
+
+    @include media-breakpoint-down(xs) {
+      font-size: 22px;
+      line-height: 145%;
+    }
   }
 
   &__btn {
