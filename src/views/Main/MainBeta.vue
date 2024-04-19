@@ -1,6 +1,14 @@
 <script setup>
 import BaseSvg from '@/components/Base/BaseSvg.vue';
 import UIBtnBtn from '@/components/UI/UIBtn.vue';
+import { useRoute } from 'vue-router';
+import { ref, onMounted, onUnmounted } from 'vue';
+
+const mainTitle = 'DOIT BETA';
+const mainTxt = `Prepare for your esports career and get ready for awesome tournaments with big prize pools and much fun!<br />Register Now!`;
+const commingTxt = 'We are working hard to provide you the best experience on our platform';
+const mainOtherTxt =
+  'Fermentum amet quis in at euismod pellentesque. Id diam amet non at ornare mollis nunc. Rutrum hendrerit erat pretium, senectus orci in dui.';
 const svg = [
   {
     id: 'triangle-first',
@@ -19,26 +27,58 @@ const svg = [
     class: 'little',
   },
 ];
+
+const route = useRoute().path;
+const isLaptop = ref(window.innerWidth <= 1023);
+const isMobile = ref(window.innerWidth <= 575);
+const isComming = ref(route === '/cooming');
+const title = ref(isComming.value ? 'Comming soon' : mainTitle);
+const txt = ref(isComming.value ? commingTxt : mainTxt);
+const showBtnMainPage = ref(!isComming.value);
+
+const updateText = () => {
+  if (isLaptop.value) {
+    txt.value = mainOtherTxt;
+  }
+  if (isMobile.value) {
+    title.value = mainTitle.slice(0, 4);
+  }
+
+  if (route === '/cooming') {
+    title.value = 'Comming soon';
+    txt.value = commingTxt;
+  }
+};
+
+const handleResize = () => {
+  isLaptop.value = window.innerWidth <= 1023;
+  isMobile.value = window.innerWidth <= 575;
+  updateText();
+};
+
+onMounted(() => {
+  window.addEventListener('resize', handleResize);
+});
+
+onUnmounted(() => {
+  window.removeEventListener('resize', handleResize);
+});
+
+updateText();
 </script>
 
 <template>
   <section class="beta">
     <div class="container">
       <div class="beta__content">
-        <h1 class="beta__title">DOIT <span>BETA</span></h1>
+        <h1 :class="['beta__title', { beta__title_comming: isComming }]" v-if="!isMobile">
+          {{ title }}
+        </h1>
+        <h1 :class="['beta__title', { beta__title_comming: isComming }]" v-else>{{ title }}</h1>
 
-        <p class="beta__text beta__text_first">
-          Prepare for your esports career and get ready for awesome tournaments with big prize pools
-          and many fun! <br />
-          Register Now!
-        </p>
+        <p :class="['beta__text', { beta__text_comming: isComming }]" v-html="txt"></p>
 
-        <p class="beta__text beta__text_second">
-          Fermentum amet quis in at euismod pellentesque. Id diam amet non at ornare mollis nunc.
-          Rutrum hendrerit erat pretium, senectus orci in dui.
-        </p>
-
-        <div class="beta__btn">
+        <div class="beta__btn" v-if="!isLaptop && showBtnMainPage">
           <UIBtnBtn label="Login" />
           <UIBtnBtn label="Sign up" color="blue" />
         </div>
@@ -85,15 +125,28 @@ const svg = [
     color: #f5f5f5;
     padding-top: 170px;
 
+    &_comming {
+      font-size: 66px;
+
+      @include media-breakpoint-down(md) {
+        font-size: 58px;
+      }
+
+      @include media-breakpoint-down(sm) {
+        font-size: 50px;
+      }
+
+      @include media-breakpoint-down(xs) {
+        font-size: 42px;
+      }
+    }
+
     @include media-breakpoint-down(sm) {
       padding-top: 243px;
     }
 
     @include media-breakpoint-down(xs) {
       margin-bottom: 8px;
-      span {
-        display: none;
-      }
     }
   }
 
@@ -107,19 +160,21 @@ const svg = [
     width: 100%;
     margin-bottom: 14px;
 
-    &_second {
-      display: none;
+    &_comming {
+      font-weight: 700;
+      font-size: 13px;
+      line-height: 100%;
+      color: #6a6767;
 
       @include media-breakpoint-down(xs) {
-        display: block;
+        font-weight: 400;
         font-size: 14px;
+        line-height: 150%;
+        color: #ccc;
       }
     }
-
-    &_first {
-      @include media-breakpoint-down(xs) {
-        display: none;
-      }
+    @include media-breakpoint-down(xs) {
+      font-size: 14px;
     }
   }
 
@@ -130,10 +185,6 @@ const svg = [
     max-width: 233px;
     width: 100%;
     height: 44px;
-
-    @include media-breakpoint-down(md) {
-      display: none;
-    }
   }
 
   &__svg {

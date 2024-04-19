@@ -81,7 +81,7 @@ const toggleMenu = () => {
   }
 
   @include media-breakpoint-down(xs) {
-    padding: 24px 0;
+    padding: 24px 0 24px;
   }
 
   &__content {

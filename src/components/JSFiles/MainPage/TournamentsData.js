@@ -27,8 +27,61 @@ export const tour = [
           { name: 'Mode', txt: 'Capitains mode' },
           { name: 'Server', txt: 'US East' },
         ],
+
         webp: new URL('../../../assets/img/dota/Dota1.webp', import.meta.url),
         png: new URL('../../../assets/img/dota/Dota1.png', import.meta.url),
+
+        labelThird: [
+          {
+            id: 1,
+            name: 'Start time',
+            txt: 'Today, 05 oct 2019 at 19:45 CEST',
+          },
+          {
+            id: 2,
+            name: 'Game',
+            game: 'Dota II',
+            platform: 'PC',
+          },
+          {
+            id: 3,
+            name: 'Prize pool',
+            txt: '100 USD',
+          },
+          {
+            id: 4,
+            name: 'Check in time',
+            txt: 'Today, 05 oct 2019 at 17:30 CEST',
+          },
+          {
+            id: 5,
+            name: 'Mode',
+            txt: '1 on 1 - single elimination\n' + 'BO1 | Final BO3',
+          },
+
+          {
+            id: 6,
+            name: 'VETO',
+            txt: 'ABABA\n' + 'Start player with higher seed',
+          },
+
+          {
+            id: 7,
+            name: 'Additional requirements',
+            txt: 'At least 18 years old\n' + 'Linked PSN Account\n' + 'PS4',
+          },
+
+          {
+            id: 8,
+            name: 'Lobby',
+            txt: 'Game chat: OCR3',
+          },
+
+          {
+            id: 9,
+            txt: 'MORE RULES',
+          },
+        ],
       },
 
       {
@@ -1386,6 +1439,37 @@ export const tour = [
         { id: 17, name: 'US East' },
       ],
     },
+
+    Requirements: [
+      {
+        id: 1,
+        title: 'Minimum age',
+        txt: 'At least 18 years old',
+      },
+      {
+        id: 2,
+        title: 'Residence',
+        txt: 'More info',
+      },
+      {
+        id: 3,
+        title: 'PSN account',
+        txt: 'Register your name ID',
+      },
+      {
+        id: 4,
+        title: 'Play',
+        txt: 'Please log in to take part\n' + 'in this tournament.',
+      },
+    ],
+
+    svg: [
+      { id: 1, name: 'info-facebook' },
+      { id: 2, name: 'info-twitter' },
+      { id: 3, name: 'info-instagram' },
+      { id: 4, name: 'info-pinterest' },
+      { id: 5, name: 'info-git' },
+    ],
   },
 ];
 
@@ -1420,5 +1504,168 @@ export const nameGame = [
       webp: new URL('../../../assets/img/Fortnite_logo.webp', import.meta.url),
       png: new URL('../../../assets/img/Fortnite_logo.png', import.meta.url),
     },
+  },
+];
+
+export const players = [
+  {
+    id: 1,
+    name: 'Fresh young gun',
+    team: 'unknown',
+    wins: 22,
+    loses: 22,
+    draws: 22,
+    points: 222,
+    webp: new URL('../../../assets/img/avatar.webp', import.meta.url),
+    png: new URL('../../../assets/img/avatar.png', import.meta.url),
+    flagWebp: new URL('../../../assets/img/flag.webp', import.meta.url),
+    flagPng: new URL('../../../assets/img/flag.png', import.meta.url),
+  },
+  {
+    id: 2,
+    name: 'Fresh young gun',
+    team: 'unknown',
+    wins: 22,
+    loses: 22,
+    draws: 22,
+    points: 222,
+    webp: new URL('../../../assets/img/avatar.webp', import.meta.url),
+    png: new URL('../../../assets/img/avatar.png', import.meta.url),
+    flagWebp: new URL('../../../assets/img/flag.webp', import.meta.url),
+    flagPng: new URL('../../../assets/img/flag.png', import.meta.url),
+  },
+  {
+    id: 3,
+    name: 'Fresh young gun',
+    team: 'unknown',
+    wins: 22,
+    loses: 22,
+    draws: 22,
+    points: 222,
+    webp: new URL('../../../assets/img/avatar.webp', import.meta.url),
+    png: new URL('../../../assets/img/avatar.png', import.meta.url),
+    flagWebp: new URL('../../../assets/img/flag.webp', import.meta.url),
+    flagPng: new URL('../../../assets/img/flag.png', import.meta.url),
+  },
+  {
+    id: 4,
+    name: 'Fresh young gun',
+    team: 'unknown',
+    wins: 22,
+    loses: 22,
+    draws: 22,
+    points: 222,
+    webp: new URL('../../../assets/img/avatar.webp', import.meta.url),
+    png: new URL('../../../assets/img/avatar.png', import.meta.url),
+    flagWebp: new URL('../../../assets/img/flag.webp', import.meta.url),
+    flagPng: new URL('../../../assets/img/flag.png', import.meta.url),
+  },
+  {
+    id: 5,
+    name: 'Fresh young gun',
+    team: 'unknown',
+    wins: 22,
+    loses: 22,
+    draws: 22,
+    points: 222,
+    webp: new URL('../../../assets/img/avatar.webp', import.meta.url),
+    png: new URL('../../../assets/img/avatar.png', import.meta.url),
+    flagWebp: new URL('../../../assets/img/flag.webp', import.meta.url),
+    flagPng: new URL('../../../assets/img/flag.png', import.meta.url),
+  },
+  {
+    id: 6,
+    name: 'Fresh young gun',
+    team: 'unknown',
+    wins: 22,
+    loses: 22,
+    draws: 22,
+    points: 222,
+    webp: new URL('../../../assets/img/avatar.webp', import.meta.url),
+    png: new URL('../../../assets/img/avatar.png', import.meta.url),
+    flagWebp: new URL('../../../assets/img/flag.webp', import.meta.url),
+    flagPng: new URL('../../../assets/img/flag.png', import.meta.url),
+  },
+  {
+    id: 7,
+    name: 'Fresh young gun',
+    team: 'unknown',
+    wins: 22,
+    loses: 22,
+    draws: 22,
+    points: 222,
+    webp: new URL('../../../assets/img/avatar.webp', import.meta.url),
+    png: new URL('../../../assets/img/avatar.png', import.meta.url),
+    flagWebp: new URL('../../../assets/img/flag.webp', import.meta.url),
+    flagPng: new URL('../../../assets/img/flag.png', import.meta.url),
+  },
+  {
+    id: 8,
+    name: 'Fresh young gun',
+    team: 'unknown',
+    wins: 22,
+    loses: 22,
+    draws: 22,
+    points: 222,
+    webp: new URL('../../../assets/img/avatar.webp', import.meta.url),
+    png: new URL('../../../assets/img/avatar.png', import.meta.url),
+    flagWebp: new URL('../../../assets/img/flag.webp', import.meta.url),
+    flagPng: new URL('../../../assets/img/flag.png', import.meta.url),
+  },
+];
+
+export const infoTab = [
+  {
+    firstTab: [
+      {
+        name: 'Info',
+        label: 'Info',
+      },
+      {
+        name: 'Bracket',
+        label: 'Bracket',
+      },
+      {
+        name: 'Players',
+        label: 'Players',
+      },
+      {
+        name: 'Rules',
+        label: 'Rules',
+      },
+      {
+        name: 'Support',
+        label: 'Support',
+      },
+      {
+        name: 'Lobby',
+        label: 'Lobby',
+      },
+    ],
+
+    secondTab: [
+      {
+        name: 'Streams',
+        label: 'Streams',
+      },
+      {
+        name: 'Add stream',
+        label: 'Add stream',
+      },
+    ],
+
+    thirdTab: [
+      {
+        name: 'Prize pool',
+        label: 'Prize pool',
+      },
+    ],
+
+    fourTab: [
+      {
+        name: 'Quick rules',
+        label: 'Quick rules',
+      },
+    ],
   },
 ];

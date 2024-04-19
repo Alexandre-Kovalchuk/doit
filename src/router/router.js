@@ -79,6 +79,12 @@ const router = createRouter({
       name: 'Tournament Name',
       component: () => import('../views/TournamentNamePage.vue'),
     },
+
+    {
+      path: '/cooming',
+      name: 'Coomming',
+      component: () => import('../views/CoomingSoonPage.vue'),
+    },
   ],
 });
 

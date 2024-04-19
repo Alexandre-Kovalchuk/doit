@@ -3,23 +3,39 @@ import UIFilter from '@/components/UI/UIFilter.vue';
 import BaseImage from '@/components/Base/BaseImage.vue';
 import UITourCard from '@/components/UI/UITourCard.vue';
 import { tour, nameGame } from '@/components/JSFiles/MainPage/TournamentsData.js';
-import { ref, computed, watch } from 'vue';
+import { ref, computed, watchEffect } from 'vue';
 import { useRouter } from 'vue-router';
 import BaseSvg from '@/components/Base/BaseSvg.vue';
 
 const routers = useRouter();
 const q = ref('');
+
+const title = ref('');
+const webp = ref('');
+const png = ref('');
+
 const selectedKey = ref({ mode: '', status: '', region: '', platform: '' });
 const isOpenFilter = ref(false);
 const selectedBtn = ref(0);
 const isMobile = ref(window.innerWidth <= 575);
+const showAllTournament = computed(() => q.value === 'All');
 
-watch(() => {
+const allTournamentArr = [];
+
+watchEffect(() => {
   q.value = routers.currentRoute.value.query.q;
 });
 
+for (let elem in tour[0]) {
+  if (Array.isArray(tour[0][elem])) {
+    tour[0][elem].forEach((item) => {
+      allTournamentArr.push(item);
+    });
+  }
+}
+
 const filteredGame = computed(() => {
-  let filteredData = q.value ? tour[0][q.value] : [];
+  let filteredData = q.value === 'All' ? allTournamentArr.slice(0, 45) : tour[0][q.value];
 
   for (const key in selectedKey.value) {
     if (selectedKey.value[key]) {
@@ -38,9 +54,13 @@ const clearFilter = () => {
   selectedBtn.value = 0;
 };
 
-const title = nameGame[0][q.value].title;
-const webp = nameGame[0][q.value].webp;
-const png = nameGame[0][q.value].png;
+if (showAllTournament.value) {
+  title.value = 'All';
+} else {
+  title.value = nameGame[0][q.value].title;
+  webp.value = nameGame[0][q.value].webp;
+  png.value = nameGame[0][q.value].png;
+}
 
 const toggleFilter = () => {
   isOpenFilter.value = !isOpenFilter.value;
@@ -60,13 +80,29 @@ window.addEventListener('resize', () => {
             <h1 class="tourney-game__title">{{ title }}: Tournaments</h1>
 
             <div class="tourney-game__img">
-              <BaseImage :srcset="webp" :src="png" :alt="title" />
+              <BaseImage v-if="showAllTournament" :srcset="webp" :src="png" :alt="title" />
             </div>
           </div>
 
           <div class="tourney-game__column">
             <div class="tourney-game__item">
-              <div class="tourney-game__cards" v-for="(card, index) in filteredGame" :key="index">
+              <div
+                class="tourney-game__cards"
+                v-if="!showAllTournament"
+                v-for="(card, index) in filteredGame"
+                :key="index"
+              >
+                <router-link :to="{ path: `/tournament/${card.name}/${card.id}` }">
+                  <UITourCard :tour-card="card" />
+                </router-link>
+              </div>
+
+              <div
+                class="tourney-game__cards"
+                v-else
+                v-for="(card, ind) in filteredGame"
+                :key="ind"
+              >
                 <router-link :to="{ path: `/tournament/${card.name}/${card.id}` }">
                   <UITourCard :tour-card="card" />
                 </router-link>

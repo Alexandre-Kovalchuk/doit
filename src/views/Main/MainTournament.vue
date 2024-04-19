@@ -6,29 +6,29 @@ import 'swiper/css';
 import 'swiper/css/pagination';
 import { tabs } from '@/components/JSFiles/MainPage/TabsData.js';
 import { Pagination } from 'swiper/modules';
-
-import { ref } from 'vue';
 import { tour } from '@/components/JSFiles/MainPage/TournamentsData.js';
+import { computed, ref, watchEffect } from 'vue';
 import { useRouter } from 'vue-router';
 
+const router = useRouter();
+const q = ref('');
 const selectedTournamentTab = ref('Dota');
 
 const changeTournamentTabs = (tabName) => {
   selectedTournamentTab.value = tabName;
+  router.push({ path: '/', query: { q: tabName } });
 };
 
-const routers = useRouter();
-const q = ref('');
-const changePage = (tab) => {
-  selectedTournamentTab.value = tab;
-  param(tab);
-};
+watchEffect(() => {
+  q.value = router.currentRoute.value.query.q || 'Dota';
+  selectedTournamentTab.value = q.value;
+});
 
-const param = (link) => {
-  routers.push({ path: '/tournament', query: { q: link } });
-};
+const data = computed(() => {
+  return tour[0][q.value] || [];
+});
 
-const links = ref({ href: 'tournament' });
+const showAllSlide = computed(() => q.value === 'All');
 </script>
 
 <template>
@@ -40,8 +40,8 @@ const links = ref({ href: 'tournament' });
         :selectedTab="selectedTournamentTab"
         @changeTab="changeTournamentTabs"
       >
-        <!-- dota -->
         <swiper
+          v-if="!showAllSlide"
           :slides-per-view="'auto'"
           :loop="true"
           :spaceBetween="30"
@@ -52,98 +52,35 @@ const links = ref({ href: 'tournament' });
             576: { spaceBetween: 20 },
             1024: { spaceBetween: 30 },
           }"
-          v-if="selectedTournamentTab === 'Dota' || selectedTournamentTab === 'All'"
         >
-          <swiper-slide v-for="dota in tour[0].Dota" :key="dota.id">
-            <router-link :to="links.href" @click="changePage(selectedTournamentTab)">
-              <UICard :card="dota" />
+          <swiper-slide v-for="item in data" :key="item.id">
+            <router-link :to="{ path: '/tournament', query: { q: selectedTournamentTab } }">
+              <UICard :card="item" />
             </router-link>
           </swiper-slide>
         </swiper>
 
-        <!-- fortnite -->
-        <swiper
-          :slides-per-view="'auto'"
-          :loop="true"
-          :spaceBetween="30"
-          :pagination="{ clickable: true }"
-          :modules="[Pagination]"
-          :breakpoints="{
-            320: { spaceBetween: 16 },
-            576: { spaceBetween: 20 },
-            1024: { spaceBetween: 30 },
-          }"
-          v-if="selectedTournamentTab === 'Fortnite' || selectedTournamentTab === 'All'"
-        >
-          <swiper-slide v-for="fortnite in tour[0].Fortnite" :key="fortnite.id">
-            <router-link :to="links.href" @click="changePage(selectedTournamentTab)">
-              <UICard :card="fortnite" />
-            </router-link>
-          </swiper-slide>
-        </swiper>
-
-        <!-- lol -->
-        <swiper
-          :slides-per-view="'auto'"
-          :loop="true"
-          :spaceBetween="30"
-          :pagination="{ clickable: true }"
-          :modules="[Pagination]"
-          :breakpoints="{
-            320: { spaceBetween: 16 },
-            576: { spaceBetween: 20 },
-            1024: { spaceBetween: 30 },
-          }"
-          v-if="selectedTournamentTab === 'LOL' || selectedTournamentTab === 'All'"
-        >
-          <swiper-slide v-for="lol in tour[0].LOL" :key="lol.id">
-            <router-link :to="links.href" @click="changePage(selectedTournamentTab)">
-              <UICard :card="lol" />
-            </router-link>
-          </swiper-slide>
-        </swiper>
-
-        <!-- cs -->
-        <swiper
-          :slides-per-view="'auto'"
-          :loop="true"
-          :spaceBetween="30"
-          :pagination="{ clickable: true }"
-          :modules="[Pagination]"
-          :breakpoints="{
-            320: { spaceBetween: 16 },
-            576: { spaceBetween: 20 },
-            1024: { spaceBetween: 30 },
-          }"
-          v-if="selectedTournamentTab === 'CS' || selectedTournamentTab === 'All'"
-        >
-          <swiper-slide v-for="cs in tour[0].CS" :key="cs.id">
-            <router-link :to="links.href" @click="changePage(selectedTournamentTab)">
-              <UICard :card="cs" />
-            </router-link>
-          </swiper-slide>
-        </swiper>
-
-        <!-- StarCraft -->
-        <swiper
-          :slides-per-view="'auto'"
-          :loop="true"
-          :spaceBetween="30"
-          :pagination="{ clickable: true }"
-          :modules="[Pagination]"
-          :breakpoints="{
-            320: { spaceBetween: 16 },
-            576: { spaceBetween: 20 },
-            1024: { spaceBetween: 30 },
-          }"
-          v-if="selectedTournamentTab === 'StarCraft' || selectedTournamentTab === 'All'"
-        >
-          <swiper-slide v-for="starCraft in tour[0].StarCraft" :key="starCraft.id">
-            <router-link :to="links.href" @click="changePage(selectedTournamentTab)">
-              <UICard :card="starCraft" />
-            </router-link>
-          </swiper-slide>
-        </swiper>
+        <div v-else v-for="(allSlideData, allSlideKey) in tour[0]" :key="allSlideKey">
+          <swiper
+            v-if="Array.isArray(allSlideData) && allSlideData.length > 5"
+            :slides-per-view="'auto'"
+            :loop="true"
+            :spaceBetween="30"
+            :pagination="{ clickable: true }"
+            :modules="[Pagination]"
+            :breakpoints="{
+              320: { spaceBetween: 16 },
+              576: { spaceBetween: 20 },
+              1024: { spaceBetween: 30 },
+            }"
+          >
+            <swiper-slide v-for="(item, index) in allSlideData" :key="index">
+              <router-link :to="{ path: '/tournament', query: { q: selectedTournamentTab } }">
+                <UICard :card="item" />
+              </router-link>
+            </swiper-slide>
+          </swiper>
+        </div>
       </UITabs>
     </div>
   </section>
