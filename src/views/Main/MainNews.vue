@@ -1,39 +1,53 @@
 <script setup>
-import UITabs from '@/components/UI/UITabs.vue';
-import UICard from '@/components/UI/UICard.vue';
 import { Swiper, SwiperSlide } from 'swiper/vue';
 import 'swiper/css';
 import 'swiper/css/pagination';
-
-import { tabs } from '@/components/JSFiles/MainPage/TabsData.js';
 import { Pagination } from 'swiper/modules';
-import {
-  csNews,
-  dotaNews,
-  fortniteNews,
-  lolNews,
-  starCraNews,
-} from '@/components/JSFiles/MainPage/NewsData.js';
-import { ref } from 'vue';
+import { computed, ref, watch, watchEffect } from 'vue';
+import { useRouter } from 'vue-router';
+import UITabs from '@/components/UI/UITabs.vue';
+import UICard from '@/components/UI/UICard.vue';
 
-const selectedNewsTab = ref('Dota');
+import { newsData } from '@/components/JSFiles/MainPage/NewsData.js';
 
+import { changeTabs } from '@/composable/useChangeTabs.js';
+import { nameTabs } from '@/composable/useTabs.js';
+import { labelsTabs } from '@/components/JSFiles/MainPage/TabsData.js';
+import { dataName } from '@/composable/useDataName.js';
+import { useAllData } from '@/composable/useAllData.js';
+import { useWatchTabs } from '@/composable/useWatchEffectTabs.js';
+
+const router = useRouter();
+const q = ref('');
+const allNewsData = [];
+
+const nameNewsTabs = nameTabs('news', labelsTabs);
+const selectedNewsTab = ref('newsDota');
+
+const data = dataName(newsData, q);
+const allData = useAllData(newsData, allNewsData);
+
+watchEffect(() => {
+  useWatchTabs(q, router, selectedNewsTab, 'newsDota');
+});
 const changeNewsTabs = (tabName) => {
-  selectedNewsTab.value = tabName;
+  changeTabs(selectedNewsTab, tabName, router, '/');
 };
 
-const swiperOptions = {
-  modules: [Pagination],
-  pagination: true,
-};
+const showAllSlide = computed(() => q.value === 'newsAll');
 </script>
 
 <template>
   <section class="news">
     <div class="news__content">
-      <UITabs label="News" :names="tabs" :selectedTab="selectedNewsTab" @changeTab="changeNewsTabs">
-        <!-- dota -->
+      <UITabs
+        label="News"
+        :names="nameNewsTabs"
+        :selectedTab="selectedNewsTab"
+        @changeTab="changeNewsTabs"
+      >
         <swiper
+          v-if="!showAllSlide"
           :slides-per-view="'auto'"
           :loop="true"
           :spaceBetween="30"
@@ -44,86 +58,31 @@ const swiperOptions = {
             576: { spaceBetween: 20 },
             1024: { spaceBetween: 30 },
           }"
-          v-if="selectedNewsTab === 'Dota' || selectedNewsTab === 'All'"
         >
-          <swiper-slide v-for="dota in dotaNews" :key="dota.id">
-            <UICard :card="dota" :addClass="true" />
+          <swiper-slide v-for="item in data" :key="item.id">
+            <router-link :to="{ path: '/tournament', query: { q: selectedNewsTab } }">
+              <UICard :card="item" />
+            </router-link>
           </swiper-slide>
         </swiper>
 
-        <!-- fortnite -->
         <swiper
+          v-else
           :slides-per-view="'auto'"
           :loop="true"
           :spaceBetween="30"
-          :pagination="{ clickable: true }"
+          :pagination="{ clickable: true, dynamicBullets: true }"
           :modules="[Pagination]"
           :breakpoints="{
             320: { spaceBetween: 16 },
             576: { spaceBetween: 20 },
             1024: { spaceBetween: 30 },
           }"
-          v-if="selectedNewsTab === 'Fortnite' || selectedNewsTab === 'All'"
         >
-          <swiper-slide v-for="fortnite in fortniteNews" :key="fortnite.id">
-            <UICard :card="fortnite" :addClass="true" />
-          </swiper-slide>
-        </swiper>
-
-        <!-- lol -->
-        <swiper
-          :slides-per-view="'auto'"
-          :loop="true"
-          :spaceBetween="30"
-          :pagination="{ clickable: true }"
-          :modules="[Pagination]"
-          :breakpoints="{
-            320: { spaceBetween: 16 },
-            576: { spaceBetween: 20 },
-            1024: { spaceBetween: 30 },
-          }"
-          v-if="selectedNewsTab === 'LOL' || selectedNewsTab === 'All'"
-        >
-          <swiper-slide v-for="lol in lolNews" :key="lol.id">
-            <UICard :card="lol" :addClass="true" />
-          </swiper-slide>
-        </swiper>
-
-        <!-- cs -->
-        <swiper
-          :slides-per-view="'auto'"
-          :loop="true"
-          :spaceBetween="30"
-          :pagination="{ clickable: true }"
-          :modules="[Pagination]"
-          :breakpoints="{
-            320: { spaceBetween: 16 },
-            576: { spaceBetween: 20 },
-            1024: { spaceBetween: 30 },
-          }"
-          v-if="selectedNewsTab === 'CS' || selectedNewsTab === 'All'"
-        >
-          <swiper-slide v-for="cs in csNews" :key="cs.id">
-            <UICard :card="cs" :addClass="true" />
-          </swiper-slide>
-        </swiper>
-
-        <!-- StarCraft -->
-        <swiper
-          :slides-per-view="'auto'"
-          :loop="true"
-          :spaceBetween="30"
-          :pagination="{ clickable: true }"
-          :modules="[Pagination]"
-          :breakpoints="{
-            320: { spaceBetween: 16 },
-            576: { spaceBetween: 20 },
-            1024: { spaceBetween: 30 },
-          }"
-          v-if="selectedNewsTab === 'StarCraft' || selectedNewsTab === 'All'"
-        >
-          <swiper-slide v-for="starCraft in starCraNews" :key="starCraft.id">
-            <UICard :card="starCraft" :addClass="true" />
+          <swiper-slide v-for="item in allData" :key="item.id">
+            <router-link :to="{ path: '/tournament', query: { q: selectedTournamentTab } }">
+              <UICard :card="item" />
+            </router-link>
           </swiper-slide>
         </swiper>
       </UITabs>

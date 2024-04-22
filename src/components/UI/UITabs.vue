@@ -1,7 +1,5 @@
 <script setup>
 import BaseSvg from '@/components/Base/BaseSvg.vue';
-import { useRouter } from 'vue-router';
-import { ref, watch } from 'vue';
 
 const props = defineProps({
   label: {
@@ -22,19 +20,7 @@ const emit = defineEmits(['changeTab']);
 
 const clickOnTabs = (nameTab) => {
   emit('changeTab', nameTab);
-  // param(nameTab);
 };
-
-const routers = useRouter();
-const q = ref('');
-
-// const param = (link) => {
-//   routers.push({ path: '/news', query: { q: link } });
-// };
-//
-// watch(() => {
-//   q.value = routers.currentRoute.value.query.q;
-// });
 </script>
 
 <template>
@@ -48,8 +34,8 @@ const q = ref('');
 
         <div class="tabs__btns">
           <button
-            v-for="tab in names"
-            :key="tab.name"
+            v-for="(tab, index) in names"
+            :key="index"
             :class="['tabs__btns-item', { 'tabs__btns-item_act': tab.name === selectedTab }]"
             @click="clickOnTabs(tab.name)"
           >

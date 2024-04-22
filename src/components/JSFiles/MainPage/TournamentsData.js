@@ -1,6 +1,6 @@
-export const tour = [
+export const tournamentsData = [
   {
-    Dota: [
+    tournamentsDota: [
       {
         id: 1,
         title: 'Dota II',
@@ -327,7 +327,7 @@ export const tour = [
       },
     ],
 
-    StarCraft: [
+    tournamentsStarCraft: [
       {
         id: 1,
         title: 'StarCraft II',
@@ -601,7 +601,7 @@ export const tour = [
       },
     ],
 
-    CS: [
+    tournamentsCS: [
       {
         id: 1,
         title: 'CS:GO',
@@ -867,7 +867,7 @@ export const tour = [
       },
     ],
 
-    LOL: [
+    tournamentsLOL: [
       {
         id: 1,
         title: 'League of Legends',
@@ -1133,7 +1133,7 @@ export const tour = [
       },
     ],
 
-    Fortnite: [
+    tournamentsFortnite: [
       {
         id: 1,
         title: 'Fortnite',
@@ -1473,6 +1473,7 @@ export const tour = [
   },
 ];
 
+localStorage.setItem('tournamentsData', JSON.stringify(tournamentsData));
 export const nameGame = [
   {
     Dota: {

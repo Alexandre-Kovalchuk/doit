@@ -1,44 +1,57 @@
 <script setup>
-import UITabs from '@/components/UI/UITabs.vue';
-import UICard from '@/components/UI/UICard.vue';
 import { Swiper, SwiperSlide } from 'swiper/vue';
 import 'swiper/css';
 import 'swiper/css/pagination';
-import { tabs } from '@/components/JSFiles/MainPage/TabsData.js';
 import { Pagination } from 'swiper/modules';
-import { tour } from '@/components/JSFiles/MainPage/TournamentsData.js';
-import { computed, ref, watchEffect } from 'vue';
-import { useRouter } from 'vue-router';
+import { computed, ref, watch, watchEffect } from 'vue';
+import { useRouter, useRoute } from 'vue-router';
+import UITabs from '@/components/UI/UITabs.vue';
+import UICard from '@/components/UI/UICard.vue';
+import { useWatchTabs } from '@/composable/useWatchEffectTabs.js';
+import { changeTabs } from '@/composable/useChangeTabs.js';
+import { dataName } from '@/composable/useDataName.js';
+import { labelsTabs } from '@/components/JSFiles/MainPage/TabsData.js';
+import { nameTabs } from '@/composable/useTabs.js';
+import { tournamentsData } from '@/components/JSFiles/MainPage/TournamentsData.js';
+import { useAllData } from '@/composable/useAllData.js';
+import { updateTabs, data } from '@/composable/useUpdateTabs.js';
 
 const router = useRouter();
 const q = ref('');
-const selectedTournamentTab = ref('Dota');
+const allTournamentsData = [];
 
-const changeTournamentTabs = (tabName) => {
-  selectedTournamentTab.value = tabName;
-  router.push({ path: '/', query: { q: tabName } });
-};
+const nameTournamentsTab = nameTabs('tournaments', labelsTabs);
+const selectedTournamentTab = ref('tournamentsDota');
+
+const allData = useAllData(tournamentsData, allTournamentsData);
 
 watchEffect(() => {
-  q.value = router.currentRoute.value.query.q || 'Dota';
-  selectedTournamentTab.value = q.value;
+  useWatchTabs(q, router, selectedTournamentTab, 'tournamentsDota');
+  updateTabs(
+    q.value,
+    'news',
+    tournamentsData,
+    selectedTournamentTab,
+    'tournamentsDota',
+    dataName(tournamentsData, q)
+  );
 });
 
-const data = computed(() => {
-  return tour[0][q.value] || [];
-});
+const changeTournamentTabs = (tabName) => {
+  changeTabs(selectedTournamentTab, tabName, router, '/');
+};
 
-const showAllSlide = computed(() => q.value === 'All');
+const showAllSlide = computed(() => q.value === 'tournamentsAll');
 </script>
 
 <template>
   <section class="tournaments">
     <div class="tournaments__content">
       <UITabs
+        :selected-tab="selectedTournamentTab"
+        :names="nameTournamentsTab"
         label="Tournaments"
-        :names="tabs"
-        :selectedTab="selectedTournamentTab"
-        @changeTab="changeTournamentTabs"
+        @change-tab="changeTournamentTabs"
       >
         <swiper
           v-if="!showAllSlide"
@@ -60,27 +73,25 @@ const showAllSlide = computed(() => q.value === 'All');
           </swiper-slide>
         </swiper>
 
-        <div v-else v-for="(allSlideData, allSlideKey) in tour[0]" :key="allSlideKey">
-          <swiper
-            v-if="Array.isArray(allSlideData) && allSlideData.length > 5"
-            :slides-per-view="'auto'"
-            :loop="true"
-            :spaceBetween="30"
-            :pagination="{ clickable: true }"
-            :modules="[Pagination]"
-            :breakpoints="{
-              320: { spaceBetween: 16 },
-              576: { spaceBetween: 20 },
-              1024: { spaceBetween: 30 },
-            }"
-          >
-            <swiper-slide v-for="(item, index) in allSlideData" :key="index">
-              <router-link :to="{ path: '/tournament', query: { q: selectedTournamentTab } }">
-                <UICard :card="item" />
-              </router-link>
-            </swiper-slide>
-          </swiper>
-        </div>
+        <swiper
+          v-else
+          :slides-per-view="'auto'"
+          :loop="true"
+          :spaceBetween="30"
+          :pagination="{ clickable: true, dynamicBullets: true }"
+          :modules="[Pagination]"
+          :breakpoints="{
+            320: { spaceBetween: 16 },
+            576: { spaceBetween: 20 },
+            1024: { spaceBetween: 30 },
+          }"
+        >
+          <swiper-slide v-for="item in allData" :key="item.id">
+            <router-link :to="{ path: '/tournament', query: { q: selectedTournamentTab } }">
+              <UICard :card="item" />
+            </router-link>
+          </swiper-slide>
+        </swiper>
       </UITabs>
     </div>
   </section>

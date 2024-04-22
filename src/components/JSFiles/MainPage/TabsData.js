@@ -1,4 +1,4 @@
-export const tabs = [
+export const labelsTabs = [
   { name: 'All', label: 'All' },
   { name: 'StarCraft', label: 'StarCraft II' },
   { name: 'Dota', label: 'Dota II' },

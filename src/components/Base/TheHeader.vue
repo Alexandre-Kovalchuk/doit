@@ -25,7 +25,7 @@ const toggleMenu = () => {
       <div class="header__content">
         <div class="header__logo">
           <router-link to="/">
-            <BaseImage :srcset="logo.webp" :src="logo.img" :alt="'logo'" @click="toggleMenu" />
+            <BaseImage :srcset="logo.webp" :src="logo.img" alt="logo" />
           </router-link>
         </div>
 
@@ -110,6 +110,7 @@ const toggleMenu = () => {
     width: 100%;
 
     @include media-breakpoint-down(md) {
+      width: fit-content;
       &-icon {
         z-index: 60;
         position: relative;
