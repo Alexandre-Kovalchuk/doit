@@ -8,10 +8,10 @@ import {
   teamManage,
   updateTitle,
   createTeamAndEditTeam,
-} from '@/components/JSFiles/Profile/Profile.js';
+} from '@/components/Data/Profile/Profile.js';
 import BaseInput from '@/components/Base/BaseInput.vue';
 import BaseDropdown from '@/components/Base/BaseDropdown.vue';
-import { games } from '@/components/JSFiles/Profile/Setting.js';
+import { games } from '@/components/Data/Profile/Setting.js';
 
 const routers = useRouter();
 const q = ref('');

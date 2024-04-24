@@ -27,7 +27,7 @@ const clickOnTabs = (nameTab) => {
   <div class="tabs">
     <div class="container">
       <div class="tabs__row">
-        <h2 class="tabs__title">
+        <h2 class="tabs__title" v-if="label">
           {{ label }}
           <span v-if="label === 'Streams'"> <BaseSvg :id="'streams'" /> </span>
         </h2>

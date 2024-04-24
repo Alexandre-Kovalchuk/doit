@@ -8,7 +8,7 @@ import {
   countries,
   gender,
   games,
-} from '@/components/JSFiles/Profile/Setting.js';
+} from '@/components/Data/Profile/Setting.js';
 import { ref, watch } from 'vue';
 import { useRouter } from 'vue-router';
 import BaseDropdown from '@/components/Base/BaseDropdown.vue';

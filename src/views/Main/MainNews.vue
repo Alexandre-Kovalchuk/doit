@@ -7,34 +7,32 @@ import { computed, ref, watch, watchEffect } from 'vue';
 import { useRouter } from 'vue-router';
 import UITabs from '@/components/UI/UITabs.vue';
 import UICard from '@/components/UI/UICard.vue';
-
-import { newsData } from '@/components/JSFiles/MainPage/NewsData.js';
-
-import { changeTabs } from '@/composable/useChangeTabs.js';
+import { newsData } from '@/components/Data/MainPage/NewsData.js';
 import { nameTabs } from '@/composable/useTabs.js';
-import { labelsTabs } from '@/components/JSFiles/MainPage/TabsData.js';
+import { labelsTabs } from '@/components/Data/MainPage/TabsData.js';
 import { dataName } from '@/composable/useDataName.js';
 import { useAllData } from '@/composable/useAllData.js';
+import { changeTabs } from '@/composable/useChangeTabs.js';
 import { useWatchTabs } from '@/composable/useWatchEffectTabs.js';
 
-const router = useRouter();
-const q = ref('');
 const allNewsData = [];
-
-const nameNewsTabs = nameTabs('news', labelsTabs);
+const q = ref('');
+const router = useRouter();
+const newsTabs = nameTabs('news', labelsTabs);
 const selectedNewsTab = ref('newsDota');
 
-const data = dataName(newsData, q);
-const allData = useAllData(newsData, allNewsData);
+const dataNews = dataName(newsData, selectedNewsTab, 'newsDota');
+const allDataNews = useAllData(newsData, allNewsData);
 
-watchEffect(() => {
-  useWatchTabs(q, router, selectedNewsTab, 'newsDota');
-});
 const changeNewsTabs = (tabName) => {
   changeTabs(selectedNewsTab, tabName, router, '/');
 };
 
-const showAllSlide = computed(() => q.value === 'newsAll');
+watchEffect(() => {
+  useWatchTabs(q, router, selectedNewsTab);
+});
+
+const showAllSlide = computed(() => selectedNewsTab.value === 'newsAll');
 </script>
 
 <template>
@@ -42,7 +40,7 @@ const showAllSlide = computed(() => q.value === 'newsAll');
     <div class="news__content">
       <UITabs
         label="News"
-        :names="nameNewsTabs"
+        :names="newsTabs"
         :selectedTab="selectedNewsTab"
         @changeTab="changeNewsTabs"
       >
@@ -59,10 +57,8 @@ const showAllSlide = computed(() => q.value === 'newsAll');
             1024: { spaceBetween: 30 },
           }"
         >
-          <swiper-slide v-for="item in data" :key="item.id">
-            <router-link :to="{ path: '/tournament', query: { q: selectedNewsTab } }">
-              <UICard :card="item" />
-            </router-link>
+          <swiper-slide v-for="item in dataNews" :key="item.id">
+            <UICard :card="item" :add-class="true" />
           </swiper-slide>
         </swiper>
 
@@ -79,10 +75,8 @@ const showAllSlide = computed(() => q.value === 'newsAll');
             1024: { spaceBetween: 30 },
           }"
         >
-          <swiper-slide v-for="item in allData" :key="item.id">
-            <router-link :to="{ path: '/tournament', query: { q: selectedTournamentTab } }">
-              <UICard :card="item" />
-            </router-link>
+          <swiper-slide v-for="(item, index) in allDataNews" :key="index">
+            <UICard :card="item" :add-class="true" />
           </swiper-slide>
         </swiper>
       </UITabs>

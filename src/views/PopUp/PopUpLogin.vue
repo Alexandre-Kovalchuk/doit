@@ -3,8 +3,8 @@ import BaseImage from '@/components/Base/BaseImage.vue';
 import BaseInput from '@/components/Base/BaseInput.vue';
 import BaseSvg from '@/components/Base/BaseSvg.vue';
 import UIBtn from '@/components/UI/UIBtn.vue';
-import { logo } from '@/components/JSFiles/UseLogoAndAvatar.js';
-import { icons } from '@/components/JSFiles/PopUp/PopUpData.js';
+import { logo } from '@/components/Data/UseLogoAndAvatar.js';
+import { icons } from '@/components/Data/PopUp/PopUpData.js';
 </script>
 
 <template>

@@ -1,6 +1,6 @@
 <script setup>
 import { Pagination } from 'swiper/modules';
-import { premiun } from '@/components/JSFiles/PremiumData.js';
+import { premiun } from '@/components/Data/PremiumData.js';
 import { Swiper, SwiperSlide } from 'swiper/vue';
 import 'swiper/css';
 import 'swiper/css/pagination';

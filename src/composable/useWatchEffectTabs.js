@@ -1,4 +1,4 @@
-export function useWatchTabs(q, router, selectedTab, defaultTab) {
-  q.value = router.currentRoute.value.query.q || defaultTab;
+export function useWatchTabs(q, router, selectedTab) {
+  q.value = router.currentRoute.value.query.q;
   selectedTab.value = q.value;
 }

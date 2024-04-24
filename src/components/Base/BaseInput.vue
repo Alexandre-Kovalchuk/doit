@@ -14,7 +14,7 @@ const props = defineProps({
 
   type: {
     type: String,
-    required: 'text',
+    default: 'text',
   },
 
   placeholder: {
@@ -24,13 +24,12 @@ const props = defineProps({
 
   label: {
     type: String,
-    required: false,
+    default: '',
   },
 
   modify: {
     type: String,
     default: '',
-    required: false,
   },
 });
 
@@ -41,9 +40,9 @@ const updateVal = (e) => {
 
 <template>
   <div class="inp">
-    <label :class="['inp__label', modify ? `inp__label_${modify}` : '']" :for="name">{{
-      label
-    }}</label>
+    <label :class="['inp__label', modify ? `inp__label_${modify}` : '']" :for="name">
+      {{ label }}
+    </label>
     <input
       :class="['inp__text', modify ? `inp__text_${modify}` : '']"
       :type="type"

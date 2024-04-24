@@ -1,7 +1,7 @@
 <script setup>
 import BaseInput from '@/components/Base/BaseInput.vue';
 import BaseImage from '@/components/Base/BaseImage.vue';
-import { games } from '@/components/JSFiles/MainPage/GamesData.js';
+import { games } from '@/components/Data/MainPage/GamesData.js';
 import { ref, computed } from 'vue';
 
 const searchGame = ref('');

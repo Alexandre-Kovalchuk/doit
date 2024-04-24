@@ -10,12 +10,6 @@ const props = defineProps({
     type: Array,
     required: true,
   },
-
-  modify: {
-    type: Number,
-    default: '',
-    required: false,
-  },
 });
 
 const emits = defineEmits(['click']);

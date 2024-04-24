@@ -4,7 +4,7 @@ import BaseSvg from '@/components/Base/BaseSvg.vue';
 import BaseInput from '@/components/Base/BaseInput.vue';
 import { ref, watch } from 'vue';
 import { useRouter } from 'vue-router';
-import { accountIcon } from '@/components/JSFiles/UseLogoAndAvatar.js';
+import { accountIcon } from '@/components/Data/UseLogoAndAvatar.js';
 
 const profileMenu = [
   { id: 1, name: 'User Panel', label: 'User Panel' },

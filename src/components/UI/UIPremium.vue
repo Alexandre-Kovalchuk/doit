@@ -4,7 +4,7 @@ import { Pagination } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/pagination';
 import PremiumCard from '@/components/UI/UIPremiumCard.vue';
-import { premiun } from '@/components/JSFiles/PremiumData.js';
+import { premiun } from '@/components/Data/PremiumData.js';
 </script>
 
 <template>

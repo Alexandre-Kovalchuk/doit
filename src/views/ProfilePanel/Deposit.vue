@@ -1,7 +1,7 @@
 <script setup>
 import BaseImage from '@/components/Base/BaseImage.vue';
-import { accountIcon } from '@/components/JSFiles/UseLogoAndAvatar.js';
-import { deposit } from '@/components/JSFiles/Deposit.js';
+import { accountIcon } from '@/components/Data/UseLogoAndAvatar.js';
+import { deposit } from '@/components/Data/Deposit.js';
 import { ref } from 'vue';
 import BaseInput from '@/components/Base/BaseInput.vue';
 import UIBtn from '@/components/UI/UIBtn.vue';

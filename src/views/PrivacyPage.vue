@@ -1,5 +1,5 @@
 <script setup>
-import { privacy } from '@/components/JSFiles/privacy.js';
+import { privacy } from '@/components/Data/privacy.js';
 </script>
 
 <template>

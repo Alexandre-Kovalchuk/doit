@@ -1398,109 +1398,36 @@ export const tournamentsData = [
         png: new URL('../../../assets/img/dota/Dota2.png', import.meta.url),
       },
     ],
-
-    filter: {
-      mode: [
-        { id: 1, title: 'Game mode', name: '1v1' },
-        { id: 2, name: '2v2' },
-        { id: 3, name: '5v5' },
-      ],
-
-      status: [
-        { id: 4, title: 'Status', name: 'Upcoming' },
-        { id: 5, name: 'Past' },
-      ],
-
-      platform: [
-        { id: 6, title: 'Platform', name: 'PC' },
-
-        { id: 7, name: 'Xbox one' },
-
-        { id: 8, name: 'PS4' },
-
-        { id: 9, name: 'Nintendo switch' },
-
-        { id: 10, name: 'PS5' },
-
-        { id: 11, name: 'Xbox Series X' },
-      ],
-
-      region: [
-        { id: 12, title: 'Server region', name: 'Europe' },
-
-        { id: 13, name: 'Singapore' },
-
-        { id: 14, name: 'Australia' },
-
-        { id: 15, name: 'Brazil' },
-
-        { id: 16, name: 'Peru' },
-
-        { id: 17, name: 'US East' },
-      ],
-    },
-
-    Requirements: [
-      {
-        id: 1,
-        title: 'Minimum age',
-        txt: 'At least 18 years old',
-      },
-      {
-        id: 2,
-        title: 'Residence',
-        txt: 'More info',
-      },
-      {
-        id: 3,
-        title: 'PSN account',
-        txt: 'Register your name ID',
-      },
-      {
-        id: 4,
-        title: 'Play',
-        txt: 'Please log in to take part\n' + 'in this tournament.',
-      },
-    ],
-
-    svg: [
-      { id: 1, name: 'info-facebook' },
-      { id: 2, name: 'info-twitter' },
-      { id: 3, name: 'info-instagram' },
-      { id: 4, name: 'info-pinterest' },
-      { id: 5, name: 'info-git' },
-    ],
   },
 ];
 
-localStorage.setItem('tournamentsData', JSON.stringify(tournamentsData));
-export const nameGame = [
+export const tournamentsNameGame = [
   {
-    Dota: {
+    tournamentsDota: {
       title: 'Dota II',
       webp: new URL('../../../assets/img/dota_logo.webp', import.meta.url),
       png: new URL('../../../assets/img/dota_logo.png', import.meta.url),
     },
 
-    CS: {
+    tournamentsCS: {
       title: 'CS:GO',
       webp: new URL('../../../assets/img/cs_logo.webp', import.meta.url),
       png: new URL('../../../assets/img/cs_logo.png', import.meta.url),
     },
 
-    StarCraft: {
+    tournamentsStarCraft: {
       title: 'StarCraft II',
       webp: new URL('../../../assets/img/star_logo.webp', import.meta.url),
       png: new URL('../../../assets/img/star_logo.png', import.meta.url),
     },
 
-    LOL: {
+    tournamentsLOL: {
       title: 'League of Legends',
       webp: new URL('../../../assets/img/lol_logo.webp', import.meta.url),
       png: new URL('../../../assets/img/lol_logo.png', import.meta.url),
     },
 
-    Fortnite: {
+    tournamentsFortnite: {
       title: 'Fortnite',
       webp: new URL('../../../assets/img/Fortnite_logo.webp', import.meta.url),
       png: new URL('../../../assets/img/Fortnite_logo.png', import.meta.url),
@@ -1669,4 +1596,75 @@ export const infoTab = [
       },
     ],
   },
+];
+
+export const filter = {
+  mode: [
+    { id: 1, title: 'Game mode', class: 'mode', name: '1v1' },
+    { id: 2, name: '2v2' },
+    { id: 3, name: '5v5' },
+  ],
+
+  status: [
+    { id: 4, title: 'Status', class: 'status', name: 'Upcoming' },
+    { id: 5, name: 'Past' },
+  ],
+
+  platform: [
+    { id: 6, title: 'Platform', class: 'platform', name: 'PC' },
+
+    { id: 7, name: 'Xbox one' },
+
+    { id: 8, name: 'PS4' },
+
+    { id: 9, name: 'Nintendo switch' },
+
+    { id: 10, name: 'PS5' },
+
+    { id: 11, name: 'Xbox Series X' },
+  ],
+
+  region: [
+    { id: 12, title: 'Server region', class: 'region', name: 'Europe' },
+
+    { id: 13, name: 'Singapore' },
+
+    { id: 14, name: 'Australia' },
+
+    { id: 15, name: 'Brazil' },
+
+    { id: 16, name: 'Peru' },
+
+    { id: 17, name: 'US East' },
+  ],
+};
+
+export const requirements = [
+  {
+    id: 1,
+    title: 'Minimum age',
+    txt: 'At least 18 years old',
+  },
+  {
+    id: 2,
+    title: 'Residence',
+    txt: 'More info',
+  },
+  {
+    id: 3,
+    title: 'PSN account',
+    txt: 'Register your name ID',
+  },
+  {
+    id: 4,
+    title: 'Play',
+    txt: 'Please log in to take part\n' + 'in this tournament.',
+  },
+];
+export const svg = [
+  { id: 1, name: 'info-facebook' },
+  { id: 2, name: 'info-twitter' },
+  { id: 3, name: 'info-instagram' },
+  { id: 4, name: 'info-pinterest' },
+  { id: 5, name: 'info-git' },
 ];

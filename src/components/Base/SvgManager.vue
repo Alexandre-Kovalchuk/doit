@@ -1411,6 +1411,20 @@
         </clipPath>
       </defs>
     </symbol>
+
+    <symbol width="58" height="92" viewBox="0 0 58 92" id="teams-line">
+      <rect width="30" height="1" fill="#20272E" />
+      <rect y="91" width="30" height="1" fill="#20272E" />
+      <rect x="29" y="45" width="29" height="1" fill="#20272E" />
+      <rect x="29" width="1" height="92" fill="#20272E" />
+    </symbol>
+
+    <symbol width="58" height="190" viewBox="0 0 58 190" id="teams-big-line">
+      <rect width="30" height="1" fill="#20272E" />
+      <rect y="189" width="30" height="1" fill="#20272E" />
+      <rect x="29" y="94" width="29" height="1" fill="#20272E" />
+      <rect x="29" width="1" height="190" fill="#20272E" />
+    </symbol>
   </svg>
 </template>
 <script setup></script>

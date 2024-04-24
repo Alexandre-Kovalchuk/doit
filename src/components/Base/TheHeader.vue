@@ -2,7 +2,7 @@
 import { ref } from 'vue';
 import BaseImage from '@/components/Base/BaseImage.vue';
 import UIBtn from '../UI/UIBtn.vue';
-import { logo } from '@/components/JSFiles/UseLogoAndAvatar.js';
+import { logo } from '@/components/Data/UseLogoAndAvatar.js';
 
 const links = ref([
   { name: 'Play', href: 'play' },

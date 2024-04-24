@@ -1,6 +1,6 @@
 <script setup>
 import { useRoute } from 'vue-router';
-import { contact } from '@/components/JSFiles/Contact.js';
+import { contact } from '@/components/Data/Contact.js';
 import BaseSvg from '@/components/Base/BaseSvg.vue';
 const namePath = useRoute().path;
 </script>

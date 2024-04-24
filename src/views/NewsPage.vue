@@ -1,7 +1,7 @@
 <!--<script setup>-->
 <!--import UITabs from '@/components/UI/UITabs.vue';-->
-<!--import { tabs } from '@/components/JSFiles/MainPage/TabsData.js';-->
-<!--import { news, updateNewsTitle, changeTitle } from '@/components/JSFiles/News.js';-->
+<!--import { tabs } from '@/components/Data/MainPage/TabsData.js';-->
+<!--import { news, updateNewsTitle, changeTitle } from '@/components/Data/News.js';-->
 <!--import { ref, watch, onMounted } from 'vue';-->
 <!--import BaseImage from '@/components/Base/BaseImage.vue';-->
 <!--import { useRoute, useRouter } from 'vue-router';-->

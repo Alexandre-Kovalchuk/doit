@@ -70,7 +70,7 @@ const router = createRouter({
     },
 
     {
-      path: '/tournament',
+      path: '/tournament/:name',
       name: 'Tournament',
       component: () => import('../views/TournamentPage.vue'),
     },

@@ -13,6 +13,7 @@ const props = defineProps({
 
 const isOpen = ref(false);
 const isMobile = ref(window.innerWidth <= 575);
+
 const toggleInfo = () => {
   isOpen.value = !isOpen.value;
 };
@@ -118,6 +119,7 @@ window.addEventListener('resize', () => {
     text-align: center;
     padding: 4px 13px;
     background: #0a68f5;
+    color: #f5f5f5;
 
     &_past {
       background: #b83333;
@@ -152,6 +154,7 @@ window.addEventListener('resize', () => {
     line-height: 100%;
     opacity: 0.88;
     margin-bottom: 16px;
+    color: #f5f5f5;
 
     @include media-breakpoint-down(sm) {
       font-size: 22px;
@@ -207,6 +210,7 @@ window.addEventListener('resize', () => {
     font-weight: 500;
     font-size: 16px;
     line-height: 150%;
+    color: #f5f5f5;
 
     @include media-breakpoint-down(lg) {
       font-size: 14px;

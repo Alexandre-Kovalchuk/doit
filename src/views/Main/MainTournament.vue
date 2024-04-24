@@ -4,44 +4,35 @@ import 'swiper/css';
 import 'swiper/css/pagination';
 import { Pagination } from 'swiper/modules';
 import { computed, ref, watch, watchEffect } from 'vue';
-import { useRouter, useRoute } from 'vue-router';
+import { tournamentsData } from '@/components/Data/MainPage/TournamentsData.js';
 import UITabs from '@/components/UI/UITabs.vue';
 import UICard from '@/components/UI/UICard.vue';
-import { useWatchTabs } from '@/composable/useWatchEffectTabs.js';
+import { labelsTabs } from '@/components/Data/MainPage/TabsData.js';
+import { useRouter } from 'vue-router';
 import { changeTabs } from '@/composable/useChangeTabs.js';
 import { dataName } from '@/composable/useDataName.js';
-import { labelsTabs } from '@/components/JSFiles/MainPage/TabsData.js';
+import { useWatchTabs } from '@/composable/useWatchEffectTabs.js';
 import { nameTabs } from '@/composable/useTabs.js';
-import { tournamentsData } from '@/components/JSFiles/MainPage/TournamentsData.js';
 import { useAllData } from '@/composable/useAllData.js';
-import { updateTabs, data } from '@/composable/useUpdateTabs.js';
 
-const router = useRouter();
-const q = ref('');
 const allTournamentsData = [];
-
-const nameTournamentsTab = nameTabs('tournaments', labelsTabs);
+const q = ref('');
+const router = useRouter();
 const selectedTournamentTab = ref('tournamentsDota');
 
-const allData = useAllData(tournamentsData, allTournamentsData);
-
-watchEffect(() => {
-  useWatchTabs(q, router, selectedTournamentTab, 'tournamentsDota');
-  updateTabs(
-    q.value,
-    'news',
-    tournamentsData,
-    selectedTournamentTab,
-    'tournamentsDota',
-    dataName(tournamentsData, q)
-  );
-});
-
+const tournamentsTabs = nameTabs('tournaments', labelsTabs);
 const changeTournamentTabs = (tabName) => {
   changeTabs(selectedTournamentTab, tabName, router, '/');
 };
 
+const dataTournaments = dataName(tournamentsData, q, 'tournamentsDota');
+const allDataTournaments = useAllData(tournamentsData, allTournamentsData);
+
 const showAllSlide = computed(() => q.value === 'tournamentsAll');
+
+watchEffect(() => {
+  useWatchTabs(q, router, selectedTournamentTab);
+});
 </script>
 
 <template>
@@ -49,7 +40,7 @@ const showAllSlide = computed(() => q.value === 'tournamentsAll');
     <div class="tournaments__content">
       <UITabs
         :selected-tab="selectedTournamentTab"
-        :names="nameTournamentsTab"
+        :names="tournamentsTabs"
         label="Tournaments"
         @change-tab="changeTournamentTabs"
       >
@@ -66,8 +57,8 @@ const showAllSlide = computed(() => q.value === 'tournamentsAll');
             1024: { spaceBetween: 30 },
           }"
         >
-          <swiper-slide v-for="item in data" :key="item.id">
-            <router-link :to="{ path: '/tournament', query: { q: selectedTournamentTab } }">
+          <swiper-slide v-for="item in dataTournaments" :key="item.id">
+            <router-link :to="{ path: `/tournament/${selectedTournamentTab}` }">
               <UICard :card="item" />
             </router-link>
           </swiper-slide>
@@ -86,8 +77,8 @@ const showAllSlide = computed(() => q.value === 'tournamentsAll');
             1024: { spaceBetween: 30 },
           }"
         >
-          <swiper-slide v-for="item in allData" :key="item.id">
-            <router-link :to="{ path: '/tournament', query: { q: selectedTournamentTab } }">
+          <swiper-slide v-for="item in allDataTournaments" :key="item.id">
+            <router-link :to="{ path: `/tournament/${selectedTournamentTab}` }">
               <UICard :card="item" />
             </router-link>
           </swiper-slide>
