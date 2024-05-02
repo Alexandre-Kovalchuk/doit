@@ -1,0 +1,1 @@
+import{_ as e}from"./UIContact-B9RIysIe.js";import{c as a,b as s,d as t,o}from"./index-Br5sL9Jk.js";const c={class:"main"},n={class:"container"},p={__name:"ContactPage",setup(_){return(r,i)=>(o(),a("main",c,[s("div",n,[t(e)])]))}};export{p as default};
