@@ -31,6 +31,11 @@ const props = defineProps({
     type: String,
     default: '',
   },
+
+  isDisabled: {
+    type: Boolean,
+    default: false,
+  },
 });
 
 const updateVal = (e) => {
@@ -40,22 +45,32 @@ const updateVal = (e) => {
 
 <template>
   <div class="inp">
-    <label :class="['inp__label', modify ? `inp__label_${modify}` : '']" :for="name">
+    <label
+      v-if="label !== ''"
+      :class="['inp__label', modify ? `inp__label_${modify}` : '']"
+      :for="name"
+    >
       {{ label }}
     </label>
     <input
-      :class="['inp__text', modify ? `inp__text_${modify}` : '']"
+      :class="[
+        'inp__text',
+        modify ? `inp__text_${modify}` : '',
+        isDisabled === true ? 'inp__text_disable' : 'inp__text_active',
+      ]"
       :type="type"
       :name="name"
       :id="name"
       :placeholder="placeholder"
       :value="value"
       @input="updateVal"
+      :disabled="isDisabled"
+      autocomplete="off"
     />
   </div>
 </template>
 
-<style scoped lang="scss">
+<style lang="scss">
 .inp {
   &__text {
     font-weight: 400;
@@ -92,6 +107,14 @@ const updateVal = (e) => {
         background: #16263d;
       }
     }
+
+    &_panel {
+      padding: 9px 16px;
+      &:focus {
+        border: 1px solid #1472ff;
+        background: #16263d;
+      }
+    }
   }
 
   &__label {
@@ -108,6 +131,14 @@ const updateVal = (e) => {
       line-height: 100%;
       color: #cccdcd;
       margin: 22px 0 12px;
+    }
+
+    &_panel {
+      font-weight: 700;
+      font-size: 16px;
+      line-height: 100%;
+      color: #cccdcd;
+      margin-bottom: 12px;
     }
   }
 }

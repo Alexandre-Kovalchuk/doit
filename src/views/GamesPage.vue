@@ -3,13 +3,12 @@ import BaseInput from '@/components/Base/BaseInput.vue';
 import BaseImage from '@/components/Base/BaseImage.vue';
 import { games } from '@/components/Data/MainPage/GamesData.js';
 import { ref, computed } from 'vue';
+import { useSearch } from '@/composable/useSearch.js';
 
 const searchGame = ref('');
 
 const filterGames = computed(() => {
-  return games.filter((game) => {
-    return game.txt.toLowerCase().includes(searchGame.value.toLowerCase());
-  });
+  return useSearch(games, 'txt', searchGame.value);
 });
 </script>
 

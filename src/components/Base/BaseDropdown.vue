@@ -15,6 +15,16 @@ const props = defineProps({
     type: String,
     default: '',
   },
+
+  title: {
+    type: String,
+    default: '',
+  },
+
+  label: {
+    type: String,
+    default: '',
+  },
 });
 const emit = defineEmits(['update:modelValue']);
 const dropDown = ref(null);
@@ -22,7 +32,7 @@ const selectedOption = ref(null);
 const isDropDownVisible = ref(false);
 
 const mappedSelectionOption = computed(() => {
-  return selectedOption.value?.name || selectedOption.value || 'Please select something';
+  return selectedOption.value?.name || selectedOption.value || props.label;
 });
 
 const toggleOptionSelect = (option) => {
@@ -51,6 +61,7 @@ onBeforeUnmount(() => {
 
 <template>
   <div class="dropdown" ref="dropDown">
+    <h3 class="dropdown__title" v-if="title !== ''">{{ title }}</h3>
     <div
       :class="[
         'dropdown__selected',
@@ -65,16 +76,16 @@ onBeforeUnmount(() => {
       {{ mappedSelectionOption }}
     </div>
     <transition name="slide-fade">
-      <div v-if="isDropDownVisible" class="dropdown__options">
-        <div
+      <ul v-if="isDropDownVisible" class="dropdown__options">
+        <li
           v-for="(option, index) in props.options"
           :key="index"
           class="dropdown__option"
           @click="toggleOptionSelect(option)"
         >
           {{ option.name || option }}
-        </div>
-      </div>
+        </li>
+      </ul>
     </transition>
   </div>
 </template>
@@ -88,13 +99,22 @@ onBeforeUnmount(() => {
   font-size: 16px;
   line-height: 100%;
   color: #627ca3;
+  position: relative;
+
+  &__title {
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 100%;
+    color: #cccdcd;
+    margin-bottom: 12px;
+  }
 
   &__selected {
     padding: 12px 16px;
     border: 1px solid #1c2f4d;
     border-radius: 2px;
     margin-bottom: 4px;
-    position: relative;
+    //position: relative;
 
     &-default {
       border: 2px solid #20252b;
@@ -128,12 +148,16 @@ onBeforeUnmount(() => {
   }
 
   &__options {
+    display: block;
     border: 1px solid #1472ff;
     border-radius: 2px;
     width: 100%;
     max-height: 250px;
     height: auto;
     overflow: auto;
+    position: absolute;
+    background: #0f1215;
+    z-index: 30;
 
     &::-webkit-scrollbar {
       width: 8px;
@@ -152,7 +176,6 @@ onBeforeUnmount(() => {
   &__option {
     padding: 12px 16px;
     color: #fff;
-    //border: 1px solid red;
 
     &:hover {
       background: #1472ff;

@@ -2,22 +2,23 @@
 import { useRoute, useRouter } from 'vue-router';
 import BaseSvg from '@/components/Base/BaseSvg.vue';
 import BaseImage from '@/components/Base/BaseImage.vue';
-// import BaseImage from '@/components/Base/BaseImage.vue';
+
 import {
   tournamentsNameGame,
   tournamentsData,
   infoTab,
 } from '@/components/Data/MainPage/TournamentsData.js';
-// import BaseSvg from '@/components/Base/BaseSvg.vue';
-// import UIBtn from '@/components/UI/UIBtn.vue';
-// // import UITabsInfo from '@/components/UI/UITabsInfo.vue';
+
 import { ref, watch, watchEffect } from 'vue';
 import { titleAndImg } from '@/composable/useNameAndImg.js';
 import UITabs from '@/components/UI/UITabs.vue';
 import GameInfo from '@/views/TournamentsInfo/GameInfo.vue';
-import { useWatchTabs } from '@/composable/useWatchEffectTabs.js';
-import StreamsInfo from '@/views/TournamentsInfo/StreamsInfo.vue';
 import GameBracket from '@/views/TournamentsInfo/GameBracket.vue';
+import StreamsInfo from '@/views/TournamentsInfo/StreamsInfo.vue';
+import GamePlayers from '@/views/TournamentsInfo/GamePlayers.vue';
+import { useWatchTabs } from '@/composable/useWatchEffectTabs.js';
+import Standings from '@/views/TournamentsInfo/Standings.vue';
+import Lobby from '@/views/TournamentsInfo/Lobby.vue';
 
 let nameGame = null;
 let gameId = null;
@@ -25,8 +26,6 @@ let gameId = null;
 const q = ref('');
 const router = useRouter();
 
-const test = useRoute().query;
-console.log(test);
 const urlPath = useRoute().path;
 const namePath = urlPath.split('/');
 
@@ -45,9 +44,9 @@ const selectedTabPrize = ref('Prize pool');
 const isLaptop = ref(window.innerWidth <= 1439);
 const isMobile = ref(window.innerWidth <= 575);
 
-// watchEffect(() => {
-//   useWatchTabs(q, router, selectedTabs);
-// });
+watchEffect(() => {
+  useWatchTabs(q, router, selectedTabs);
+});
 
 title.value = titleAndImg(tournamentsNameGame, 'tournaments' + nameGame, 'title');
 webp.value = titleAndImg(tournamentsNameGame, 'tournaments' + nameGame, 'webp');
@@ -57,13 +56,7 @@ const logo = {
   webp: new URL('../assets/img/info-logo.webp', import.meta.url),
   png: new URL('../assets/img/info-logo.png', import.meta.url),
 };
-//
-// const searchId = tour[0][namePath].map((item) => {
-//   return item.id;
-// });
-//
-// const id = searchId.findIndex((item) => item === +idPath);
-//
+
 const changeTabs = (tab) => {
   selectedTabs.value = tab;
 };
@@ -122,7 +115,11 @@ window.addEventListener('resize', () => {
                   label=""
                   @change-tab="changeTabs"
                 >
-                  <GameBracket />
+                  <GameInfo v-if="q === 'Info'" />
+                  <GameBracket v-if="q === 'Bracket'" />
+                  <GamePlayers v-if="q === 'Players'" />
+                  <Standings v-if="q === 'Standings'" />
+                  <Lobby v-if="q === 'Lobby'" />
                 </UITabs>
               </router-link>
             </div>
@@ -237,6 +234,7 @@ window.addEventListener('resize', () => {
 
   @include media-breakpoint-down(md) {
     padding-left: 0;
+    margin: 0 0 100px;
   }
 
   @include media-breakpoint-down(xs) {
@@ -302,10 +300,10 @@ window.addEventListener('resize', () => {
     &__name {
       display: flex;
       border: 2px solid #20252b;
-      padding: 40px 0 49px 43px;
+      padding: 40px 0 38px 43px;
       max-width: 812px;
       width: 100%;
-      margin-bottom: 30px;
+      margin-bottom: 35px;
 
       @include media-breakpoint-down(lg) {
         max-width: 100%;
@@ -675,84 +673,6 @@ window.addEventListener('resize', () => {
         width: 100%;
         height: 100%;
       }
-    }
-  }
-
-  .players {
-    border: 2px solid #20252b;
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 30px;
-    padding: 55px 18px 83px 24px;
-
-    //@include media-breakpoint-down(md) {
-    //  grid-template-columns: repeat(3, 1fr);
-    //}
-
-    @include media-breakpoint-down(sm) {
-      grid-template-columns: repeat(3, 1fr);
-      gap: 15px;
-    }
-
-    @include media-breakpoint-down(xs) {
-      grid-template-columns: repeat(2, 1fr);
-      gap: 15px;
-      border: none;
-      padding: 30px 0 0;
-      width: fit-content;
-      margin: 0 auto;
-    }
-
-    &__item {
-      background: #151a1f;
-      border-radius: 2px 2px 0 0;
-      max-width: 170px;
-      width: 100%;
-      max-height: 250px;
-      height: 100%;
-      img {
-        width: 100%;
-        max-height: 170px;
-        height: 100%;
-
-        @include media-breakpoint-down(md) {
-          max-height: 149px;
-        }
-      }
-
-      @include media-breakpoint-down(md) {
-        max-width: 157px;
-        //height: 250px;
-      }
-    }
-
-    &__row {
-      display: flex;
-      align-items: center;
-      margin: 12px 10px 8px;
-
-      img {
-        display: block;
-        width: 16px;
-        height: 12px;
-      }
-    }
-
-    &__name {
-      font-weight: 500;
-      font-size: 14px;
-      line-height: 100%;
-      color: #e6e8eb;
-      margin-left: 8px;
-    }
-
-    &__text {
-      font-weight: 400;
-      font-size: 12px;
-      line-height: 100%;
-      color: #525c66;
-      padding-bottom: 16px;
-      margin-left: 10px;
     }
   }
 }

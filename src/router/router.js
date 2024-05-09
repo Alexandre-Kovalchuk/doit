@@ -85,7 +85,27 @@ const router = createRouter({
       name: 'Coomming',
       component: () => import('../views/CoomingSoonPage.vue'),
     },
+
+    {
+      path: '/admin-panel',
+      name: 'Admin panel',
+      component: () => import('../views/AdminPanel.vue'),
+    },
+
+    {
+      path: '/admin-panel/:name',
+      name: 'Add Tournament',
+      component: () => import('../views/AddTournament.vue'),
+    },
+
+    {
+      path: '/top',
+      name: 'Top',
+      component: () => import('../views/TopPage.vue'),
+    },
   ],
 });
 
 export default router;
+
+// New-tournament

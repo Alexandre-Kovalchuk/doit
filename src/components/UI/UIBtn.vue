@@ -41,6 +41,9 @@ const clickOnBtn = () => {
       background: #1a222d;
     }
 
+    &_transparent {
+      background: transparent;
+    }
     &_blue {
       background: linear-gradient(180deg, #2788f6 0%, #0960e0 100%);
     }

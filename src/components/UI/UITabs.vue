@@ -4,7 +4,7 @@ import BaseSvg from '@/components/Base/BaseSvg.vue';
 const props = defineProps({
   label: {
     type: String,
-    default: 'Title',
+    default: '',
   },
   names: {
     type: Array,
@@ -25,29 +25,29 @@ const clickOnTabs = (nameTab) => {
 
 <template>
   <div class="tabs">
-    <div class="container">
-      <div class="tabs__row">
-        <h2 class="tabs__title" v-if="label">
-          {{ label }}
-          <span v-if="label === 'Streams'"> <BaseSvg :id="'streams'" /> </span>
-        </h2>
+    <!--    <div class="container">-->
+    <div class="tabs__row">
+      <h2 class="tabs__title" v-if="label">
+        {{ label }}
+        <span v-if="label === 'Streams'"> <BaseSvg :id="'streams'" /> </span>
+      </h2>
 
-        <div class="tabs__btns">
-          <button
-            v-for="(tab, index) in names"
-            :key="index"
-            :class="['tabs__btns-item', { 'tabs__btns-item_act': tab.name === selectedTab }]"
-            @click="clickOnTabs(tab.name)"
-          >
-            {{ tab.label }}
-          </button>
-        </div>
-      </div>
-      <div class="tabs__content">
-        <slot />
+      <div class="tabs__btns">
+        <button
+          v-for="(tab, index) in names"
+          :key="index"
+          :class="['tabs__btns-item', { 'tabs__btns-item_act': tab.name === selectedTab }]"
+          @click="clickOnTabs(tab.name)"
+        >
+          {{ tab.label }}
+        </button>
       </div>
     </div>
+    <div class="tabs__content">
+      <slot />
+    </div>
   </div>
+  <!--  </div>-->
 </template>
 
 <style lang="scss">
