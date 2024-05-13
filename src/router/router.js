@@ -103,6 +103,12 @@ const router = createRouter({
       name: 'Top',
       component: () => import('../views/TopPage.vue'),
     },
+
+    {
+      path: '/faqs',
+      name: 'Faqs',
+      component: () => import('../views/FaqsPage.vue'),
+    },
   ],
 });
 

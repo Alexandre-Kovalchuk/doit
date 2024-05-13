@@ -3,6 +3,7 @@ import { ref } from 'vue';
 import BaseImage from '@/components/Base/BaseImage.vue';
 import UIBtn from '../UI/UIBtn.vue';
 import { logo } from '@/components/Data/UseLogoAndAvatar.js';
+import PopUpLogin from '@/views/PopUp/PopUpLogin.vue';
 
 const links = ref([
   { name: 'Play', href: 'play' },
@@ -16,6 +17,10 @@ const isOpenMenu = ref(false);
 
 const toggleMenu = () => {
   isOpenMenu.value = !isOpenMenu.value;
+};
+
+const test = () => {
+  Swal.fire('hello');
 };
 </script>
 
@@ -50,7 +55,7 @@ const toggleMenu = () => {
 
             <div class="header__menu-btn">
               <UIBtn label="Login" />
-              <UIBtn label="Sing up" color="blue" />
+              <UIBtn label="Sing up" color="blue" @click="test" />
             </div>
           </div>
         </div>
