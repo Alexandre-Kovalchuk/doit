@@ -51,7 +51,6 @@ const props = defineProps({
   position: absolute;
   top: 0;
   left: 4px;
-  color: #cb22ed;
   transition: 0.2s;
 }
 

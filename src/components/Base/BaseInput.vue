@@ -36,6 +36,11 @@ const props = defineProps({
     type: Boolean,
     default: false,
   },
+
+  error: {
+    type: Array,
+    required: false,
+  },
 });
 
 const updateVal = (e) => {
@@ -67,6 +72,8 @@ const updateVal = (e) => {
       :disabled="isDisabled"
       autocomplete="off"
     />
+
+    <p class="inp__error-mes">{{ error }}</p>
   </div>
 </template>
 
@@ -140,6 +147,14 @@ const updateVal = (e) => {
       color: #cccdcd;
       margin-bottom: 12px;
     }
+  }
+
+  &__error-mes {
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 133%;
+    color: #f55;
+    margin-top: 6px;
   }
 }
 </style>

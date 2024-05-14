@@ -1,20 +1,34 @@
 <script setup>
 import BaseSvg from '@/components/Base/BaseSvg.vue';
-import { ref } from 'vue';
+import PopUpLogin from '@/views/PopUp/PopUpLogin.vue';
+import { showPopUp } from '@/composable/test.js';
+import { ref, watch } from 'vue';
+import { useRouter } from 'vue-router';
+const routers = useRouter();
+const q = ref('');
+const param = (name) => {
+  routers.push({ path: '/', query: { q: name } });
+
+  showPopUp();
+};
+
+watch(() => {
+  q.value = routers.currentRoute.value.query.q;
+});
 </script>
 
 <template>
   <div class="pop-up">
     <div class="pop-up__content">
       <div class="pop-up__btns">
-        <button class="pop-up__btns-back"><BaseSvg :id="'arrow'" /></button>
-        <button class="pop-up__btns-close">
-          <BaseSvg :id="'close'" />
+        <button class="pop-up__btns-back"><BaseSvg id="arrow" /></button>
+        <button class="pop-up__btns-close" @click="param(undefined)">
+          <BaseSvg id="close" />
         </button>
       </div>
 
       <div class="pop-up__column">
-        <slot />
+        <PopUpLogin />
       </div>
     </div>
   </div>
@@ -22,23 +36,16 @@ import { ref } from 'vue';
 
 <style lang="scss">
 .pop-up {
-  position: absolute;
-  top: 11%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  position: fixed;
+  top: 0;
+  left: 0;
   background: rgba(0, 0, 0, 0.9);
-  visibility: hidden;
-  z-index: -1;
-  max-width: 698px;
+  z-index: 1000;
   width: 100%;
-  height: 698px;
-  background: #0b1729;
-  padding: 16px 16px 62px;
-
-  &_active {
-    visibility: visible;
-    z-index: 20;
-  }
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
   &__content {
     max-width: 698px;

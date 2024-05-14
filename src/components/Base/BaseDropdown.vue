@@ -26,6 +26,7 @@ const props = defineProps({
     default: '',
   },
 });
+
 const emit = defineEmits(['update:modelValue']);
 const dropDown = ref(null);
 const selectedOption = ref(null);
@@ -35,7 +36,7 @@ const mappedSelectionOption = computed(() => {
   return selectedOption.value?.name || selectedOption.value || props.label;
 });
 
-const toggleOptionSelect = (option) => {
+const toggleOptionSelect = async (option) => {
   selectedOption.value = option;
   emit('update:modelValue', option);
 
@@ -87,6 +88,8 @@ onBeforeUnmount(() => {
         </li>
       </ul>
     </transition>
+
+    <p class="dropdown__error">{{ error }}</p>
   </div>
 </template>
 

@@ -5,6 +5,44 @@ import BaseSvg from '@/components/Base/BaseSvg.vue';
 import UIBtn from '@/components/UI/UIBtn.vue';
 import { logo } from '@/components/Data/UseLogoAndAvatar.js';
 import { icons } from '@/components/Data/PopUp/PopUpData.js';
+import { computed, ref, watch } from 'vue';
+import { useRouter } from 'vue-router';
+import { showPopUp } from '@/composable/test.js';
+import BaseDropdown from '@/components/Base/BaseDropdown.vue';
+import { countries } from '@/components/Data/Profile/Setting.js';
+import BaseCheckbox from '@/components/Base/BaseCheckbox.vue';
+
+import {
+  day,
+  month,
+  saveToLocalStorage,
+  updateDate,
+  userData,
+  year,
+} from '@/composable/localStorage.js';
+import {
+  validateEmail,
+  validatePassword,
+  errorMessages,
+  validateUsername,
+} from '@/composable/useValidate.js';
+
+const q = ref('');
+const routers = useRouter();
+
+watch(() => {
+  q.value = routers.currentRoute.value.query.q;
+});
+
+const param = (name) => {
+  routers.push({ path: '/', query: { q: name } });
+};
+
+const handleClick = () => {
+  saveToLocalStorage();
+};
+
+const placeholderName = ['dd', 'mm', 'yyyy'];
 </script>
 
 <template>
@@ -13,37 +51,130 @@ import { icons } from '@/components/Data/PopUp/PopUpData.js';
       <BaseImage :srcset="logo.webp" :src="logo.img" :alt="'logo'" />
     </div>
 
-    <h2 class="login__title">{{}}</h2>
+    <h2 class="login__title">{{ q }}</h2>
 
-    <div class="login__email">
-      <BaseInput
-        placeholder="Username or Email"
-        name="email"
-        label="Username or Email"
-        type="email"
-        modify="email"
-      />
+    <div class="login__sign-in" v-if="q === 'Login' || q === 'Sign up 1/2'">
+      <div class="login__email">
+        <BaseInput
+          placeholder="Username or Email"
+          name="email"
+          label="Username or Email"
+          type="email"
+          modify="email"
+          v-model:value="userData.email"
+          @input="validateEmail"
+          :error="errorMessages.email"
+        />
+      </div>
+
+      <div class="login__psd">
+        <BaseInput
+          placeholder="Password"
+          name="pas"
+          label="Password"
+          type="password"
+          modify="psd"
+          v-model:value="userData.password"
+          @input="validatePassword"
+          :error="errorMessages.password"
+        />
+      </div>
+
+      <div class="login__btn">
+        <UIBtn
+          :label="q === 'Sign up 1/2' ? 'Next step' : 'Login'"
+          color="blue"
+          @click="param('Sign up 2/2')"
+        />
+      </div>
+
+      <p class="login__text">{{ q === 'Sign up 1/2' ? 'or signup with' : 'or login with' }}</p>
+
+      <div class="login__social">
+        <div v-for="item in icons" :key="item.id" class="login__social-icon">
+          <BaseSvg :id="item.svg" />
+        </div>
+      </div>
+
+      <p class="login__forgot-psd">
+        {{ q === 'Sign up 1/2' ? 'Already have an account?' : 'Forgot password ?' }}
+      </p>
+
+      <p class="login__create" v-if="q === 'Login'">Don't have an account? <span>Sign up!</span></p>
     </div>
 
-    <div class="login__psd">
-      <BaseInput placeholder="Password" name="pas" label="Password" type="password" modify="psd" />
-    </div>
+    <div class="login__sign-up" v-if="q === 'Sign up 2/2'">
+      <div class="login__username">
+        <BaseInput
+          placeholder="Username "
+          name="username"
+          label="Username"
+          type="text"
+          modify="email"
+          v-model:value="userData.username"
+          @input="validateUsername"
+          :error="errorMessages.text"
+        />
+      </div>
 
-    <div class="login__btn">
-      <UIBtn label="Login" color="blue" />
-    </div>
+      <div class="login__country">
+        <BaseDropdown
+          :options="countries"
+          title="Country"
+          label="Select country"
+          v-model:modelValue="userData.country"
+        />
+      </div>
 
-    <p class="login__text">or login with</p>
+      <div class="login__date">
+        <p class="login__date-label">Date of birth</p>
 
-    <div class="login__social">
-      <div v-for="item in icons" :key="item.id" class="login__social-icon">
-        <BaseSvg :id="item.svg" />
+        <div class="login__date-row">
+          <BaseInput
+            placeholder="dd"
+            name="dd"
+            label=""
+            type="text"
+            modify="email"
+            v-model:value="day"
+            @input="updateDate"
+          />
+
+          <!--          <BaseInput-->
+          <!--            placeholder="mm"-->
+          <!--            name="mm"-->
+          <!--            label=""-->
+          <!--            type="text"-->
+          <!--            modify="email"-->
+          <!--            v-model:value="valid.date.$model"-->
+          <!--            :error="valid.date.$errors"-->
+          <!--            @input="updateDate"-->
+          <!--          />-->
+
+          <!--          <BaseInput-->
+          <!--            placeholder="yyyy"-->
+          <!--            name="yyyy"-->
+          <!--            label=""-->
+          <!--            type="text"-->
+          <!--            modify="email"-->
+          <!--            v-model:value="year"-->
+          <!--            :error="valid.date.$errors"-->
+          <!--            @input="updateDate"-->
+          <!--          />-->
+        </div>
+      </div>
+
+      <div class="login__check">
+        <BaseCheckbox
+          label="I’m have at least 13 years of age and agree to the terms of service"
+          name="sign"
+        />
+      </div>
+
+      <div class="login__create-account">
+        <UIBtn label="Create an account" color="blue" @click="handleClick" />
       </div>
     </div>
-
-    <p class="login__forgot-psd">Forgot password?</p>
-
-    <p class="login__create">Don't have an account? <span>Sign up!</span></p>
   </div>
 </template>
 
@@ -96,7 +227,8 @@ import { icons } from '@/components/Data/PopUp/PopUpData.js';
     font-size: 16px;
     line-height: 100%;
     color: #627ca3;
-    margin-bottom: 16px;
+    text-align: center;
+    margin: 0 0 16px;
   }
 
   &__social {
@@ -119,6 +251,10 @@ import { icons } from '@/components/Data/PopUp/PopUpData.js';
     }
   }
 
+  &__forgot-psd {
+    text-align: center;
+  }
+
   &__forgot-psd,
   span,
   &__create {
@@ -132,6 +268,62 @@ import { icons } from '@/components/Data/PopUp/PopUpData.js';
   &__create {
     width: 100%;
     color: #627ca3;
+  }
+
+  &__country {
+    margin: 16px 0;
+  }
+
+  &__date-label {
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 100%;
+    color: #fff;
+    margin-bottom: 6px;
+  }
+
+  &__date-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: 1fr;
+    grid-column-gap: 12px;
+
+    .inp {
+      &__text {
+        text-align: center;
+
+        &::placeholder {
+          text-align: center;
+        }
+      }
+    }
+  }
+
+  &__check {
+    margin-top: 16px;
+    label {
+      display: block;
+      font-size: 12px !important;
+      line-height: 133% !important;
+      color: #627ca3 !important;
+      width: 217px;
+    }
+  }
+
+  &__create-account {
+    margin-top: 22px;
+    width: 241px;
+    height: 44px;
+  }
+
+  .dropdown {
+    &__title {
+      font-weight: 400;
+      font-size: 14px;
+      line-height: 100%;
+      color: #fff;
+      margin-bottom: 6px;
+    }
   }
 }
 </style>

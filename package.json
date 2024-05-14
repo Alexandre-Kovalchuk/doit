@@ -10,16 +10,15 @@
     "deploy": "vite build && gh-pages -d dist"
   },
   "dependencies": {
-    "@formkit/auto-animate": "^0.8.1",
     "sass": "^1.72.0",
     "sass-loader": "^14.1.1",
     "scroll-lock": "^2.1.5",
-    "sweetalert2": "^11.11.0",
     "swiper": "^11.0.7",
+    "vee-validate": "^4.12.6",
     "vue": "^3.4.21",
     "vue-router": "^4.0.12",
-    "vue-sweetalert2": "^5.0.7",
-    "vue3-swiper": "^1.0.0"
+    "vue3-swiper": "^1.0.0",
+    "yup": "^1.4.0"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^5.0.4",

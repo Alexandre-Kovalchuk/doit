@@ -80,7 +80,7 @@ updateText();
 
         <div class="beta__btn" v-if="!isLaptop && showBtnMainPage">
           <UIBtnBtn label="Login" />
-          <UIBtnBtn label="Sign up" color="blue" />
+          <UIBtnBtn label="Sign up" color="blue" @click="showPopUp" />
         </div>
 
         <div v-for="item in svg" :class="['beta__svg', `beta__svg_${item.class}`]">

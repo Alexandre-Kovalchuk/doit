@@ -1186,18 +1186,20 @@
 
     <symbol id="arrow">
       <path
-        d="M25.3334 16H6.66675"
-        stroke="#1C2F4D"
+        d="M25.3332 16H6.6665"
+        stroke="#627CA3"
         stroke-width="2"
         stroke-linecap="round"
         stroke-linejoin="round"
       />
+
       <path
-        d="M16.0001 25.3334L6.66675 16L16.0001 6.66669"
-        stroke="#1C2F4D"
+        d="M15.9998 25.3334L6.6665 16L15.9998 6.66669"
+        stroke="#627CA3"
         stroke-width="2"
         stroke-linecap="round"
         stroke-linejoin="round"
+        fill="none"
       />
     </symbol>
 

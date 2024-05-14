@@ -15,6 +15,7 @@ import Deposit from '@/views/ProfilePanel/Deposit.vue';
 const router = useRouter();
 const q = ref('');
 const title = ref('My Team');
+
 watch(() => {
   q.value = router.currentRoute.value.query.q;
 });

@@ -1,9 +1,10 @@
 <script setup>
-import { ref } from 'vue';
+import { ref, watch } from 'vue';
 import BaseImage from '@/components/Base/BaseImage.vue';
 import UIBtn from '../UI/UIBtn.vue';
 import { logo } from '@/components/Data/UseLogoAndAvatar.js';
-import PopUpLogin from '@/views/PopUp/PopUpLogin.vue';
+import { showPopUp } from '@/composable/test.js';
+import { useRouter } from 'vue-router';
 
 const links = ref([
   { name: 'Play', href: 'play' },
@@ -14,13 +15,20 @@ const links = ref([
 ]);
 
 const isOpenMenu = ref(false);
+const routers = useRouter();
+const q = ref('');
 
-const toggleMenu = () => {
-  isOpenMenu.value = !isOpenMenu.value;
+const param = (name) => {
+  routers.push({ path: '/', query: { q: name } });
+
+  showPopUp();
 };
 
-const test = () => {
-  Swal.fire('hello');
+watch(() => {
+  q.value = routers.currentRoute.value.query.q;
+});
+const toggleMenu = () => {
+  isOpenMenu.value = !isOpenMenu.value;
 };
 </script>
 
@@ -54,8 +62,8 @@ const test = () => {
             </nav>
 
             <div class="header__menu-btn">
-              <UIBtn label="Login" />
-              <UIBtn label="Sing up" color="blue" @click="test" />
+              <UIBtn label="Login" @click="param('Login')" />
+              <UIBtn label="Sign up" color="blue" @click="param('Sign up 1/2')" />
             </div>
           </div>
         </div>

@@ -12,8 +12,6 @@ import MainGames from '@/views/Main/MainGames.vue';
 <template>
   <main class="main">
     <div class="container">
-      <BasePopUp> <PopUpLogin /> </BasePopUp>
-
       <MainBeta />
       <MainTournament />
       <MainNews />
