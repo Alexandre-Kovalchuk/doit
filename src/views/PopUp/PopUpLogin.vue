@@ -3,7 +3,7 @@ import BaseImage from '@/components/Base/BaseImage.vue';
 import BaseInput from '@/components/Base/BaseInput.vue';
 import BaseSvg from '@/components/Base/BaseSvg.vue';
 import UIBtn from '@/components/UI/UIBtn.vue';
-import { logo } from '@/components/Data/UseLogoAndAvatar.js';
+// import { logo } from '@/components/Data/UseLogoAndAvatar.js';
 import { icons } from '@/components/Data/PopUp/PopUpData.js';
 import { computed, ref, watch } from 'vue';
 import { useRouter } from 'vue-router';
@@ -30,8 +30,11 @@ import {
 const q = ref('');
 const routers = useRouter();
 
+let email = ref(null);
+
 watch(() => {
   q.value = routers.currentRoute.value.query.q;
+  // email.value = userData.value.email;
 });
 
 const param = (name) => {
@@ -40,9 +43,8 @@ const param = (name) => {
 
 const handleClick = () => {
   saveToLocalStorage();
+  showPopUp();
 };
-
-const placeholderName = ['dd', 'mm', 'yyyy'];
 </script>
 
 <template>
@@ -53,7 +55,9 @@ const placeholderName = ['dd', 'mm', 'yyyy'];
 
     <h2 class="login__title">{{ q }}</h2>
 
-    <div class="login__sign-in" v-if="q === 'Login' || q === 'Sign up 1/2'">
+    <!--  login  -->
+
+    <div class="login__sign-in" v-if="q === 'Login'">
       <div class="login__email">
         <BaseInput
           placeholder="Username or Email"
@@ -81,14 +85,10 @@ const placeholderName = ['dd', 'mm', 'yyyy'];
       </div>
 
       <div class="login__btn">
-        <UIBtn
-          :label="q === 'Sign up 1/2' ? 'Next step' : 'Login'"
-          color="blue"
-          @click="param('Sign up 2/2')"
-        />
+        <UIBtn label="Login" color="blue" />
       </div>
 
-      <p class="login__text">{{ q === 'Sign up 1/2' ? 'or signup with' : 'or login with' }}</p>
+      <p class="login__text">or login with</p>
 
       <div class="login__social">
         <div v-for="item in icons" :key="item.id" class="login__social-icon">
@@ -96,12 +96,56 @@ const placeholderName = ['dd', 'mm', 'yyyy'];
         </div>
       </div>
 
-      <p class="login__forgot-psd">
-        {{ q === 'Sign up 1/2' ? 'Already have an account?' : 'Forgot password ?' }}
-      </p>
+      <p class="login__forgot-psd">Forgot password ?</p>
 
-      <p class="login__create" v-if="q === 'Login'">Don't have an account? <span>Sign up!</span></p>
+      <p class="login__create">Don't have an account? <span>Sign up!</span></p>
     </div>
+
+    <!--  Sign up 1/2  -->
+
+    <div class="login__sign-in" v-if="q === 'Sign up 1/2'">
+      <div class="login__email">
+        <BaseInput
+          placeholder="Username or Email"
+          name="email"
+          label="Username or Email"
+          type="email"
+          modify="email"
+          v-model:value="userData.email"
+          @input="validateEmail"
+          :error="errorMessages.email"
+        />
+      </div>
+
+      <div class="login__psd">
+        <BaseInput
+          placeholder="Password"
+          name="pas"
+          label="Password"
+          type="password"
+          modify="psd"
+          v-model:value="userData.password"
+          @input="validatePassword"
+          :error="errorMessages.password"
+        />
+      </div>
+
+      <div class="login__btn">
+        <UIBtn label="Next step" color="blue" @click="param('Sign up 2/2')" />
+      </div>
+
+      <p class="login__text">or signup with</p>
+
+      <div class="login__social">
+        <div v-for="item in icons" :key="item.id" class="login__social-icon">
+          <BaseSvg :id="item.svg" />
+        </div>
+      </div>
+
+      <p class="login__forgot-psd">Already have an account?</p>
+    </div>
+
+    <!--  Sign up 1/2  -->
 
     <div class="login__sign-up" v-if="q === 'Sign up 2/2'">
       <div class="login__username">
@@ -134,33 +178,31 @@ const placeholderName = ['dd', 'mm', 'yyyy'];
             placeholder="dd"
             name="dd"
             label=""
-            type="text"
+            type="number"
             modify="email"
             v-model:value="day"
             @input="updateDate"
           />
 
-          <!--          <BaseInput-->
-          <!--            placeholder="mm"-->
-          <!--            name="mm"-->
-          <!--            label=""-->
-          <!--            type="text"-->
-          <!--            modify="email"-->
-          <!--            v-model:value="valid.date.$model"-->
-          <!--            :error="valid.date.$errors"-->
-          <!--            @input="updateDate"-->
-          <!--          />-->
+          <BaseInput
+            placeholder="mm"
+            name="mm"
+            label=""
+            type="number"
+            modify="email"
+            v-model:value="month"
+            @input="updateDate"
+          />
 
-          <!--          <BaseInput-->
-          <!--            placeholder="yyyy"-->
-          <!--            name="yyyy"-->
-          <!--            label=""-->
-          <!--            type="text"-->
-          <!--            modify="email"-->
-          <!--            v-model:value="year"-->
-          <!--            :error="valid.date.$errors"-->
-          <!--            @input="updateDate"-->
-          <!--          />-->
+          <BaseInput
+            placeholder="yyyy"
+            name="yyyy"
+            label=""
+            type="number"
+            modify="email"
+            v-model:value="year"
+            @input="updateDate"
+          />
         </div>
       </div>
 
@@ -172,7 +214,9 @@ const placeholderName = ['dd', 'mm', 'yyyy'];
       </div>
 
       <div class="login__create-account">
-        <UIBtn label="Create an account" color="blue" @click="handleClick" />
+        <router-link :to="{ path: '/profile' }">
+          <UIBtn label="Create an account" color="blue" @click="handleClick" />
+        </router-link>
       </div>
     </div>
   </div>

@@ -25,7 +25,6 @@ const clickOnTabs = (nameTab) => {
 
 <template>
   <div class="tabs">
-    <!--    <div class="container">-->
     <div class="tabs__row">
       <h2 class="tabs__title" v-if="label">
         {{ label }}
@@ -47,7 +46,6 @@ const clickOnTabs = (nameTab) => {
       <slot />
     </div>
   </div>
-  <!--  </div>-->
 </template>
 
 <style lang="scss">

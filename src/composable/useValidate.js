@@ -27,8 +27,9 @@ const schema = Yup.object().shape({
 
   username: Yup.string()
     .required('Username is required')
-    .matches(/^[^\d]+$/, 'Username cannot contain digits')
     .min(3, 'Username must be at least 3 characters long'),
+
+  day: Yup.string().required('Date is required').max(2),
 });
 
 const validateEmail = async () => {

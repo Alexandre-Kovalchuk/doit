@@ -7,18 +7,19 @@ import { computed, ref, watch, watchEffect } from 'vue';
 import { tournamentsData } from '@/components/Data/MainPage/TournamentsData.js';
 import UITabs from '@/components/UI/UITabs.vue';
 import UICard from '@/components/UI/UICard.vue';
-import { labelsTabs } from '@/components/Data/MainPage/TabsData.js';
 import { useRouter } from 'vue-router';
 import { changeTabs } from '@/composable/useChangeTabs.js';
 import { dataName } from '@/composable/useDataName.js';
 import { useWatchTabs } from '@/composable/useWatchEffectTabs.js';
 import { nameTabs } from '@/composable/useTabs.js';
-import { useAllData } from '@/composable/useAllData.js';
-
+import { useShowAllSlide } from '@/composable/new/useShowAllSlide.js';
+import { tabsData } from '@/components/Data/TabsData.js';
 const allTournamentsData = [];
 const q = ref('');
 const router = useRouter();
 const selectedTournamentTab = ref('tournamentsDota');
+
+const { labelsTabs } = tabsData();
 
 const tournamentsTabs = nameTabs('tournaments', labelsTabs);
 const changeTournamentTabs = (tabName) => {
@@ -26,7 +27,7 @@ const changeTournamentTabs = (tabName) => {
 };
 
 const dataTournaments = dataName(tournamentsData, q, 'tournamentsDota');
-const allDataTournaments = useAllData(tournamentsData, allTournamentsData);
+const allDataTournaments = useShowAllSlide(tournamentsData, allTournamentsData);
 
 const showAllSlide = computed(() => q.value === 'tournamentsAll');
 

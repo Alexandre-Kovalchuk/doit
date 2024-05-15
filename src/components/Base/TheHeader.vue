@@ -1,35 +1,79 @@
 <script setup>
-import { ref, watch } from 'vue';
+// import { showPopUp } from '@/composable/test.js';
+// import { useRouter } from 'vue-router';
+
+// import UIProgressBar from '@/components/UI/UIProgressBar.vue';
+// // import { checkUsersOnRegister } from '@/composable/localStorage.js';
+//
+
+//
+// const isOpenMenu = ref(false);
+// const isOpenInfo = ref(false);
+// const checkUsersOnRegister = ref(null);
+//
+// const routers = useRouter();
+// const q = ref('');
+//
+// const param = (name) => {
+//   routers.push({ path: '/', query: { q: name } });
+//
+//   showPopUp();
+// };
+//
+// const toggleMenu = () => {
+//   isOpenMenu.value = !isOpenMenu.value;
+// };
+//
+// const toggleInfo = () => {
+//   isOpenInfo.value = !isOpenInfo.value;
+// };
+//
+// const exitAccount = () => {};
+//
+// watch(() => {
+//   q.value = routers.currentRoute.value.query.q;
+
+// if (!checkUsersOnRegister) {
+//   const user = JSON.parse(localStorage.getItem('user'));
+//   if (user) {
+//     checkUsersOnRegister.value = user.email;
+//     console.log(checkUsersOnRegister);
+//   }
+// } else {
+//   const userSignIn = JSON.parse(localStorage.getItem('userSignIn'));
+//   if (userSignIn) {
+//     checkUsersOnRegister.value = userSignIn.email;
+//   }
+// }
+//
+// console.log(checkUsersOnRegister.value);
+// });
+
+// function findUserByEmail(email) {
+//   for (let i = 0; i < existingData.length; i++) {
+//     if (existingData[i].email === email) {
+//       console.log(existingData[i]);
+//     }
+//   }
+//   return null;
+// }
+//
+// findUserByEmail('ww@ww.ww');
+import { computed, ref, watch } from 'vue';
+import { userLinksData, iconsData } from '@/components/Data/Header/HeaderData.js';
 import BaseImage from '@/components/Base/BaseImage.vue';
+import BaseSvg from '@/components/Base/BaseSvg.vue';
 import UIBtn from '../UI/UIBtn.vue';
-import { logo } from '@/components/Data/UseLogoAndAvatar.js';
-import { showPopUp } from '@/composable/test.js';
-import { useRouter } from 'vue-router';
+import { useToggle } from '@/composable/new/useToggle.js';
+import { useBlockScroll } from '@/composable/new/useBlockScroll.js';
 
-const links = ref([
-  { name: 'Play', href: 'play' },
-  { name: 'News', href: 'news' },
-  { name: 'Games', href: 'games' },
-  { name: 'Shop', href: 'shop' },
-  { name: 'Sponsorship', href: 'sponsorship' },
-]);
-
-const isOpenMenu = ref(false);
-const routers = useRouter();
-const q = ref('');
-
-const param = (name) => {
-  routers.push({ path: '/', query: { q: name } });
-
-  showPopUp();
-};
-
-watch(() => {
-  q.value = routers.currentRoute.value.query.q;
-});
 const toggleMenu = () => {
-  isOpenMenu.value = !isOpenMenu.value;
+  useToggle(isOpenMenu);
+  useBlockScroll();
 };
+const { links, userLinks, userLinksSub } = userLinksData();
+const { logo, accountIcon } = iconsData();
+const isOpenMenu = ref(false);
 </script>
 
 <template>
@@ -62,9 +106,83 @@ const toggleMenu = () => {
             </nav>
 
             <div class="header__menu-btn">
-              <UIBtn label="Login" @click="param('Login')" />
-              <UIBtn label="Sign up" color="blue" @click="param('Sign up 1/2')" />
+              <UIBtn label="Login" />
+              <UIBtn label="Sign up" color="blue" />
             </div>
+
+            <!--            <div class="header__user" v-if="checkUsersOnRegister !== null">-->
+            <!--              <div class="header__user-row">-->
+            <!--                <div class="header__user-img">-->
+            <!--                  <BaseImage :srcset="accountIcon.webp" :src="accountIcon.img" />-->
+            <!--                </div>-->
+
+            <!--                <div class="header__user-column">-->
+            <!--                  <p class="header__user-name">svsdvsdv</p>-->
+            <!--                  <p class="header__user-balance">0 EUR <span>/</span> 0 DTC</p>-->
+            <!--                </div>-->
+
+            <!--                <div-->
+            <!--                  :class="['header__user-arrow', { 'header__user-arrow_act': isOpenInfo }]"-->
+            <!--                  @click="toggleInfo"-->
+            <!--                >-->
+            <!--                  <BaseSvg id="arrow-down" />-->
+            <!--                </div>-->
+            <!--              </div>-->
+
+            <!--              <div :class="['header__user-info', { 'header__user-info_act': isOpenInfo }]">-->
+            <!--                <UIProgressBar color="#f5f5f5" name-class="" percent="0" name="lvl" />-->
+
+            <!--                <hr class="header__user-line" />-->
+
+            <!--                <ul class="header__user-list">-->
+            <!--                  <li class="header__user-item" v-for="(item, index) in userLinks" :key="index">-->
+            <!--                    <router-link-->
+            <!--                      class="header__user-link"-->
+            <!--                      :to="{ path: item.name, query: { q: item.href } }"-->
+            <!--                      @click="toggleInfo"-->
+            <!--                    >-->
+            <!--                      {{ item.href }}-->
+
+            <!--                      <BaseSvg id="arrow-link" />-->
+            <!--                    </router-link>-->
+            <!--                  </li>-->
+            <!--                </ul>-->
+
+            <!--                <hr class="header__user-line header__user-line_sub" />-->
+
+            <!--                <ul class="header__user-sublist">-->
+            <!--                  <li-->
+            <!--                    class="header__user-subitem"-->
+            <!--                    v-for="(item, index) in userLinksSub"-->
+            <!--                    :key="index"-->
+            <!--                  >-->
+            <!--                    <router-link-->
+            <!--                      class="header__user-sublink"-->
+            <!--                      v-if="item.href !== 'Logout'"-->
+            <!--                      :to="{-->
+            <!--                        path: item.name,-->
+            <!--                        query: { q: item.href },-->
+            <!--                      }"-->
+            <!--                      @click="toggleInfo"-->
+            <!--                    >-->
+            <!--                      {{ item.href }}-->
+            <!--                    </router-link>-->
+
+            <!--                    <router-link-->
+            <!--                      class="header__user-sublink"-->
+            <!--                      v-else-->
+            <!--                      :to="{-->
+            <!--                        path: item.name,-->
+            <!--                        query: { q: undefined },-->
+            <!--                      }"-->
+            <!--                      @click="exitAccount"-->
+            <!--                    >-->
+            <!--                      {{ item.href }}-->
+            <!--                    </router-link>-->
+            <!--                  </li>-->
+            <!--                </ul>-->
+            <!--              </div>-->
+            <!--            </div>-->
           </div>
         </div>
       </div>
@@ -270,6 +388,173 @@ const toggleMenu = () => {
         max-width: 100%;
         height: 108px;
       }
+    }
+  }
+
+  &__user {
+    position: relative;
+    background: #161a1f;
+    width: 225px;
+    height: 56px;
+
+    &-row {
+      display: flex;
+      align-items: center;
+      margin: 8px;
+    }
+
+    &-img {
+      width: 40px;
+      height: 40px;
+
+      img {
+        width: 100%;
+        height: 100%;
+      }
+    }
+
+    &-column {
+      margin: 0 8px;
+    }
+
+    &-name {
+      font-weight: 500;
+      font-size: 14px;
+      line-height: 100%;
+      margin-bottom: 8px;
+    }
+
+    &-balance {
+      font-weight: 500;
+      font-size: 12px;
+      line-height: 100%;
+      color: #5af;
+
+      span {
+        margin: 0 4px;
+      }
+    }
+
+    &-arrow {
+      width: 24px;
+      height: 24px;
+      margin-left: auto;
+      cursor: pointer;
+      padding: 0 6px;
+      transition: 0.5s;
+
+      &_act {
+        transform: rotate(180deg);
+      }
+
+      svg {
+        //width: 100%;
+        //height: 100%;
+
+        width: 12px;
+        height: 8px;
+        fill: #2b353f;
+      }
+    }
+
+    &-info {
+      width: 225px;
+      position: absolute;
+      left: 0;
+      visibility: hidden;
+      opacity: 0;
+      //background: #0f1215;
+      background: #161a1f;
+
+      transition:
+        opacity 0.5s,
+        visibility 0.5s;
+
+      &_act {
+        visibility: visible;
+        opacity: 1;
+      }
+    }
+
+    &-line {
+      width: 100%;
+      height: 2px;
+      background: #0f1215;
+      margin: 18px 0 14px;
+
+      &_sub {
+        margin: 0;
+      }
+    }
+
+    &-list {
+      padding: 0 7px 8px 13px;
+      background: #161a1f;
+    }
+
+    &-link {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-weight: 400;
+      font-size: 12px;
+      line-height: 100%;
+      text-transform: uppercase;
+      color: #f5f5f5;
+      margin-bottom: 4px;
+
+      svg {
+        display: block;
+        width: 24px;
+        height: 24px;
+        fill: #2b353f;
+      }
+    }
+
+    &-sublist {
+      display: flex;
+      justify-content: space-between;
+      padding: 14px 15px 14px 13px;
+      background: #161a1f;
+    }
+
+    &-sublink {
+      font-weight: 400;
+      font-size: 12px;
+      line-height: 100%;
+      color: #969ba3;
+    }
+  }
+
+  .progress {
+    display: flex;
+    align-items: center;
+    margin-bottom: 0;
+    padding: 0 7px 0 13px;
+
+    &__row {
+      margin: 0;
+    }
+
+    &__name,
+    &__percent {
+      font-weight: 400;
+      font-size: 10px;
+      line-height: 100%;
+      color: #f5f5f5;
+    }
+
+    &__percent {
+      margin-left: 5px;
+    }
+
+    &__bar {
+      width: 100%;
+      margin-left: 11px;
+    }
+
+    &__line {
+      height: 2px;
     }
   }
 }

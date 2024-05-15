@@ -9,11 +9,13 @@ import UITabs from '@/components/UI/UITabs.vue';
 import UICard from '@/components/UI/UICard.vue';
 import { newsData } from '@/components/Data/MainPage/NewsData.js';
 import { nameTabs } from '@/composable/useTabs.js';
-import { labelsTabs } from '@/components/Data/MainPage/TabsData.js';
+
 import { dataName } from '@/composable/useDataName.js';
-import { useAllData } from '@/composable/useAllData.js';
+import { useShowAllSlide } from '@/composable/new/useShowAllSlide.js';
 import { changeTabs } from '@/composable/useChangeTabs.js';
 import { useWatchTabs } from '@/composable/useWatchEffectTabs.js';
+import { tabsData } from '@/components/Data/TabsData.js';
+const { labelsTabs } = tabsData();
 
 const allNewsData = [];
 const q = ref('');
@@ -22,7 +24,7 @@ const newsTabs = nameTabs('news', labelsTabs);
 const selectedNewsTab = ref('newsDota');
 
 const dataNews = dataName(newsData, selectedNewsTab, 'newsDota');
-const allDataNews = useAllData(newsData, allNewsData);
+const allDataNews = useShowAllSlide(newsData, allNewsData);
 
 const changeNewsTabs = (tabName) => {
   changeTabs(selectedNewsTab, tabName, router, '/');

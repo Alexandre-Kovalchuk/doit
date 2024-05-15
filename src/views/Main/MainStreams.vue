@@ -1,7 +1,6 @@
 <script setup>
 import UITabs from '@/components/UI/UITabs.vue';
 import BaseImage from '@/components/Base/BaseImage.vue';
-import { labelsTabs } from '@/components/Data/MainPage/TabsData.js';
 import { Swiper, SwiperSlide } from 'swiper/vue';
 import 'swiper/css';
 import 'swiper/css/pagination';
@@ -10,14 +9,16 @@ import { srtreamsData } from '@/components/Data/MainPage/StreamsData.js';
 import { computed, ref, warn } from 'vue';
 import { nameTabs } from '@/composable/useTabs.js';
 import { dataName } from '@/composable/useDataName.js';
-import { useAllData } from '@/composable/useAllData.js';
+import { useShowAllSlide } from '@/composable/new/useShowAllSlide.js';
+import { tabsData } from '@/components/Data/TabsData.js';
+const { labelsTabs } = tabsData();
 
 const allStreamData = [];
 const nameStreamTabs = nameTabs('streams', labelsTabs);
 const selectedStreamsTab = ref('streamsDota');
 
 const data = dataName(srtreamsData, selectedStreamsTab);
-const allData = useAllData(srtreamsData, allStreamData);
+const allData = useShowAllSlide(srtreamsData, allStreamData);
 const changeStreamsTabs = (tabName) => {
   selectedStreamsTab.value = tabName;
 };

@@ -1283,8 +1283,8 @@
       <path d="M8 12H16" stroke="#F5F5F5" stroke-linecap="round" stroke-linejoin="round" />
     </symbol>
 
-    <symbol viewBox="0 0 12 8" fill="none" id="arrow-down">
-      <path d="M1.41 0.589996L6 5.17L10.59 0.589996L12 2L6 8L0 2L1.41 0.589996Z" fill="#CCCDCD" />
+    <symbol id="arrow-down">
+      <path d="M1.41 0.589996L6 5.17L10.59 0.589996L12 2L6 8L0 2L1.41 0.589996Z" />
     </symbol>
 
     <symbol viewBox="0 0 32 32" fill="none" id="location">
@@ -1736,6 +1736,13 @@
           <rect width="22" height="16" fill="white" />
         </clipPath>
       </defs>
+    </symbol>
+
+    <symbol id="arrow-link">
+      <path
+        d="M8.58984 16.59L13.1698 12L8.58984 7.41L9.99984 6L15.9998 12L9.99984 18L8.58984 16.59Z"
+        fill="#2B353F"
+      />
     </symbol>
   </svg>
 </template>

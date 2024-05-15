@@ -3,30 +3,9 @@ import BaseSvg from '@/components/Base/BaseSvg.vue';
 import UIBtnBtn from '@/components/UI/UIBtn.vue';
 import { useRoute } from 'vue-router';
 import { ref, onMounted, onUnmounted } from 'vue';
+import { betaData } from '@/components/Data/MainPage/BetaData.js';
 
-const mainTitle = 'DOIT BETA';
-const mainTxt = `Prepare for your esports career and get ready for awesome tournaments with big prize pools and much fun!<br />Register Now!`;
-const commingTxt = 'We are working hard to provide you the best experience on our platform';
-const mainOtherTxt =
-  'Fermentum amet quis in at euismod pellentesque. Id diam amet non at ornare mollis nunc. Rutrum hendrerit erat pretium, senectus orci in dui.';
-const svg = [
-  {
-    id: 'triangle-first',
-    class: 'first',
-  },
-  {
-    id: 'triangle-second',
-    class: 'second',
-  },
-  {
-    id: 'triangle-third',
-    class: 'third',
-  },
-  {
-    id: 'triangle-little',
-    class: 'little',
-  },
-];
+const { mainTitle, mainTxt, commingTxt, mainOtherTxt, svg } = betaData();
 
 const route = useRoute().path;
 const isLaptop = ref(window.innerWidth <= 1023);

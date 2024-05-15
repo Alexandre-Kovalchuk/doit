@@ -9,7 +9,7 @@ import {
   tournamentsNameGame,
 } from '@/components/Data/MainPage/TournamentsData.js';
 import { useRoute } from 'vue-router';
-import { useAllData } from '@/composable/useAllData.js';
+import { useShowAllSlide } from '@/composable/new/useShowAllSlide.js';
 import UIFilter from '@/components/UI/UIFilter.vue';
 
 const urlPath = useRoute().path;
@@ -40,7 +40,7 @@ const selectedKey = ref({ mode: '', status: '', region: '', platform: '' });
 const filteredGame = computed(() => {
   let filteredData =
     namePath === 'tournamentsAll'
-      ? useAllData(tournamentsData, allTournamentArr)
+      ? useShowAllSlide(tournamentsData, allTournamentArr)
       : tournamentsData[0][namePath];
 
   for (const key in selectedKey.value) {

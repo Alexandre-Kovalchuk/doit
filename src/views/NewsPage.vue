@@ -1,18 +1,19 @@
 <script setup>
 import UITabs from '@/components/UI/UITabs.vue';
-import { labelsTabs } from '@/components/Data/MainPage/TabsData.js';
-import { news, updateNewsTitle, changeTitle } from '@/components/Data/News.js';
-import { ref, watch, onMounted } from 'vue';
+import { ref, watch } from 'vue';
 import BaseImage from '@/components/Base/BaseImage.vue';
 import { useRoute, useRouter } from 'vue-router';
+import { tabsData } from '@/components/Data/TabsData.js';
+import { changeTitle, newsData, updateNewsTitle } from '@/components/Data/News/NewsData.js';
+
+const { labelsTabs } = tabsData();
+const { news } = newsData();
 
 const routers = useRouter();
 const q = ref('');
 const namePath = useRoute().path;
 
-console.log(namePath);
-
-let selectedTab = ref('News');
+let selectedTab = ref('Dota');
 const title = ref('');
 
 const changeTabs = (tabName) => {

@@ -98,6 +98,10 @@ const updateVal = (e) => {
       color: #cccdcd;
     }
 
+    &::-webkit-inner-spin-button {
+      display: none;
+    }
+
     &_email,
     &_psd {
       border: 1px solid #16263d;

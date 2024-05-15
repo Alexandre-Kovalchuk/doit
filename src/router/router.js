@@ -1,5 +1,14 @@
 import { createRouter, createWebHashHistory } from 'vue-router';
 import MainPage from '@/views/MainPage.vue';
+import { ref, watch } from 'vue';
+
+watch(() => {
+  // if (checkUsersOnRegister) {
+  //   checkUsersOnRegister.value = JSON.parse(localStorage.getItem('user'));
+  // } else {
+  //   checkUsersOnRegister.value = JSON.parse(localStorage.getItem('userSignIn'));
+  // }
+});
 
 const router = createRouter({
   history: createWebHashHistory('/doit/'),
@@ -48,6 +57,7 @@ const router = createRouter({
     {
       path: '/profile',
       name: 'Profile',
+      meta: { auth: true },
       component: () => import('../views/ProfilePage.vue'),
     },
 
@@ -112,6 +122,15 @@ const router = createRouter({
   ],
 });
 
+router.beforeEach((to, from, next) => {
+  const requireAuth = to.matched.some((record) => record.meta.auth);
+
+  if (requireAuth && !checkUsersOnRegister.value) {
+    next('/');
+  } else {
+    next();
+  }
+});
 export default router;
 
 // New-tournament
