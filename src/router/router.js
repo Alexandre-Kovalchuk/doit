@@ -1,14 +1,5 @@
 import { createRouter, createWebHashHistory } from 'vue-router';
 import MainPage from '@/views/MainPage.vue';
-import { ref, watch } from 'vue';
-
-watch(() => {
-  // if (checkUsersOnRegister) {
-  //   checkUsersOnRegister.value = JSON.parse(localStorage.getItem('user'));
-  // } else {
-  //   checkUsersOnRegister.value = JSON.parse(localStorage.getItem('userSignIn'));
-  // }
-});
 
 const router = createRouter({
   history: createWebHashHistory('/doit/'),
@@ -19,41 +10,39 @@ const router = createRouter({
       name: 'Main',
       component: MainPage,
     },
+
     {
-      path: '/play',
-      name: 'Play',
-      component: () => import('@/views/PlayPage.vue'),
-    },
-    {
-      path: '/news',
+      path: '/newsData',
       name: 'News',
       component: () => import('@/views/NewsPage.vue'),
     },
+
     {
       path: '/games',
       name: 'Games',
       component: () => import('@/views/GamesPage.vue'),
     },
+
     {
-      path: '/shop',
-      name: 'Shop',
-      component: () => import('@/views/ShopPage.vue'),
+      path: '/cooming',
+      name: 'Coomming',
+      component: () => import('../views/CoomingSoonPage.vue'),
     },
+
     {
-      path: '/sponsorship',
-      name: 'Sponsorship',
-      component: () => import('../views/SponsorshipPage.vue'),
+      path: '/tournament/:name',
+      name: 'Tournament',
+      component: () => import('../views/TournamentPage.vue'),
     },
-    {
-      path: '/:pathMatch(.*)*',
-      name: '404',
-      component: () => import('../views/404Page.vue'),
-    },
+
+    //
+
     {
       path: '/premium',
       name: 'Premium',
       component: () => import('../views/PremiumPage.vue'),
     },
+
     {
       path: '/profile',
       name: 'Profile',
@@ -79,34 +68,25 @@ const router = createRouter({
       component: () => import('../views/ContactPage.vue'),
     },
 
-    {
-      path: '/tournament/:name',
-      name: 'Tournament',
-      component: () => import('../views/TournamentPage.vue'),
-    },
+    //
     {
       path: '/tournament/:name/:id',
       name: 'Tournament Name',
       component: () => import('../views/TournamentNamePage.vue'),
     },
+    //
 
-    {
-      path: '/cooming',
-      name: 'Coomming',
-      component: () => import('../views/CoomingSoonPage.vue'),
-    },
+    // {
+    //   path: '/admin-panel',
+    //   name: 'Admin panel',
+    //   component: () => import('../views/AdminPanel.vue'),
+    // },
 
-    {
-      path: '/admin-panel',
-      name: 'Admin panel',
-      component: () => import('../views/AdminPanel.vue'),
-    },
-
-    {
-      path: '/admin-panel/:name',
-      name: 'Add Tournament',
-      component: () => import('../views/AddTournament.vue'),
-    },
+    // {
+    //   path: '/admin-panel/:name',
+    //   name: 'Add Tournament',
+    //   component: () => import('../views/AddTournament.vue'),
+    // },
 
     {
       path: '/top',
@@ -119,18 +99,24 @@ const router = createRouter({
       name: 'Faqs',
       component: () => import('../views/FaqsPage.vue'),
     },
+
+    {
+      path: '/:pathMatch(.*)*',
+      name: '404',
+      component: () => import('../views/404Page.vue'),
+    },
   ],
 });
 
-router.beforeEach((to, from, next) => {
-  const requireAuth = to.matched.some((record) => record.meta.auth);
-
-  if (requireAuth && !checkUsersOnRegister.value) {
-    next('/');
-  } else {
-    next();
-  }
-});
+// router.beforeEach((to, from, next) => {
+//   const requireAuth = to.matched.some((record) => record.meta.auth);
+//
+//   if (requireAuth && !checkUsersOnRegister.value) {
+//     next('/');
+//   } else {
+//     next();
+//   }
+// });
 export default router;
 
 // New-tournament

@@ -1,71 +1,14 @@
 <script setup>
-// import { showPopUp } from '@/composable/test.js';
-// import { useRouter } from 'vue-router';
+import { showPopUp } from '@/composable/test.js';
 
-// import UIProgressBar from '@/components/UI/UIProgressBar.vue';
-// // import { checkUsersOnRegister } from '@/composable/localStorage.js';
-//
-
-//
-// const isOpenMenu = ref(false);
-// const isOpenInfo = ref(false);
-// const checkUsersOnRegister = ref(null);
-//
-// const routers = useRouter();
-// const q = ref('');
-//
-// const param = (name) => {
-//   routers.push({ path: '/', query: { q: name } });
-//
-//   showPopUp();
-// };
-//
-// const toggleMenu = () => {
-//   isOpenMenu.value = !isOpenMenu.value;
-// };
-//
-// const toggleInfo = () => {
-//   isOpenInfo.value = !isOpenInfo.value;
-// };
-//
-// const exitAccount = () => {};
-//
-// watch(() => {
-//   q.value = routers.currentRoute.value.query.q;
-
-// if (!checkUsersOnRegister) {
-//   const user = JSON.parse(localStorage.getItem('user'));
-//   if (user) {
-//     checkUsersOnRegister.value = user.email;
-//     console.log(checkUsersOnRegister);
-//   }
-// } else {
-//   const userSignIn = JSON.parse(localStorage.getItem('userSignIn'));
-//   if (userSignIn) {
-//     checkUsersOnRegister.value = userSignIn.email;
-//   }
-// }
-//
-// console.log(checkUsersOnRegister.value);
-// });
-
-// function findUserByEmail(email) {
-//   for (let i = 0; i < existingData.length; i++) {
-//     if (existingData[i].email === email) {
-//       console.log(existingData[i]);
-//     }
-//   }
-//   return null;
-// }
-//
-// findUserByEmail('ww@ww.ww');
-import { computed, ref, watch } from 'vue';
-import { userLinksData, iconsData } from '@/components/Data/Header/HeaderData.js';
+import { ref } from 'vue';
+import { userLinksData } from '@/components/Data/HeaderData.js';
 import BaseImage from '@/components/Base/BaseImage.vue';
 import BaseSvg from '@/components/Base/BaseSvg.vue';
 import UIBtn from '../UI/UIBtn.vue';
 import { useToggle } from '@/composable/new/useToggle.js';
 import { useBlockScroll } from '@/composable/new/useBlockScroll.js';
+import { iconsData } from '@/components/Data/iconsData.js';
 
 const toggleMenu = () => {
   useToggle(isOpenMenu);
@@ -73,6 +16,8 @@ const toggleMenu = () => {
 };
 const { links, userLinks, userLinksSub } = userLinksData();
 const { logo, accountIcon } = iconsData();
+
+console.log(iconsData());
 const isOpenMenu = ref(false);
 </script>
 
@@ -106,7 +51,7 @@ const isOpenMenu = ref(false);
             </nav>
 
             <div class="header__menu-btn">
-              <UIBtn label="Login" />
+              <UIBtn label="Login" @click="showPopUp" />
               <UIBtn label="Sign up" color="blue" />
             </div>
 

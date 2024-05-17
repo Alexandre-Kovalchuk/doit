@@ -13,7 +13,9 @@ const props = defineProps({
 });
 
 const emits = defineEmits(['click']);
+
 const selectedBtn = ref(-1);
+
 const handleBtn = (name, index) => {
   emits('click', name);
   selectedBtn.value = index;

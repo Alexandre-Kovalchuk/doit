@@ -166,13 +166,18 @@ window.addEventListener('resize', () => {
   }
 
   &__arrow {
-    width: 20px;
-    height: 20px;
+    width: 24px;
+    height: 24px;
     transition: 0.4s ease;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
     svg {
-      width: 100%;
-      height: 100%;
+      display: block;
+      width: 16px;
+      height: 9px;
+      fill: #f5f5f5;
     }
 
     &_act {

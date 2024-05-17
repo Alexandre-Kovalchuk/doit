@@ -1,16 +1,15 @@
 <script setup>
-import { games } from '@/components/Data/MainPage/GamesData.js';
-import {
-  faqsInfoData,
-  faqsAccordionsData,
-  faqsInfoDataMobile,
-} from '@/components/Data/Faqs/FaqsData.js';
+import { faqsData } from '@/components/Data/FaqsData/FaqsData.js';
 import BaseDropdown from '@/components/Base/BaseDropdown.vue';
 import { computed, ref } from 'vue';
 import BaseInput from '@/components/Base/BaseInput.vue';
 import UIAccordion from '@/components/UI/UIAccordion.vue';
-import { useSearch } from '@/composable/useSearch.js';
+import { useSearch } from '@/composable/new/useSearch.js';
 import BaseSvg from '@/components/Base/BaseSvg.vue';
+import { gameData } from '@/components/Data/mainData/gamesData.js';
+
+const { faqsInfoData, faqsAccordionsData, faqsInfoDataMobile } = faqsData();
+const { games } = gameData();
 
 const selectedBtn = ref(0);
 const isMobile = ref(window.innerWidth <= 767);
@@ -178,8 +177,13 @@ window.addEventListener('resize', () => {
 
   &__search {
     position: relative;
-    height: 36px;
-    margin-bottom: 32px;
+    height: 60px;
+    margin-bottom: 14px;
+
+    @include media-breakpoint-down(xs) {
+      height: 36px;
+      margin-bottom: 34px;
+    }
   }
 
   &__search-svg {
@@ -255,6 +259,10 @@ window.addEventListener('resize', () => {
 
   &__accordion {
     margin-top: 15px;
+
+    @include media-breakpoint-down(xs) {
+      margin-top: 24px;
+    }
   }
 
   &__accordion-text {
@@ -302,7 +310,11 @@ window.addEventListener('resize', () => {
 
   .inp {
     border-radius: 3px;
-    //height: 60px;
+    height: 60px;
+
+    @include media-breakpoint-down(xs) {
+      height: 36px;
+    }
 
     &__text {
       @include media-breakpoint-down(sm) {
@@ -358,7 +370,7 @@ window.addEventListener('resize', () => {
     }
 
     &__content {
-      padding: 30px 40px 0 24px;
+      padding: 30px 58px 0 24px;
 
       @include media-breakpoint-down(sm) {
         padding: 10px 10px 0 20px;

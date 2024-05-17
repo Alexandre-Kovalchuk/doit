@@ -11,11 +11,6 @@ const props = defineProps({
     default: null,
   },
 
-  modify: {
-    type: String,
-    default: '',
-  },
-
   title: {
     type: String,
     default: '',
@@ -63,18 +58,13 @@ onBeforeUnmount(() => {
 <template>
   <div class="dropdown" ref="dropDown">
     <h3 class="dropdown__title" v-if="title !== ''">{{ title }}</h3>
-    <div
-      :class="[
-        'dropdown__selected',
-        modify ? `dropdown__selected-${modify}` : '',
-        { dropdown__selected_act: isDropDownVisible },
-      ]"
-      @click="isDropDownVisible = true"
-    >
+
+    <div class="dropdown__selected" @click="isDropDownVisible = true">
+      <p class="dropdown__current">{{ mappedSelectionOption }}</p>
+
       <div :class="['dropdown__arrow', { dropdown__arrow_act: isDropDownVisible }]">
         <BaseSvg id="arrow-down" />
       </div>
-      {{ mappedSelectionOption }}
     </div>
     <transition name="slide-fade">
       <ul v-if="isDropDownVisible" class="dropdown__options">
@@ -98,11 +88,10 @@ onBeforeUnmount(() => {
   cursor: pointer;
   width: 100%;
   margin: 0 auto;
-  font-weight: 400;
-  font-size: 16px;
-  line-height: 100%;
-  color: #627ca3;
   position: relative;
+  border: 1px solid #1c2f4d;
+  border-radius: 2px;
+  padding: 12px 16px;
 
   &__title {
     font-weight: 700;
@@ -113,21 +102,9 @@ onBeforeUnmount(() => {
   }
 
   &__selected {
-    padding: 12px 16px;
-    border: 1px solid #1c2f4d;
-    border-radius: 2px;
-    margin-bottom: 4px;
-    //position: relative;
-
-    &-default {
-      border: 2px solid #20252b;
-      border-radius: 4px;
-      text-align: left;
-      color: #cccdcd;
-      line-height: 100%;
-      font-weight: 400;
-      padding: 10px 16px;
-    }
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 
     &_act {
       background: #16263d;
@@ -135,18 +112,26 @@ onBeforeUnmount(() => {
     }
   }
 
-  &__arrow {
-    position: absolute;
-    right: 16px;
-    transition: 0.3s ease-in;
+  &__current {
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 100%;
+    color: #627ca3;
+  }
 
-    svg {
-      width: 14px;
-      height: 7px;
-    }
+  &__arrow {
+    width: 22px;
+    height: 13px;
+    transition: 0.3s ease-in;
 
     &_act {
       transform: rotate(-180deg);
+    }
+
+    svg {
+      width: 100%;
+      height: 100%;
+      fill: #f5f5f5;
     }
   }
 
@@ -159,8 +144,10 @@ onBeforeUnmount(() => {
     height: auto;
     overflow: auto;
     position: absolute;
+    top: 100%;
     background: #0f1215;
     z-index: 30;
+    margin-top: 4px;
 
     &::-webkit-scrollbar {
       width: 8px;

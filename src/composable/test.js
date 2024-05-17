@@ -13,4 +13,5 @@ function showPopUp() {
   }
 }
 
+console.log(isPopUp);
 export { isPopUp, showPopUp };

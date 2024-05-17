@@ -1,29 +1,24 @@
 <script setup>
 import UITabs from '@/components/UI/UITabs.vue';
-import { ref, watch } from 'vue';
+import { ref } from 'vue';
 import BaseImage from '@/components/Base/BaseImage.vue';
-import { useRoute, useRouter } from 'vue-router';
 import { tabsData } from '@/components/Data/TabsData.js';
-import { changeTitle, newsData, updateNewsTitle } from '@/components/Data/News/NewsData.js';
+import { newsPageData } from '@/components/Data/newsData/newsPageData.js';
 
 const { labelsTabs } = tabsData();
-const { news } = newsData();
+const { news } = newsPageData();
 
-const routers = useRouter();
-const q = ref('');
-const namePath = useRoute().path;
-
-let selectedTab = ref('Dota');
-const title = ref('');
+const selectedTab = ref('Dota');
+const title = ref('Dota');
+const isMobile = ref(window.innerWidth <= 576);
 
 const changeTabs = (tabName) => {
   selectedTab.value = tabName;
+  title.value = tabName;
 };
 
-watch(() => {
-  q.value = routers.currentRoute.value.query.q;
-  selectedTab = ref(q);
-  updateNewsTitle(q.value, title);
+window.addEventListener('resize', () => {
+  isMobile.value = window.innerWidth <= 576;
 });
 </script>
 
@@ -32,16 +27,20 @@ watch(() => {
     <section class="news">
       <div class="container">
         <UITabs :selectedTab="selectedTab" :names="labelsTabs" label="News" @changeTab="changeTabs">
-          <div class="news__block" v-if="q !== 'All'">
+          <div class="news__block">
             <div class="news__row">
-              <div class="news__item" v-for="item in news.slice(0, 2)" :key="item.id">
+              <div class="news__item" v-for="(item, index) in news.slice(0, 2)" :key="index">
                 <div class="news__img">
                   <BaseImage :srcset="item.webp" :src="item.png" />
                 </div>
 
                 <div class="news__column">
-                  <h2 class="news__column-title">{{ q ? title : 'News' }}</h2>
-                  <p class="news__column-text">{{ item.txt }}</p>
+                  <h2 class="news__column-title">
+                    {{ title === 'All' ? 'Brazil' : title }} {{ item.title }}
+                  </h2>
+                  <p class="news__column-text">
+                    {{ isMobile ? item.text.slice(0, 140) : item.text }}
+                  </p>
                 </div>
               </div>
             </div>
@@ -58,43 +57,11 @@ watch(() => {
 
                 <div class="news__sub-column">
                   <h2 class="news__column-title news__column-title_sub">
-                    {{ q ? title : 'News' }}
+                    {{ title === 'All' ? 'Brazil' : title }} {{ item.title }}
                   </h2>
-                  <p class="news__column-text news__column-text_sub">{{ item.txt }}</p>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="news__block" v-for="(item, index) in 5" :key="index" v-else>
-            <div class="news__row">
-              <div class="news__item" v-for="item in news.slice(0, 2)" :key="item.id">
-                <div class="news__img">
-                  <BaseImage :srcset="item.webp" :src="item.png" />
-                </div>
-
-                <div class="news__column">
-                  <h2 class="news__column-title">{{ changeTitle(index) }}</h2>
-                  <p class="news__column-text">{{ item.txt }}</p>
-                </div>
-              </div>
-            </div>
-
-            <div class="news__sub-row">
-              <div
-                class="news__item news__item_sub"
-                v-for="item in news.slice(2, 6)"
-                :key="item.id"
-              >
-                <div class="news__img news__img_sub">
-                  <BaseImage :srcset="item.webp" :src="item.png" />
-                </div>
-
-                <div class="news__sub-column">
-                  <h2 class="news__column-title news__column-title_sub">
-                    {{ changeTitle(index) }}
-                  </h2>
-                  <p class="news__column-text news__column-text_sub">{{ item.txt }}</p>
+                  <p class="news__column-text news__column-text_sub">
+                    {{ item.text }}
+                  </p>
                 </div>
               </div>
             </div>
@@ -117,6 +84,9 @@ watch(() => {
 
   @include media-breakpoint-down(md) {
     padding-left: 0;
+  }
+  @include media-breakpoint-down(xs) {
+    margin-top: 55px;
   }
 
   &__row {
@@ -146,32 +116,47 @@ watch(() => {
     &_sub {
       flex-direction: column;
     }
+
+    &:nth-child(1) {
+      @include media-breakpoint-down(xs) {
+        img {
+          object-position: center -76px;
+        }
+      }
+    }
+
+    &:nth-child(2) {
+      @include media-breakpoint-down(xs) {
+        img {
+          object-position: 50% 76%;
+        }
+      }
+    }
   }
 
   &__img {
     width: 208px;
-    height: 328px;
 
     @include media-breakpoint-down(xs) {
       width: 100%;
-      min-height: 160px;
-      height: auto;
     }
 
     &_sub {
       width: 288px;
-      height: 240px;
 
       @include media-breakpoint-down(xs) {
         width: 100%;
-        min-height: 160px;
-        height: auto;
       }
     }
 
     img {
       width: 100%;
-      height: 100%;
+      height: auto;
+      object-fit: cover;
+
+      @include media-breakpoint-down(xs) {
+        aspect-ratio: 1 / 0.486;
+      }
     }
   }
 
@@ -179,11 +164,19 @@ watch(() => {
     max-width: 392px;
     width: 100%;
     background: #10171f;
-    padding: 24px 0 34px 34px;
+    padding: 26px 0 34px 34px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 
     @include media-breakpoint-down(lg) {
       max-width: 100%;
       padding: 22px 16px 30px;
+    }
+
+    @include media-breakpoint-down(xs) {
+      max-width: 100%;
+      padding: 18px 19px 30px;
     }
 
     &-title {
@@ -193,10 +186,14 @@ watch(() => {
       font-size: 24px;
       line-height: 133%;
       opacity: 0.88;
-      margin-bottom: 14px;
 
       @include media-breakpoint-down(lg) {
         max-width: 100%;
+      }
+
+      @include media-breakpoint-down(sm) {
+        font-size: 18px;
+        margin-bottom: 14px;
       }
 
       &_sub {
@@ -217,6 +214,10 @@ watch(() => {
 
       @include media-breakpoint-down(lg) {
         max-width: 100%;
+      }
+
+      @include media-breakpoint-down(sm) {
+        font-size: 14px;
       }
 
       &_sub {
@@ -251,11 +252,16 @@ watch(() => {
     max-width: 288px;
     width: 100%;
     background: #20252b;
-    padding: 24px 24px 34px;
+    padding: 26px 24px 34px;
+    height: 250px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 
     @include media-breakpoint-down(xs) {
       max-width: 100%;
       padding: 22px 16px 30px;
+      height: 198px;
     }
   }
 
@@ -273,8 +279,15 @@ watch(() => {
     &__content {
       margin-left: 0;
     }
-    .container {
-      padding: 0;
+
+    &__btns {
+      @include media-breakpoint-down(xs) {
+        margin: 40px 0 0 0;
+      }
+    }
+
+    &__btns-item {
+      padding: 16px;
     }
   }
 

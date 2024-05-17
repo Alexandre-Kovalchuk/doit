@@ -1,13 +1,13 @@
-<script setup>
-import UIContact from '@/components/UI/UIContact.vue';
-</script>
+<!--<script setup>-->
+<!--import UIContact from '@/components/UI/UIContact.vue';-->
+<!--</script>-->
 
-<template>
-  <main class="main">
-    <div class="container">
-      <UIContact />
-    </div>
-  </main>
-</template>
+<!--<template>-->
+<!--  <main class="main">-->
+<!--    <div class="container">-->
+<!--      <UIContact />-->
+<!--    </div>-->
+<!--  </main>-->
+<!--</template>-->
 
-<style lang="scss"></style>
+<!--<style lang="scss"></style>-->

@@ -1,5 +1,5 @@
 <script setup>
-import MainBeta from '@/views/Main/MainBeta.vue';
+import MainBeta from '@/components/Pages/Main/MainBeta.vue';
 </script>
 
 <template>

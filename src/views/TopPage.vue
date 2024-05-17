@@ -1,22 +1,19 @@
 <script setup>
+import { ref } from 'vue';
 import BaseDropdown from '@/components/Base/BaseDropdown.vue';
 import UITabs from '@/components/UI/UITabs.vue';
-import { ref } from 'vue';
 import BaseSvg from '@/components/Base/BaseSvg.vue';
 import UIPagination from '@/components/UI/UIPagination.vue';
-import { pagination } from '@/composable/usePagination.js';
-import {
-  yearsData,
-  totalData,
-  topTabs,
-  topTabsHead,
-  topTabsBody,
-} from '@/components/Data/Top/TopData.js';
+import { pagination } from '@/composable/new/usePagination.js';
+import { topData } from '@/components/Data/topData/TopData.js';
+import { tabsData } from '@/components/Data/TabsData.js';
 
 const isTable = ref(window.innerWidth <= 767);
 const isMobile = ref(window.innerWidth <= 576);
 const selectedTabs = ref('Top Players');
 
+const { yearsData, totalData, topTabsBody, topTabsHead } = topData();
+const { topTabs } = tabsData();
 const changeTabs = (tabName) => {
   selectedTabs.value = tabName;
 };
@@ -185,11 +182,13 @@ window.addEventListener('resize', () => {
 
   &__head {
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
     margin: 0 auto 52px;
+    width: 294px;
 
     @include media-breakpoint-down(xs) {
+      width: 193px;
       margin: 0 auto 32px;
     }
   }
@@ -217,6 +216,11 @@ window.addEventListener('resize', () => {
       flex-direction: column;
       align-items: flex-start;
       margin: 0 0 100px;
+    }
+
+    @include media-breakpoint-down(xs) {
+      flex-direction: column-reverse;
+      justify-content: flex-end;
     }
 
     &-item {
@@ -308,6 +312,14 @@ window.addEventListener('resize', () => {
             margin: 0 16px;
           }
         }
+
+        &:nth-child(3) {
+          @include media-breakpoint-down(xs) {
+            width: fit-content;
+            margin: 0 16px;
+            color: red;
+          }
+        }
       }
     }
 
@@ -320,6 +332,15 @@ window.addEventListener('resize', () => {
 
       @include media-breakpoint-down(xs) {
         width: 125px;
+      }
+
+      h3 {
+        &:nth-child(1) {
+          @include media-breakpoint-down(xs) {
+            width: fit-content;
+            padding-left: 20px;
+          }
+        }
       }
     }
   }
@@ -416,10 +437,20 @@ window.addEventListener('resize', () => {
   }
 
   &__tabs-rank {
-    margin: 0 69px 0 18px;
+    margin: 0 40px 0 18px;
+    width: 45px;
 
     @include media-breakpoint-down(md) {
       margin: 0 39px 0 18px;
+    }
+
+    @include media-breakpoint-down(sm) {
+      margin: 0 15px 0 0;
+    }
+
+    @include media-breakpoint-down(xs) {
+      width: 28px;
+      margin: 0 0 0 20px;
     }
 
     p {
@@ -430,10 +461,6 @@ window.addEventListener('resize', () => {
       @include media-breakpoint-down(xs) {
         margin-bottom: 32px;
       }
-    }
-
-    @include media-breakpoint-down(xs) {
-      margin: 0 15px 0 20px;
     }
   }
 
@@ -460,8 +487,12 @@ window.addEventListener('resize', () => {
   }
 
   &__tabs-total {
-    &_sub {
-      margin: 0 9px 0 0;
+    &:first-child {
+      padding-left: 15px;
+
+      @include media-breakpoint-down(xs) {
+        padding: 0;
+      }
     }
   }
 
@@ -473,15 +504,16 @@ window.addEventListener('resize', () => {
   .dropdown {
     width: 160px;
     height: 44px;
-    margin: 0 0 0 5px;
+    border: none;
+    padding: 0 9px;
 
     @include media-breakpoint-down(xs) {
       width: 105px;
       height: 28px;
+      padding: 0 3px;
     }
 
-    &__selected {
-      border: none;
+    &__current {
       font-weight: 700;
       font-size: 44px;
       line-height: 100%;
@@ -490,32 +522,6 @@ window.addEventListener('resize', () => {
 
       @include media-breakpoint-down(xs) {
         font-size: 28px;
-      }
-    }
-
-    &__arrow {
-      width: 20px;
-      height: 20px;
-      right: 12px;
-      top: -4px;
-
-      @include media-breakpoint-down(xs) {
-        width: 14px;
-        height: 14px;
-        top: 0;
-      }
-
-      &_act {
-        top: 30px;
-
-        @include media-breakpoint-down(xs) {
-          top: 20px;
-        }
-      }
-
-      svg {
-        width: 100%;
-        height: 100%;
       }
     }
   }

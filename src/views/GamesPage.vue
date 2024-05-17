@@ -1,14 +1,16 @@
 <script setup>
 import BaseInput from '@/components/Base/BaseInput.vue';
 import BaseImage from '@/components/Base/BaseImage.vue';
-import { games } from '@/components/Data/MainPage/GamesData.js';
 import { ref, computed } from 'vue';
-import { useSearch } from '@/composable/useSearch.js';
+import { useSearch } from '@/composable/new/useSearch.js';
+import { gameData } from '@/components/Data/mainData/gamesData.js';
+
+const allGame = Object.values(gameData()).flat();
 
 const searchGame = ref('');
 
 const filterGames = computed(() => {
-  return useSearch(games, 'txt', searchGame.value);
+  return useSearch(allGame, 'txt', searchGame.value);
 });
 </script>
 
@@ -50,6 +52,10 @@ const filterGames = computed(() => {
     margin: 95px 0;
   }
 
+  @include media-breakpoint-down(xs) {
+    margin: 34px 0;
+  }
+
   &__row {
     display: flex;
     justify-content: space-between;
@@ -80,7 +86,7 @@ const filterGames = computed(() => {
     height: 40px;
 
     @include media-breakpoint-down(sm) {
-      margin-bottom: 25px;
+      margin-bottom: 29px;
     }
   }
 
