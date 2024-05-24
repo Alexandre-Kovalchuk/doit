@@ -45,54 +45,6 @@ const changeTab = (tab) => {
   </main>
 </template>
 
-<!--<script setup>-->
-<!---->
-<!--import { ref, watchEffect } from 'vue';-->
-<!--import AdminTournaments from '@/views/Admins/AdminTournaments.vue';-->
-<!--import AdminTeams from '@/views/Admins/AdminTeams.vue';-->
-<!--import { useRouter } from 'vue-router';-->
-<!--import { changeTabs } from '@/composable/useChangeTabs.js';-->
-<!--import { useWatchTabs } from '@/composable/useWatchEffectTabs.js';-->
-<!--import AdminPlay from '@/views/Admins/AdminPlay.vue';-->
-<!--import { adminTabs } from '@/components/Data/Admin/adminTabs.js';-->
-<!--import AdminPayments from '@/views/Admins/AdminPayments.vue';-->
-<!--import AdminGames from '@/views/Admins/AdminGames.vue';-->
-<!--import AdminNews from '@/views/Admins/AdminNews.vue';-->
-<!--import AdminCalendar from '@/views/Admins/AdminCalendar.vue';-->
-<!--import AdminLeagues from '@/views/Admins/AdminLeagues.vue';-->
-
-<!---->
-<!--const router = useRouter();-->
-<!--const q = ref('');-->
-
-<!--const changeAdminTabs = (tabName) => {-->
-<!--  changeTabs(selectedTab, tabName, router, '');-->
-<!--};-->
-
-<!--watchEffect(() => {-->
-<!--  useWatchTabs(q, router, selectedTab);-->
-<!--});-->
-<!--</script>-->
-
-<!--<template>-->
-<!--  <main class="main">-->
-<!--    <section class="panel">-->
-<!--      <div class="container">-->
-<!--        <UITabs :selected-tab="selectedTab" :names="adminTabs" @change-tab="changeAdminTabs">-->
-<!--          <AdminTournaments v-if="q === 'Tournaments'" />-->
-<!--          <AdminPlay v-if="q === 'Players'" />-->
-<!--          <AdminPayments v-if="q === 'Payments'" />-->
-<!--          <AdminGames v-if="q === 'Games'" />-->
-<!--          <AdminNews v-if="q === 'News'" />-->
-<!--          <AdminTeams v-if="q === 'Teams'" />-->
-<!--          <AdminCalendar v-if="q === 'Calendar'" />-->
-<!--          <AdminLeagues v-if="q === 'Leagues'" />-->
-<!--        </UITabs>-->
-<!--      </div>-->
-<!--    </section>-->
-<!--  </main>-->
-<!--</template>-->
-
 <style lang="scss">
 .panel {
   margin: 50px 0 0 0;
