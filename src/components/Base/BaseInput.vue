@@ -36,10 +36,8 @@ const props = defineProps({
     type: Boolean,
     default: false,
   },
-
   error: {
     type: Array,
-    required: false,
   },
 });
 
@@ -73,7 +71,7 @@ const updateVal = (e) => {
       autocomplete="off"
     />
 
-    <p class="inp__error-mes">{{ error }}</p>
+    <p class="inp__error-mes" v-if="error">{{ error }}</p>
   </div>
 </template>
 

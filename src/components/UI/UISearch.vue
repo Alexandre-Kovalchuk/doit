@@ -96,6 +96,8 @@ const updateVal = (e) => {
 
   .inp {
     height: 28px;
+    width: 100%;
+
     &__text {
       border-top: transparent;
       border-left: transparent;

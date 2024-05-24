@@ -1,59 +1,61 @@
 import { ref } from 'vue';
 
-const nameBtn = ['Add Game'];
+export function adminGamesData() {
+  const nameBtn = ['Add Game'];
 
-const nameTh = ['Title', 'Active'];
+  const nameTh = ['Title', 'Active'];
 
-const nameTd = ref([
-  {
-    name: 'StarCraft II',
-    active: 'Yes',
-  },
+  const nameTd = ref([
+    {
+      name: 'StarCraft II',
+      act: 'Yes',
+    },
 
-  {
-    name: 'Dota II',
-    active: 'Yes',
-  },
+    {
+      name: 'Dota II',
+      act: 'Yes',
+    },
 
-  {
-    name: 'CS:GO',
-    active: 'Yes',
-  },
+    {
+      name: 'CS:GO',
+      act: 'Yes',
+    },
 
-  {
-    name: 'League of Legends',
-    active: 'No',
-  },
+    {
+      name: 'League of Legends',
+      act: 'No',
+    },
 
-  {
-    name: 'Fortnite',
-    active: 'No',
-  },
+    {
+      name: 'Fortnite',
+      act: 'No',
+    },
 
-  {
-    name: 'FIFA 2020',
-    active: 'No',
-  },
+    {
+      name: 'FIFA 2020',
+      act: 'No',
+    },
 
-  {
-    name: 'Metro',
-    active: 'No',
-  },
+    {
+      name: 'Metro',
+      act: 'No',
+    },
 
-  {
-    name: 'Valorant',
-    active: 'No',
-  },
+    {
+      name: 'Valorant',
+      act: 'No',
+    },
 
-  {
-    name: 'Stalker 2',
-    active: 'No',
-  },
+    {
+      name: 'Stalker 2',
+      act: 'No',
+    },
 
-  {
-    name: 'Call of Duty',
-    active: 'No',
-  },
-]);
+    {
+      name: 'Call of Duty',
+      act: 'No',
+    },
+  ]);
 
-export { nameTd, nameBtn, nameTh };
+  return { nameTd, nameBtn, nameTh };
+}

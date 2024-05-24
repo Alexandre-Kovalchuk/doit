@@ -2,6 +2,9 @@
 import Header from '@/components/Base/TheHeader.vue';
 import AsideMenu from '@/components/Base/TheAsideMenu.vue';
 import SvgManager from '@/components/Base/SvgManager.vue';
+import BasePopUp from '@/components/Base/BasePopUp.vue';
+import { isPopUp } from '@/composable/useShowPopUp.js';
+import PopUpLogin from '@/components/Pages/PopUp/PopUpLogin.vue';
 </script>
 
 <template>
@@ -10,6 +13,10 @@ import SvgManager from '@/components/Base/SvgManager.vue';
     <AsideMenu />
 
     <router-view />
+
+    <BasePopUp v-if="isPopUp">
+      <PopUpLogin />
+    </BasePopUp>
 
     <SvgManager />
   </div>

@@ -6,7 +6,7 @@ import { Pagination } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/vue';
 import 'swiper/css';
 import 'swiper/css/pagination';
-import { useShowAllSlide } from '@/composable/new/useShowAllSlide.js';
+import { useShowAllSlide } from '@/composable/useShowAllSlide.js';
 import BaseImage from '@/components/Base/BaseImage.vue';
 import { streamsData } from '@/components/Data/mainData/streamsData.js';
 

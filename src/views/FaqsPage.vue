@@ -4,7 +4,7 @@ import BaseDropdown from '@/components/Base/BaseDropdown.vue';
 import { computed, ref } from 'vue';
 import BaseInput from '@/components/Base/BaseInput.vue';
 import UIAccordion from '@/components/UI/UIAccordion.vue';
-import { useSearch } from '@/composable/new/useSearch.js';
+import { useSearch } from '@/composable/useSearch.js';
 import BaseSvg from '@/components/Base/BaseSvg.vue';
 import { gameData } from '@/components/Data/mainData/gamesData.js';
 
@@ -280,14 +280,17 @@ window.addEventListener('resize', () => {
 
   // components
   .dropdown {
-    &__selected {
-      padding: 17px 0 15px 30px;
+    border: 2px solid #20252b;
+    height: 60px;
+    padding: 17px 15px 15px 30px;
+
+    &__current {
+      padding: 0;
       font-weight: 500;
       font-size: 20px;
       line-height: 120%;
       color: #e6e8eb;
-      border: 2px solid #20252b;
-      height: 60px;
+      //border: 2px solid #20252b;
 
       @include media-breakpoint-down(sm) {
         font-weight: 500;

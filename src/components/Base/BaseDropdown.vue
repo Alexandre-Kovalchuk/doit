@@ -148,6 +148,7 @@ onBeforeUnmount(() => {
     background: #0f1215;
     z-index: 30;
     margin-top: 4px;
+    left: 0;
 
     &::-webkit-scrollbar {
       width: 8px;

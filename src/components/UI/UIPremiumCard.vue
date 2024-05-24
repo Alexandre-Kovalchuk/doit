@@ -1,15 +1,18 @@
 <script setup>
 import UIBtn from '@/components/UI/UIBtn.vue';
+import { ref } from 'vue';
 
 const props = defineProps({
   item: Object,
 });
+
+const isMobile = ref(window.innerWidth <= 576);
 </script>
 
 <template>
   <div class="premium-card">
     <div :class="['premium-card__item', `premium-card__item_${item.color}`]">
-      <p v-if="item.popular" class="premium-card__popular">{{ item.popular }}</p>
+      <p v-if="isMobile || item.popular" class="premium-card__popular">{{ item.popular }}</p>
 
       <h2 :class="['premium-card__title', `premium-card__title_${item.color}`]">
         {{ item.title }}
@@ -37,14 +40,18 @@ const props = defineProps({
   display: flex;
 
   &__item {
-    padding: 0 16px 0 22px;
+    padding: 100px 16px 84px 22px;
     width: 371px;
     height: 540px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 
     @include media-breakpoint-down(xs) {
       width: 329px;
       height: 446px;
-      padding: 0 16px;
+      padding: 30px 16px 42px;
     }
 
     @include media-breakpoint-down(xxs) {
@@ -84,9 +91,11 @@ const props = defineProps({
     font-size: 22px;
     line-height: 100%;
     color: #0f1215;
-    margin: 23px 0 55px;
+    position: absolute;
+    top: 23px;
+
     @include media-breakpoint-down(xs) {
-      margin: 16px 0;
+      top: 8px;
     }
   }
 
@@ -105,10 +114,8 @@ const props = defineProps({
       background-clip: text;
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
-      margin-top: 100px;
 
       @include media-breakpoint-down(xs) {
-        margin-top: 30px;
       }
     }
 
@@ -124,10 +131,8 @@ const props = defineProps({
       background-clip: text;
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
-      margin-top: 100px;
 
       @include media-breakpoint-down(xs) {
-        margin-top: 30px;
       }
     }
 

@@ -1,13 +1,12 @@
 <script setup>
-import { showPopUp } from '@/composable/test.js';
-
+import { popUpType, showPopUp } from '@/composable/useShowPopUp.js';
 import { ref } from 'vue';
 import { userLinksData } from '@/components/Data/HeaderData.js';
 import BaseImage from '@/components/Base/BaseImage.vue';
 import BaseSvg from '@/components/Base/BaseSvg.vue';
 import UIBtn from '../UI/UIBtn.vue';
-import { useToggle } from '@/composable/new/useToggle.js';
-import { useBlockScroll } from '@/composable/new/useBlockScroll.js';
+import { useToggle } from '@/composable/useToggle.js';
+import { useBlockScroll } from '@/composable/useBlockScroll.js';
 import { iconsData } from '@/components/Data/iconsData.js';
 
 const toggleMenu = () => {
@@ -17,8 +16,17 @@ const toggleMenu = () => {
 const { links, userLinks, userLinksSub } = userLinksData();
 const { logo, accountIcon } = iconsData();
 
-console.log(iconsData());
 const isOpenMenu = ref(false);
+
+const showLoginPopUp = (name) => {
+  showPopUp();
+  popUpType.value = name;
+};
+
+const showSignUpPopUp = (name) => {
+  showPopUp();
+  popUpType.value = name;
+};
 </script>
 
 <template>
@@ -51,83 +59,9 @@ const isOpenMenu = ref(false);
             </nav>
 
             <div class="header__menu-btn">
-              <UIBtn label="Login" @click="showPopUp" />
-              <UIBtn label="Sign up" color="blue" />
+              <UIBtn label="Login" @click="showLoginPopUp('Login')" />
+              <UIBtn label="Sign up" color="blue" @click="showSignUpPopUp('Sign up')" />
             </div>
-
-            <!--            <div class="header__user" v-if="checkUsersOnRegister !== null">-->
-            <!--              <div class="header__user-row">-->
-            <!--                <div class="header__user-img">-->
-            <!--                  <BaseImage :srcset="accountIcon.webp" :src="accountIcon.img" />-->
-            <!--                </div>-->
-
-            <!--                <div class="header__user-column">-->
-            <!--                  <p class="header__user-name">svsdvsdv</p>-->
-            <!--                  <p class="header__user-balance">0 EUR <span>/</span> 0 DTC</p>-->
-            <!--                </div>-->
-
-            <!--                <div-->
-            <!--                  :class="['header__user-arrow', { 'header__user-arrow_act': isOpenInfo }]"-->
-            <!--                  @click="toggleInfo"-->
-            <!--                >-->
-            <!--                  <BaseSvg id="arrow-down" />-->
-            <!--                </div>-->
-            <!--              </div>-->
-
-            <!--              <div :class="['header__user-info', { 'header__user-info_act': isOpenInfo }]">-->
-            <!--                <UIProgressBar color="#f5f5f5" name-class="" percent="0" name="lvl" />-->
-
-            <!--                <hr class="header__user-line" />-->
-
-            <!--                <ul class="header__user-list">-->
-            <!--                  <li class="header__user-item" v-for="(item, index) in userLinks" :key="index">-->
-            <!--                    <router-link-->
-            <!--                      class="header__user-link"-->
-            <!--                      :to="{ path: item.name, query: { q: item.href } }"-->
-            <!--                      @click="toggleInfo"-->
-            <!--                    >-->
-            <!--                      {{ item.href }}-->
-
-            <!--                      <BaseSvg id="arrow-link" />-->
-            <!--                    </router-link>-->
-            <!--                  </li>-->
-            <!--                </ul>-->
-
-            <!--                <hr class="header__user-line header__user-line_sub" />-->
-
-            <!--                <ul class="header__user-sublist">-->
-            <!--                  <li-->
-            <!--                    class="header__user-subitem"-->
-            <!--                    v-for="(item, index) in userLinksSub"-->
-            <!--                    :key="index"-->
-            <!--                  >-->
-            <!--                    <router-link-->
-            <!--                      class="header__user-sublink"-->
-            <!--                      v-if="item.href !== 'Logout'"-->
-            <!--                      :to="{-->
-            <!--                        path: item.name,-->
-            <!--                        query: { q: item.href },-->
-            <!--                      }"-->
-            <!--                      @click="toggleInfo"-->
-            <!--                    >-->
-            <!--                      {{ item.href }}-->
-            <!--                    </router-link>-->
-
-            <!--                    <router-link-->
-            <!--                      class="header__user-sublink"-->
-            <!--                      v-else-->
-            <!--                      :to="{-->
-            <!--                        path: item.name,-->
-            <!--                        query: { q: undefined },-->
-            <!--                      }"-->
-            <!--                      @click="exitAccount"-->
-            <!--                    >-->
-            <!--                      {{ item.href }}-->
-            <!--                    </router-link>-->
-            <!--                  </li>-->
-            <!--                </ul>-->
-            <!--              </div>-->
-            <!--            </div>-->
           </div>
         </div>
       </div>

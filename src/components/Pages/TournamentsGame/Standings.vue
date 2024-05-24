@@ -3,7 +3,7 @@ import UIBtn from '@/components/UI/UIBtn.vue';
 import { standingsHeaderData, standingsData } from '@/components/Data/standingsData.js';
 import BaseImage from '@/components/Base/BaseImage.vue';
 import UIPagination from '@/components/UI/UIPagination.vue';
-import { pagination } from '@/composable/new/usePagination.js';
+import { pagination } from '@/composable/usePagination.js';
 
 const { paginatedData, totalPages, currentPage, setPage } = pagination(7, standingsData);
 </script>

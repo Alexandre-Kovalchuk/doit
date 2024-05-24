@@ -2,7 +2,7 @@
 import BaseInput from '@/components/Base/BaseInput.vue';
 import BaseImage from '@/components/Base/BaseImage.vue';
 import { ref, computed } from 'vue';
-import { useSearch } from '@/composable/new/useSearch.js';
+import { useSearch } from '@/composable/useSearch.js';
 import { gameData } from '@/components/Data/mainData/gamesData.js';
 
 const allGame = Object.values(gameData()).flat();

@@ -1,5 +1,5 @@
 <script setup>
-import { pagination } from '@/composable/new/usePagination.js';
+import { pagination } from '@/composable/usePagination.js';
 import BaseImage from '@/components/Base/BaseImage.vue';
 import UIPagination from '@/components/UI/UIPagination.vue';
 import { playersData } from '@/components/Data/PlayersData.js';

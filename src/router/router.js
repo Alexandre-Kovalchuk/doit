@@ -12,7 +12,7 @@ const router = createRouter({
     },
 
     {
-      path: '/newsData',
+      path: '/news',
       name: 'News',
       component: () => import('@/views/NewsPage.vue'),
     },
@@ -76,17 +76,17 @@ const router = createRouter({
     },
     //
 
-    // {
-    //   path: '/admin-panel',
-    //   name: 'Admin panel',
-    //   component: () => import('../views/AdminPanel.vue'),
-    // },
+    {
+      path: '/admin-panel',
+      name: 'Admin panel',
+      component: () => import('../views/AdminPanel.vue'),
+    },
 
-    // {
-    //   path: '/admin-panel/:name',
-    //   name: 'Add Tournament',
-    //   component: () => import('../views/AddTournament.vue'),
-    // },
+    {
+      path: '/admin-panel/:name',
+      name: 'Add Tournament',
+      component: () => import('../views/AddTournament.vue'),
+    },
 
     {
       path: '/top',
@@ -108,15 +108,6 @@ const router = createRouter({
   ],
 });
 
-// router.beforeEach((to, from, next) => {
-//   const requireAuth = to.matched.some((record) => record.meta.auth);
-//
-//   if (requireAuth && !checkUsersOnRegister.value) {
-//     next('/');
-//   } else {
-//     next();
-//   }
-// });
 export default router;
 
 // New-tournament

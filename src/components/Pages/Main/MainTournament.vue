@@ -8,7 +8,7 @@ import 'swiper/css';
 import 'swiper/css/pagination';
 import UICard from '@/components/UI/UICard.vue';
 import { tournamentsData } from '@/components/Data/mainData/tournamentsData.js';
-import { useShowAllSlide } from '@/composable/new/useShowAllSlide.js';
+import { useShowAllSlide } from '@/composable/useShowAllSlide.js';
 
 const { labelsTabs } = tabsData();
 const selectedTabs = ref('Dota');

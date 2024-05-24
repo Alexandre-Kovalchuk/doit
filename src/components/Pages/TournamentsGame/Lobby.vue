@@ -13,12 +13,10 @@ const counterSecond = ref(0);
 
 <template>
   <div class="lobby">
-    <div class="lobby__row">
-      <h2 class="lobby__title" v-for="(title, index) in titleTeam" :key="index">{{ title }}</h2>
-    </div>
-
     <div class="lobby__column">
       <div class="lobby__side">
+        <h2 class="lobby__title">Team 1</h2>
+
         <div class="lobby__side-item" v-for="(item, index) in firstTeam" :key="index">
           <BaseImage :srcset="item.webp" :src="item.png" alt="avatar" />
 
@@ -32,6 +30,7 @@ const counterSecond = ref(0);
           </div>
         </div>
       </div>
+
       <div class="lobby__middle">
         <div class="lobby__middle-details">
           <h3 class="lobby__middle-title">lobby details</h3>
@@ -109,6 +108,7 @@ const counterSecond = ref(0);
       </div>
 
       <div class="lobby__side">
+        <h2 class="lobby__title">Team 2</h2>
         <div
           class="lobby__side-item lobby__side-item_right"
           v-for="(item, index) in secondTeam"
@@ -137,11 +137,12 @@ const counterSecond = ref(0);
   border: 2px solid #20252b;
   padding: 7px 31px 85px 35px;
 
-  &__row {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0 53px;
+  @include media-breakpoint-down(md) {
+    padding: 7px 15px 85px 15px;
+  }
+
+  @include media-breakpoint-down(md) {
+    border: none;
   }
 
   &__title {
@@ -157,6 +158,10 @@ const counterSecond = ref(0);
   &__column {
     display: flex;
     justify-content: space-between;
+
+    @include media-breakpoint-down(sm) {
+      flex-direction: column;
+    }
   }
 
   &__side-item {
@@ -167,6 +172,10 @@ const counterSecond = ref(0);
     margin-bottom: 13px;
     padding: 16px 14px;
     background: #151a1f;
+
+    @include media-breakpoint-down(sm) {
+      width: 100%;
+    }
 
     &_right {
       flex-direction: row-reverse;
@@ -212,8 +221,21 @@ const counterSecond = ref(0);
     height: 18px;
     margin-left: auto;
 
+    svg {
+      width: 100%;
+      height: 100%;
+    }
+
     &_right {
       margin: 0 auto 0 0;
+    }
+  }
+
+  &__middle {
+    margin-top: 56px;
+
+    @include media-breakpoint-down(sm) {
+      margin: 20px auto;
     }
   }
 

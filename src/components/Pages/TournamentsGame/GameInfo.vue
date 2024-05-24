@@ -1,7 +1,7 @@
 <script setup>
 import { tournamentsData } from '@/components/Data/mainData/tournamentsData.js';
 import UIBtn from '@/components/UI/UIBtn.vue';
-import { useGameNameAndId } from '@/composable/new/usePath.js';
+import { useGameNameAndId } from '@/composable/usePath.js';
 const { nameGame, gameId } = useGameNameAndId();
 
 const data = tournamentsData()[nameGame][gameId].labelThird;

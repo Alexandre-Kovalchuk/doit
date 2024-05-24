@@ -4,7 +4,7 @@ import BaseSvg from '@/components/Base/BaseSvg.vue';
 import BaseInput from '@/components/Base/BaseInput.vue';
 import { ref, watch } from 'vue';
 import { useRouter } from 'vue-router';
-import { iconsData } from '@/components/Data/HeaderData.js';
+import { iconsData } from '@/components/Data/iconsData.js';
 
 const { accountIcon } = iconsData();
 
@@ -128,7 +128,6 @@ watch(isActive, (newValue, oldValue) => {
 
   @include media-breakpoint-down(md) {
     padding-left: 0;
-    margin: 0;
   }
 
   &__content {
@@ -226,7 +225,6 @@ watch(isActive, (newValue, oldValue) => {
       width: 104px;
       height: 104px;
       margin-bottom: 23px;
-      border: 1px solid red;
 
       img {
         width: 100%;

@@ -4,7 +4,7 @@ import BaseDropdown from '@/components/Base/BaseDropdown.vue';
 import UITabs from '@/components/UI/UITabs.vue';
 import BaseSvg from '@/components/Base/BaseSvg.vue';
 import UIPagination from '@/components/UI/UIPagination.vue';
-import { pagination } from '@/composable/new/usePagination.js';
+import { pagination } from '@/composable/usePagination.js';
 import { topData } from '@/components/Data/topData/TopData.js';
 import { tabsData } from '@/components/Data/TabsData.js';
 

@@ -7,7 +7,7 @@ import { Swiper, SwiperSlide } from 'swiper/vue';
 import 'swiper/css';
 import 'swiper/css/pagination';
 import UICard from '@/components/UI/UICard.vue';
-import { useShowAllSlide } from '@/composable/new/useShowAllSlide.js';
+import { useShowAllSlide } from '@/composable/useShowAllSlide.js';
 import { tabsData } from '@/components/Data/TabsData.js';
 
 const { labelsTabs } = tabsData();
@@ -84,7 +84,8 @@ const allNews = computed(() => {
         width: 270px !important;
       }
     }
-
+    &-pagination {
+    }
     &-pagination-bullet {
       width: 13px;
       height: 17px;
@@ -99,6 +100,12 @@ const allNews = computed(() => {
         width: 6px;
         height: 8px;
       }
+    }
+  }
+
+  .card_color {
+    @include media-breakpoint-down(xs) {
+      height: auto;
     }
   }
 }
